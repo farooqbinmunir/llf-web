@@ -93,16 +93,9 @@
 	border-block-end: 1px solid colour('charcoal', 1);
 
 	&::after {
-		@include icon($fa-var-arrow-right);
+		@include icon-arrow-diagonal;
 
 		font-size: var(--font-size-md);
-
-		transform: rotate(-45deg);
-	}
-
-	// The arrow points up and away in the reading direction, so it mirrors for right-to-left languages.
-	&:dir(rtl)::after {
-		transform: scaleX(-1) rotate(-45deg);
 	}
 
 	&[aria-current='page'] {

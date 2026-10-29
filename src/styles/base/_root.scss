@@ -43,10 +43,18 @@
 
 	--container-width-xxl: 90rem;
 
+	// 1 for left-to-right and -1 for right-to-left.
+	--inline-direction: 1;
+
 	// Exposed so scripts can match the same breakpoints as the stylesheets, with SCSS as the single source.
 	@each $name, $width in $grid-breakpoints {
 		--breakpoint-#{$name}: #{$width};
 	}
+}
+
+// Flips the few transforms that logical properties cannot express.
+:root[dir='rtl'] {
+	--inline-direction: -1;
 }
 
 // Cairo carries the Arabic script; Inter has no Arabic glyphs.

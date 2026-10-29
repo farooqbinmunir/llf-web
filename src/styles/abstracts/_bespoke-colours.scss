@@ -17,11 +17,11 @@ $site-colours: (
 	'sand': #f5f3f0,
 );
 
-// Surfaces pair a background with the text colour that reads on it, so components never choose text colours themselves.
+// Surfaces pair a background with the text and accent colours that read on it, so components never choose them themselves.
 $surfaces: (
-	'light': ('sand', 'charcoal-0'),
-	'white': ('white', 'charcoal-0'),
-	'dark': ('charcoal-0', 'white'),
+	'light': ('sand', 'charcoal-0', 'charcoal-0'),
+	'white': ('white', 'charcoal-0', 'charcoal-0'),
+	'dark': ('charcoal-0', 'white', 'yellow-0'),
 );
 
 // Reads a colour token, e.g. colour('yellow', 4) or colour('sand').
@@ -46,10 +46,11 @@ $surfaces: (
 }
 
 @mixin surface-classes {
-	@each $name, $pair in $surfaces {
+	@each $name, $colours in $surfaces {
 		.surface-#{$name} {
-			--surface-background: var(--color-#{list.nth($pair, 1)});
-			--surface-text: var(--color-#{list.nth($pair, 2)});
+			--surface-background: var(--color-#{list.nth($colours, 1)});
+			--surface-text: var(--color-#{list.nth($colours, 2)});
+			--surface-accent: var(--color-#{list.nth($colours, 3)});
 
 			background-color: var(--surface-background);
 			color: var(--surface-text);

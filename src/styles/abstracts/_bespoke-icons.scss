@@ -3,6 +3,7 @@
 @use 'sass:map';
 @use 'sass:string';
 @use '@fortawesome/fontawesome-free/scss/functions' as fa;
+@use '@fortawesome/fontawesome-free/scss/variables' as fa-variables;
 @forward '@fortawesome/fontawesome-free/scss/variables' as fa-*;
 
 $icon-families: (
@@ -27,4 +28,11 @@ $icon-families: (
 	line-height: 1;
 
 	-webkit-font-smoothing: antialiased;
+}
+
+// The "go to" arrow points up and towards the reading direction, so it mirrors in right-to-left languages.
+@mixin icon-arrow-diagonal {
+	@include icon(fa-variables.$var-arrow-right);
+
+	transform: scaleX(var(--inline-direction)) rotate(-45deg);
 }
