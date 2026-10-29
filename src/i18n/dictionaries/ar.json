@@ -1,0 +1,49 @@
+{
+	"meta": {
+		"siteName": "صندوق العيش والمعيشة",
+		"description": "يحوّل صندوق العيش والمعيشة العمل الجماعي إلى تغيير دائم في الدول الأعضاء في البنك الإسلامي للتنمية."
+	},
+	"a11y": {
+		"skipToContent": "الانتقال إلى المحتوى",
+		"home": "الصفحة الرئيسية لصندوق العيش والمعيشة",
+		"mainNavigation": "القائمة الرئيسية",
+		"footerNavigation": "تذييل الصفحة",
+		"openMenu": "فتح القائمة",
+		"closeMenu": "إغلاق القائمة",
+		"changeLanguage": "تغيير اللغة"
+	},
+	"header": {
+		"search": "بحث"
+	},
+	"nav": {
+		"aboutUs": "من نحن",
+		"ourProjects": "مشاريعنا",
+		"fieldUpdates": "أخبار من الميدان",
+		"library": "المكتبة",
+		"news": "الأخبار",
+		"contact": "تواصل معنا",
+		"fromTheField": "من الميدان",
+		"ourPartners": "شركاؤنا",
+		"governance": "الحوكمة",
+		"partnerships": "الشراكات",
+		"fundingQueries": "استفسارات التمويل",
+		"careers": "الوظائف",
+		"newsMedia": "الأخبار والإعلام",
+		"llfHub": "منصة الصندوق",
+		"privacyPolicy": "سياسة الخصوصية",
+		"termsOfUse": "شروط الاستخدام",
+		"accessibility": "إمكانية الوصول",
+		"sitemap": "خريطة الموقع"
+	},
+	"footer": {
+		"ourWork": "عملنا",
+		"getInvolved": "شارك معنا",
+		"resources": "الموارد",
+		"getInTouch": "تواصل معنا",
+		"tagline": "عمل جماعي.\nأثر دائم.",
+		"rights": "صندوق العيش والمعيشة. جميع الحقوق محفوظة."
+	},
+	"home": {
+		"title": "عمل جماعي. أثر دائم."
+	}
+}

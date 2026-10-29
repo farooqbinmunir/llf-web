@@ -1,0 +1,25 @@
+@use 'abstracts' as *;
+
+// The rounded control shared by the search link and the language switcher.
+.rsg-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-8);
+
+	min-block-size: 2.5rem;
+	padding-inline: var(--spacing-16);
+
+	font-size: var(--font-size-sm);
+	text-decoration: none;
+
+	background-color: colour('white');
+	color: colour('charcoal', 0);
+	border: 1px solid colour('charcoal', 4);
+	border-radius: var(--border-radius-pill);
+
+	transition: background-color var(--speed-fast);
+
+	&:hover {
+		background-color: colour('yellow', 4);
+	}
+}

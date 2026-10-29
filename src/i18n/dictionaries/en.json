@@ -1,0 +1,49 @@
+{
+	"meta": {
+		"siteName": "Lives and Livelihoods Fund",
+		"description": "The Lives and Livelihoods Fund turns collective action into lasting change across IsDB member countries."
+	},
+	"a11y": {
+		"skipToContent": "Skip to content",
+		"home": "Lives and Livelihoods Fund home",
+		"mainNavigation": "Main",
+		"footerNavigation": "Footer",
+		"openMenu": "Open menu",
+		"closeMenu": "Close menu",
+		"changeLanguage": "Change language"
+	},
+	"header": {
+		"search": "Search"
+	},
+	"nav": {
+		"aboutUs": "About us",
+		"ourProjects": "Our projects",
+		"fieldUpdates": "Field updates",
+		"library": "Library",
+		"news": "News",
+		"contact": "Contact",
+		"fromTheField": "From the field",
+		"ourPartners": "Our partners",
+		"governance": "Governance",
+		"partnerships": "Partnerships",
+		"fundingQueries": "Funding queries",
+		"careers": "Careers",
+		"newsMedia": "News & media",
+		"llfHub": "LLF Hub",
+		"privacyPolicy": "Privacy policy",
+		"termsOfUse": "Terms of use",
+		"accessibility": "Accessibility",
+		"sitemap": "Sitemap"
+	},
+	"footer": {
+		"ourWork": "Our work",
+		"getInvolved": "Get involved",
+		"resources": "Resources",
+		"getInTouch": "Get in touch",
+		"tagline": "Collective action.\nLasting impact.",
+		"rights": "Lives and Livelihoods Fund. All rights reserved."
+	},
+	"home": {
+		"title": "Collective action. Lasting impact."
+	}
+}

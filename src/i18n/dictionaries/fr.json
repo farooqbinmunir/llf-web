@@ -1,0 +1,49 @@
+{
+	"meta": {
+		"siteName": "Fonds pour la vie et les moyens de subsistance",
+		"description": "Le Fonds pour la vie et les moyens de subsistance transforme l'action collective en changement durable dans les pays membres de la BID."
+	},
+	"a11y": {
+		"skipToContent": "Aller au contenu",
+		"home": "Accueil du Fonds pour la vie et les moyens de subsistance",
+		"mainNavigation": "Principale",
+		"footerNavigation": "Pied de page",
+		"openMenu": "Ouvrir le menu",
+		"closeMenu": "Fermer le menu",
+		"changeLanguage": "Changer de langue"
+	},
+	"header": {
+		"search": "Rechercher"
+	},
+	"nav": {
+		"aboutUs": "À propos",
+		"ourProjects": "Nos projets",
+		"fieldUpdates": "Nouvelles du terrain",
+		"library": "Bibliothèque",
+		"news": "Actualités",
+		"contact": "Contact",
+		"fromTheField": "Depuis le terrain",
+		"ourPartners": "Nos partenaires",
+		"governance": "Gouvernance",
+		"partnerships": "Partenariats",
+		"fundingQueries": "Demandes de financement",
+		"careers": "Carrières",
+		"newsMedia": "Actualités et médias",
+		"llfHub": "Espace LLF",
+		"privacyPolicy": "Politique de confidentialité",
+		"termsOfUse": "Conditions d'utilisation",
+		"accessibility": "Accessibilité",
+		"sitemap": "Plan du site"
+	},
+	"footer": {
+		"ourWork": "Notre action",
+		"getInvolved": "S'engager",
+		"resources": "Ressources",
+		"getInTouch": "Nous contacter",
+		"tagline": "Action collective.\nImpact durable.",
+		"rights": "Fonds pour la vie et les moyens de subsistance. Tous droits réservés."
+	},
+	"home": {
+		"title": "Action collective. Impact durable."
+	}
+}
