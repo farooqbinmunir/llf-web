@@ -1,0 +1,12 @@
+@use 'abstracts' as *;
+
+.rsg-container {
+	inline-size: 100%;
+	max-inline-size: var(--container-width-xxl);
+	margin-inline: auto;
+	padding-inline: var(--spacing-24);
+
+	@include media-breakpoint-up(lg) {
+		padding-inline: var(--spacing-64);
+	}
+}

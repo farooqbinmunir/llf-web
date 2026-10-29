@@ -1,0 +1,30 @@
+// Icons are Font Awesome glyphs set from SCSS, so components always reference a `$fa-var-*` variable rather than a raw code point.
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+@use '@fortawesome/fontawesome-free/scss/functions' as fa;
+@forward '@fortawesome/fontawesome-free/scss/variables' as fa-*;
+
+$icon-families: (
+	'solid': ('Font Awesome 7 Free', 900),
+	'brands': ('Font Awesome 7 Brands', 400),
+);
+
+// The empty alternative text after the slash marks the glyph as decorative, so screen readers never announce it.
+@function icon-content($glyph) {
+	@return string.unquote('#{fa.fa-content($glyph)} / ""');
+}
+
+@mixin icon($glyph, $family: 'solid') {
+	$font: map.get($icon-families, $family);
+
+	content: icon-content($glyph);
+
+	display: inline-block;
+	font-family: list.nth($font, 1);
+	font-style: normal;
+	font-weight: list.nth($font, 2);
+	line-height: 1;
+
+	-webkit-font-smoothing: antialiased;
+}

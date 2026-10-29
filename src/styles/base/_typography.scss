@@ -1,0 +1,25 @@
+// The main region grows so the footer sits at the bottom of short pages.
+body {
+	display: flex;
+	flex-direction: column;
+
+	min-block-size: 100vh;
+
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-md);
+	line-height: 1.5;
+
+	-webkit-font-smoothing: antialiased;
+}
+
+main {
+	flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: 600;
+	line-height: 1.2;
+}

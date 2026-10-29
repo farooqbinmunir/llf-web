@@ -1,0 +1,58 @@
+@use 'sass:list';
+
+// Brand palette from the LLF Brand Guidelines (Color Specifications). Level 0 is the full colour and level 5 its lightest tint.
+// Hex stays the source of truth because the guidelines specify hex for digital use.
+$brand-colours: (
+	'charcoal': (#2b2b2b, #545454, #7e7e7e, #a7a7a7, #d1d1d1, #f7f6f6),
+	'green': (#0eb584, #3bc49c, #68d3b3, #95e1cb, #c2f0e2, #effffa),
+	'coral': (#fb563b, #fb7560, #fc9585, #fcb4a9, #fdd4ce, #fdf3f3),
+	'yellow': (#f49d07, #f6b036, #f8c264, #fbd593, #fde7c1, #fffaf0),
+	'purple': (#7e46b8, #9668c6, #ae8ad4, #c7ace3, #dfcef1, #f7f0ff),
+	'blue': (#0089c5, #2c9ed1, #58b4dc, #83c9e8, #afdff3, #dbf4ff),
+);
+
+// Neutrals the site designs use that are not part of the brand palette.
+$site-colours: (
+	'white': #fff,
+	'sand': #f5f3f0,
+);
+
+// Surfaces pair a background with the text colour that reads on it, so components never choose text colours themselves.
+$surfaces: (
+	'light': ('sand', 'charcoal-0'),
+	'white': ('white', 'charcoal-0'),
+	'dark': ('charcoal-0', 'white'),
+);
+
+// Reads a colour token, e.g. colour('yellow', 4) or colour('sand').
+@function colour($name, $level: null) {
+	@if $level == null {
+		@return var(--color-#{$name});
+	}
+
+	@return var(--color-#{$name}-#{$level});
+}
+
+@mixin colour-properties {
+	@each $name, $levels in $brand-colours {
+		@for $level from 0 to list.length($levels) {
+			--color-#{$name}-#{$level}: #{list.nth($levels, $level + 1)};
+		}
+	}
+
+	@each $name, $value in $site-colours {
+		--color-#{$name}: #{$value};
+	}
+}
+
+@mixin surface-classes {
+	@each $name, $pair in $surfaces {
+		.surface-#{$name} {
+			--surface-background: var(--color-#{list.nth($pair, 1)});
+			--surface-text: var(--color-#{list.nth($pair, 2)});
+
+			background-color: var(--surface-background);
+			color: var(--surface-text);
+		}
+	}
+}
