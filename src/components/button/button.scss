@@ -1,0 +1,41 @@
+@use 'abstracts' as *;
+
+// Outlined pill action. Its text takes the surface accent, so it reads yellow on dark panels and charcoal on light ones.
+.rsg-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-8);
+
+	min-block-size: 2.75rem;
+	padding-inline: var(--spacing-24);
+
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	text-decoration: none;
+
+	color: var(--surface-accent);
+	border: 1px solid colour('yellow', 0);
+	border-radius: var(--border-radius-pill);
+
+	transition:
+		background-color var(--speed-fast),
+		color var(--speed-fast);
+
+	&:hover {
+		background-color: colour('yellow', 0);
+		color: colour('charcoal', 0);
+	}
+}
+
+// A text-only action that sits beside a button, such as "Filter projects".
+.rsg-button--plain {
+	border-color: transparent;
+
+	color: inherit;
+
+	&:hover {
+		background-color: transparent;
+		color: colour('yellow', 0);
+	}
+}

@@ -1,0 +1,16 @@
+@use 'abstracts' as *;
+
+// A full-width section whose rounded top overlaps the section before it, as the page designs stack them.
+.rsg-panel {
+	position: relative;
+
+	margin-block-start: calc(var(--border-radius-xl) * -1);
+	padding-block: var(--spacing-48);
+
+	border-start-start-radius: var(--border-radius-xl);
+	border-start-end-radius: var(--border-radius-xl);
+
+	@include media-breakpoint-up(lg) {
+		padding-block: var(--spacing-80);
+	}
+}

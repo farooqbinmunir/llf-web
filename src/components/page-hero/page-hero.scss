@@ -1,0 +1,64 @@
+@use 'abstracts' as *;
+
+.rsg-page-hero {
+	position: relative;
+
+	display: flex;
+	align-items: flex-end;
+
+	min-block-size: 32rem;
+	padding-block: var(--spacing-48) var(--spacing-80);
+
+	overflow: hidden;
+
+	--rsg-page-hero-shade: color-mix(in srgb, #{colour('charcoal', 0)} 75%, transparent);
+
+	// Darkens the photo towards the heading so white text keeps its contrast whatever the image.
+	&::after {
+		content: '';
+
+		position: absolute;
+		inset: 0;
+
+		background: linear-gradient(to top, var(--rsg-page-hero-shade), transparent 75%);
+	}
+
+	@include media-breakpoint-up(lg) {
+		align-items: center;
+
+		min-block-size: 36rem;
+		padding-block: var(--spacing-96);
+
+		&::after {
+			background: linear-gradient(to right, var(--rsg-page-hero-shade), transparent 60%);
+		}
+
+		&:dir(rtl)::after {
+			background: linear-gradient(to left, var(--rsg-page-hero-shade), transparent 60%);
+		}
+	}
+}
+
+.rsg-page-hero__image {
+	object-fit: cover;
+}
+
+.rsg-page-hero__content {
+	position: relative;
+	z-index: 1;
+}
+
+.rsg-page-hero__title {
+	max-inline-size: 14ch;
+
+	font-size: var(--font-size-4xl);
+
+	@include media-breakpoint-up(lg) {
+		font-size: var(--font-size-5xl);
+	}
+}
+
+.rsg-page-hero__text {
+	max-inline-size: 32rem;
+	margin-block-start: var(--spacing-24);
+}

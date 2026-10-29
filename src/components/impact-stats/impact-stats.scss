@@ -1,0 +1,87 @@
+@use 'abstracts' as *;
+
+.rsg-impact-stats__intro {
+	display: grid;
+	gap: var(--spacing-16);
+
+	max-inline-size: 36rem;
+	margin-block-end: var(--spacing-40);
+
+	@include media-breakpoint-up(lg) {
+		margin-inline: auto;
+		margin-block-end: var(--spacing-48);
+
+		text-align: center;
+	}
+}
+
+.rsg-impact-stats__title {
+	font-size: var(--font-size-3xl);
+
+	@include media-breakpoint-up(lg) {
+		font-size: var(--font-size-4xl);
+	}
+}
+
+.rsg-impact-stats__list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--spacing-12);
+
+	margin: 0;
+
+	@include media-breakpoint-up(lg) {
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--spacing-16);
+	}
+}
+
+// The description is first in the markup for screen readers but shown under the figure, as designed.
+.rsg-impact-stats__item {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-8);
+
+	min-block-size: 10rem;
+	padding: var(--spacing-24) var(--spacing-16);
+
+	text-align: center;
+
+	background-color: colour('white');
+	border: 1px solid colour('charcoal', 4);
+	border-radius: var(--border-radius-lg);
+
+	@include media-breakpoint-up(lg) {
+		min-block-size: 12rem;
+	}
+}
+
+.rsg-impact-stats__description {
+	max-inline-size: 12rem;
+}
+
+.rsg-impact-stats__figure {
+	display: flex;
+	flex-direction: column;
+
+	margin: 0;
+
+	color: colour('yellow', 0);
+}
+
+.rsg-impact-stats__unit {
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+}
+
+.rsg-impact-stats__value {
+	font-size: var(--font-size-4xl);
+	font-weight: 700;
+	line-height: 1;
+
+	@include media-breakpoint-up(lg) {
+		font-size: var(--font-size-5xl);
+	}
+}

@@ -1,8 +1,18 @@
 // Alphabetised index of component stylesheets. Each stylesheet lives next to its component.
+@use '../components/button/button';
+@use '../components/cta-banner/cta-banner';
+@use '../components/eyebrow/eyebrow';
+@use '../components/filter-bar/filter-bar';
+@use '../components/impact-stats/impact-stats';
 @use '../components/language-switcher/language-switcher';
 @use '../components/logo/logo';
 @use '../components/mobile-menu/mobile-menu';
+@use '../components/page-hero/page-hero';
+@use '../components/panel/panel';
 @use '../components/pill/pill';
+@use '../components/project-card/project-card';
+@use '../components/project-listing/project-listing';
 @use '../components/search-link/search-link';
 @use '../components/site-footer/site-footer';
 @use '../components/site-header/site-header';
+@use '../components/tag/tag';

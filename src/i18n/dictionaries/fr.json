@@ -45,5 +45,20 @@
 	},
 	"home": {
 		"title": "Action collective. Impact durable."
+	},
+	"projects": {
+		"phases": "Phase du programme",
+		"filterProjects": "Filtrer les projets",
+		"sector": "Secteur",
+		"country": "Pays",
+		"status": "Statut",
+		"allSectors": "Tous les secteurs",
+		"allCountries": "Tous les pays",
+		"allStatuses": "Tous les statuts",
+		"resetFilter": "Réinitialiser",
+		"apply": "Appliquer",
+		"loadMore": "Voir plus de projets",
+		"noResults": "Aucun projet ne correspond encore à ces filtres.",
+		"showing": "{shown} projets affichés sur {total}"
 	}
 }

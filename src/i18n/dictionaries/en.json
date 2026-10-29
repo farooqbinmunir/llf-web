@@ -45,5 +45,20 @@
 	},
 	"home": {
 		"title": "Collective action. Lasting impact."
+	},
+	"projects": {
+		"phases": "Programme phase",
+		"filterProjects": "Filter projects",
+		"sector": "Sector",
+		"country": "Country",
+		"status": "Status",
+		"allSectors": "All sectors",
+		"allCountries": "All countries",
+		"allStatuses": "All statuses",
+		"resetFilter": "Reset filter",
+		"apply": "Apply",
+		"loadMore": "Load more projects",
+		"noResults": "No projects match these filters yet.",
+		"showing": "Showing {shown} of {total} projects"
 	}
 }

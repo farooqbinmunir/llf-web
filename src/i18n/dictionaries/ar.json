@@ -45,5 +45,20 @@
 	},
 	"home": {
 		"title": "عمل جماعي. أثر دائم."
+	},
+	"projects": {
+		"phases": "مرحلة البرنامج",
+		"filterProjects": "تصفية المشاريع",
+		"sector": "القطاع",
+		"country": "الدولة",
+		"status": "الحالة",
+		"allSectors": "جميع القطاعات",
+		"allCountries": "جميع الدول",
+		"allStatuses": "جميع الحالات",
+		"resetFilter": "إعادة الضبط",
+		"apply": "تطبيق",
+		"loadMore": "عرض المزيد من المشاريع",
+		"noResults": "لا توجد مشاريع تطابق هذه المرشحات حتى الآن.",
+		"showing": "عرض {shown} من أصل {total} مشروعًا"
 	}
 }
