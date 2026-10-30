@@ -1,0 +1,25 @@
+// Bootstrap is only used for its breakpoint mixins, so only the maps they and the tokens read are overridden here.
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1520px,
+);
+
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1480px,
+);
+
+$border-widths: (
+	1: 1px,
+	2: 2px,
+	3: 3px,
+	4: 4px,
+	5: 5px,
+);

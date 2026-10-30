@@ -1,0 +1,71 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.project-tile {
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-16);
+
+	padding: var(--spacing-16);
+
+	border-radius: var(--border-radius-base);
+
+	transition: background-color var(--speed-fast) var(--transition-ease);
+
+	&:hover,
+	&:focus-within {
+		background-color: var(--rsg-brand-colour-6);
+	}
+
+	.header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--spacing-16);
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-md);
+	}
+
+	.link {
+		@extend %unstyled-link;
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+
+			border-radius: inherit;
+		}
+
+		// The focus ring goes on the whole tile, which is what the stretched link covers.
+		&:focus-visible {
+			outline: none;
+
+			&::before {
+				outline: map.get($border-widths, 2) solid currentColor;
+				outline-offset: map.get($border-widths, 2);
+			}
+		}
+	}
+
+	.summary {
+		font-size: var(--font-size-sm);
+	}
+
+	.image {
+		inline-size: 100%;
+		block-size: auto;
+		margin-block-start: auto;
+
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+
+		border-radius: var(--border-radius-md);
+	}
+}

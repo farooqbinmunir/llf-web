@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import FilterBar from '@/components/filter-bar/FilterBar';
-import ProjectCard from '@/components/project-card/ProjectCard';
+import ProjectTile from '@/components/project-tile/ProjectTile';
+import SearchFilters from '@/components/search-filters/SearchFilters';
 import { localisedPath, type Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import { getProjectFilterOptions, getProjects, type ProjectFilters } from '@/lib/data/projects';
@@ -43,9 +43,9 @@ async function PhaseTabs({ lang, searchParams, labels }: Omit<ProjectListingProp
 	const path = localisedPath(lang, '/our-projects');
 
 	return (
-		<nav className="rsg-project-listing__phases" aria-label={labels.phases}>
+		<nav className="phases" aria-label={labels.phases}>
 			{options.phases.map((phase) => (
-				<Link key={phase.slug} className="rsg-project-listing__phase" href={withQuery(path, { ...filters, phase: phase.slug })} aria-current={phase.slug === filters.phase ? 'true' : undefined} scroll={false}>
+				<Link key={phase.slug} className="phase" href={withQuery(path, { ...filters, phase: phase.slug })} aria-current={phase.slug === filters.phase ? 'true' : undefined} scroll={false}>
 					{phase.name}
 				</Link>
 			))}
@@ -62,7 +62,7 @@ async function ProjectResults({ lang, searchParams, labels }: Omit<ProjectListin
 
 	return (
 		<>
-			<FilterBar
+			<SearchFilters
 				key={withQuery('', filters)}
 				id={FILTERS_ID}
 				action={path}
@@ -83,24 +83,24 @@ async function ProjectResults({ lang, searchParams, labels }: Omit<ProjectListin
 			</p>
 
 			{projects.length > 0 ? (
-				<ul className="rsg-project-listing__grid" role="list">
+				<ul className="grid" role="list">
 					{projects.map((project) => (
 						<li key={project.documentId}>
-							<ProjectCard lang={lang} project={project} />
+							<ProjectTile lang={lang} project={project} palette="dark" />
 						</li>
 					))}
 				</ul>
 			) : (
-				<p className="rsg-project-listing__empty">{labels.noResults}</p>
+				<p className="empty">{labels.noResults}</p>
 			)}
 
-			<div className="rsg-project-listing__more">
+			<div className="more">
 				{projects.length < total && (
 					<Link className="rsg-button" href={withQuery(path, { ...filters, page: page + 1 })} scroll={false}>
 						{labels.loadMore}
 					</Link>
 				)}
-				<a className="rsg-button rsg-button--plain rsg-project-listing__to-filters" href={`#${FILTERS_ID}`}>
+				<a className="filters-jump" href={`#${FILTERS_ID}`}>
 					{labels.filterProjects}
 				</a>
 			</div>
@@ -110,22 +110,22 @@ async function ProjectResults({ lang, searchParams, labels }: Omit<ProjectListin
 
 export default function ProjectListing({ lang, searchParams, labels, introTitle, introText }: ProjectListingProps) {
 	return (
-		<section className="rsg-panel surface-dark rsg-project-listing" aria-labelledby="project-listing-title">
-			<div className="rsg-container">
-				<div className="rsg-project-listing__header">
-					<Suspense fallback={<div className="rsg-project-listing__phases" />}>
+		<section className="project-listing rsg-module section-rounded-top section-wrapper-small rsg-surface-dark" aria-labelledby="project-listing-title">
+			<div className="container-xxl">
+				<div className="header">
+					<Suspense fallback={<div className="phases" />}>
 						<PhaseTabs lang={lang} searchParams={searchParams} labels={labels} />
 					</Suspense>
 
-					<div className="rsg-project-listing__intro">
-						<h2 id="project-listing-title" className="rsg-project-listing__title">
+					<div className="intro">
+						<h2 id="project-listing-title" className="rsg-title">
 							{introTitle}
 						</h2>
 						{introText && <p>{introText}</p>}
 					</div>
 				</div>
 
-				<Suspense fallback={<div className="rsg-project-listing__loading" />}>
+				<Suspense fallback={<div className="loading" />}>
 					<ProjectResults lang={lang} searchParams={searchParams} labels={labels} />
 				</Suspense>
 			</div>

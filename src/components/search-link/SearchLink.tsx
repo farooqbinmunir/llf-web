@@ -5,7 +5,7 @@ type SearchLinkProps = { lang: Locale; label: string };
 
 export default function SearchLink({ lang, label }: SearchLinkProps) {
 	return (
-		<Link className="rsg-pill rsg-search-link" href={localisedPath(lang, '/search')}>
+		<Link className="pill search-link" href={localisedPath(lang, '/search')}>
 			{label}
 		</Link>
 	);

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Cairo, Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import SiteFooter from '@/components/site-footer/SiteFooter';
-import SiteHeader from '@/components/site-header/SiteHeader';
+import PageFooter from '@/components/page-footer/PageFooter';
+import PageHeader from '@/components/page-header/PageHeader';
 import { hasLocale, localeDetails, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import '@/styles/main.scss';
@@ -31,16 +31,16 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
 
 	return (
 		<html lang={lang} dir={localeDetails[lang].dir} className={`${inter.variable} ${cairo.variable}`}>
-			<body className="surface-light">
-				<a className="rsg-skip-link" href="#main">
+			<body>
+				<a className="rsg-skip-to-content-link rsg-surface-dark" href="#main">
 					{dictionary.a11y.skipToContent}
 				</a>
 
-				<SiteHeader lang={lang} dictionary={dictionary} />
+				<PageHeader lang={lang} dictionary={dictionary} />
 
 				<main id="main">{children}</main>
 
-				<SiteFooter lang={lang} dictionary={dictionary} />
+				<PageFooter lang={lang} dictionary={dictionary} />
 			</body>
 		</html>
 	);

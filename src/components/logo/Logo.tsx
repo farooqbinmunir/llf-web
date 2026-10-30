@@ -8,8 +8,8 @@ type LogoProps = { lang: Locale; label: string };
 // TODO - The brand guidelines include an Arabic wordmark; swap it in for `ar` once a vector of it is available.
 export default function Logo({ lang, label }: LogoProps) {
 	return (
-		<Link className="rsg-logo" href={localisedPath(lang, '/')} aria-label={label}>
-			<svg className="rsg-logo__image" viewBox="0 0 108 50" fill="currentColor" aria-hidden="true" focusable="false">
+		<Link className="logo" href={localisedPath(lang, '/')} aria-label={label}>
+			<svg className="image" viewBox="0 0 108 50" fill="currentColor" aria-hidden="true" focusable="false">
 				<path d="M56.9287 39.847V36.6016H60.3377V35.4337H56.9287V33.495H60.5851V32.3389H55.6504V39.847H56.9287Z" />
 				<path d="M62.4741 34.5984H61.2488V37.6502C61.2488 39.1389 62.0441 39.9644 63.2164 39.9644C63.7858 39.9644 64.2473 39.7805 64.5811 39.4167V39.8451H65.7849V34.5964H64.5595V37.5523C64.5595 38.3231 64.1727 38.8689 63.4618 38.8689C62.8276 38.8689 62.4741 38.419 62.4741 37.7343V34.5964V34.5984Z" />
 				<path d="M68.1865 36.9439C68.1865 36.1204 68.5851 35.5726 69.349 35.5726C70.0265 35.5726 70.3917 36.0656 70.3917 36.7933V39.8451H71.617V36.7933C71.617 35.3046 70.8218 34.4693 69.5297 34.4693C68.917 34.4693 68.4339 34.7275 68.1649 35.0268V34.5984H66.9612V39.847H68.1865V36.9439Z" />

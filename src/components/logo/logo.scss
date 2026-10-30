@@ -1,10 +1,12 @@
-.rsg-logo {
+@use 'abstracts' as *;
+
+.logo {
 	display: inline-flex;
 
 	color: inherit;
-}
 
-.rsg-logo__image {
-	inline-size: 6.75rem;
-	block-size: auto;
+	.image {
+		inline-size: auto;
+		block-size: var(--spacing-48);
+	}
 }

@@ -1,0 +1,112 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'bootstrap/scss/mixins/breakpoints' as bootstrap;
+@use '@fortawesome/fontawesome-free/scss/variables' as fa;
+@use 'bootstrap-variables-overrides' as *;
+@use 'bespoke-functions' as *;
+@use 'bespoke-variables-typography' as *;
+
+// Bootstrap's breakpoint mixins, wrapped so components never pass the breakpoint map themselves.
+@mixin media-breakpoint-up($name) {
+	@include bootstrap.media-breakpoint-up($name, $grid-breakpoints) {
+		@content;
+	}
+}
+
+@mixin media-breakpoint-down($name) {
+	@include bootstrap.media-breakpoint-down($name, $grid-breakpoints) {
+		@content;
+	}
+}
+
+// Emits a concrete class and a placeholder from one definition, so a shared style serves both markup and `@extend`.
+@mixin silent-class($class-name, $selector: false) {
+	@if $selector {
+		#{$selector},
+		.#{$class-name},
+		%#{$class-name} {
+			@content;
+		}
+	} @else {
+		.#{$class-name},
+		%#{$class-name} {
+			@content;
+		}
+	}
+}
+
+@mixin generate-colour-vars($colours) {
+	@each $name, $colour in $colours {
+		--colour-#{$name}: #{$colour};
+	}
+}
+
+// Every tone of every palette as `--colour-{palette}-{tone}`, with tone 1 also as the palette's master `--colour-{palette}`.
+@mixin generate-brand-vars($palettes) {
+	@each $name, $tones in $palettes {
+		@each $tone, $config in $tones {
+			--colour-#{$name}-#{$tone}: #{map.get($config, colour)};
+		}
+
+		--colour-#{$name}: var(--colour-#{$name}-1);
+	}
+}
+
+// The role colours a surface sets. Derived roles are declared again on every surface, because a custom property that
+// references another resolves where it is declared, so the root's values would otherwise reach every surface unchanged.
+@mixin surface-roles($name, $tones, $tone) {
+	--rsg-background-colour: var(--colour-#{$name}-#{$tone});
+	--rsg-foreground-colour: #{map.get(map.get($tones, $tone), foreground)};
+	--rsg-border-colour: var(--colour-#{$name}-5);
+
+	@each $brand-tone, $config in $tones {
+		--rsg-brand-colour-#{$brand-tone}: var(--colour-#{$name}-#{$brand-tone});
+	}
+
+	--rsg-title-colour: var(--rsg-foreground-colour);
+	--rsg-label-colour: var(--rsg-foreground-colour);
+	--rsg-button-text-colour: var(--rsg-foreground-colour);
+	--rsg-button-background-colour: transparent;
+	--rsg-accent-text-colour: #{map.get(map.get($tones, 2), foreground)};
+
+	background-color: var(--rsg-background-colour);
+	color: var(--rsg-foreground-colour);
+}
+
+// `.rsg-surface-{palette}` paints tone 1 and `.rsg-surface-{palette}-{tone}` paints that tone; both re-theme the role colours inside.
+@mixin generate-brand-classes($palettes) {
+	@each $name, $tones in $palettes {
+		.rsg-surface-#{$name} {
+			@include surface-roles($name, $tones, 1);
+		}
+
+		@each $tone, $config in $tones {
+			.rsg-surface-#{$name}-#{$tone} {
+				@include surface-roles($name, $tones, $tone);
+			}
+		}
+	}
+}
+
+// Icons are Font Awesome glyphs set from SCSS, so components always pass a `$fa-var-*` variable rather than a raw code point.
+@mixin icon($glyph, $family: 'solid') {
+	$font: map.get($icon-families, $family);
+
+	content: icon-content($glyph);
+
+	display: inline-block;
+
+	font-family: list.nth($font, 1);
+	font-style: normal;
+	font-weight: list.nth($font, 2);
+	line-height: 1;
+
+	-webkit-font-smoothing: antialiased;
+}
+
+// The "go to" arrow points up and towards the reading direction, so it mirrors in right-to-left languages.
+@mixin icon-arrow-diagonal {
+	@include icon(fa.$var-arrow-right);
+
+	transform: scaleX(var(--inline-direction)) rotate(-45deg);
+}

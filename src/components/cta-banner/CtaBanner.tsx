@@ -13,12 +13,12 @@ export default function CtaBanner({ lang, cta }: CtaBannerProps) {
 	const { title, text, linkLabel, linkUrl, image } = cta;
 
 	return (
-		<section className="rsg-cta-banner surface-dark">
-			{image && <Image className="rsg-cta-banner__image" src={strapiMediaUrl(image.url)} alt="" fill sizes="100vw" />}
+		<section className="cta-banner rsg-surface-dark">
+			{image && <Image className="image" src={strapiMediaUrl(image.url)} alt="" fill sizes="100vw" />}
 
-			<div className="rsg-container rsg-cta-banner__content">
-				<div className="rsg-cta-banner__text">
-					<h2 className="rsg-cta-banner__title">{title}</h2>
+			<div className="container-xxl content">
+				<div className="text">
+					<h2 className="rsg-title">{title}</h2>
 					{text && <p>{text}</p>}
 				</div>
 

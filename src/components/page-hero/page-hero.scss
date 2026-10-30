@@ -1,64 +1,66 @@
 @use 'abstracts' as *;
 
-.rsg-page-hero {
+.page-hero {
+	--page-hero-min-size: calc(var(--spacing-240) * 2 + var(--spacing-32));
+	--page-hero-shade: color-mix(in srgb, var(--rsg-background-colour) 75%, transparent);
+
 	position: relative;
 
 	display: flex;
 	align-items: flex-end;
 
-	min-block-size: 32rem;
+	min-block-size: var(--page-hero-min-size);
 	padding-block: var(--spacing-48) var(--spacing-80);
 
 	overflow: hidden;
 
-	--rsg-page-hero-shade: color-mix(in srgb, #{colour('charcoal', 0)} 75%, transparent);
-
-	// Darkens the photo towards the heading so white text keeps its contrast whatever the image.
+	// Darkens the photo towards the heading so the text keeps its contrast whatever the image.
 	&::after {
 		content: '';
 
 		position: absolute;
 		inset: 0;
 
-		background: linear-gradient(to top, var(--rsg-page-hero-shade), transparent 75%);
+		background: linear-gradient(to top, var(--page-hero-shade), transparent 75%);
+	}
+
+	.image {
+		object-fit: cover;
+	}
+
+	.content {
+		position: relative;
+		z-index: 1;
+	}
+
+	.rsg-title {
+		max-inline-size: 14ch;
+
+		font-size: var(--font-size-2xl);
+	}
+
+	.text {
+		max-inline-size: var(--container-width-sm);
+		margin-block-start: var(--spacing-24);
 	}
 
 	@include media-breakpoint-up(lg) {
+		--page-hero-min-size: calc(var(--spacing-240) * 2 + var(--spacing-96));
+
 		align-items: center;
 
-		min-block-size: 36rem;
 		padding-block: var(--spacing-96);
 
 		&::after {
-			background: linear-gradient(to right, var(--rsg-page-hero-shade), transparent 60%);
+			background: linear-gradient(to right, var(--page-hero-shade), transparent 60%);
 		}
 
 		&:dir(rtl)::after {
-			background: linear-gradient(to left, var(--rsg-page-hero-shade), transparent 60%);
+			background: linear-gradient(to left, var(--page-hero-shade), transparent 60%);
+		}
+
+		.rsg-title {
+			font-size: var(--font-size-3xl);
 		}
 	}
-}
-
-.rsg-page-hero__image {
-	object-fit: cover;
-}
-
-.rsg-page-hero__content {
-	position: relative;
-	z-index: 1;
-}
-
-.rsg-page-hero__title {
-	max-inline-size: 14ch;
-
-	font-size: var(--font-size-4xl);
-
-	@include media-breakpoint-up(lg) {
-		font-size: var(--font-size-5xl);
-	}
-}
-
-.rsg-page-hero__text {
-	max-inline-size: 32rem;
-	margin-block-start: var(--spacing-24);
 }

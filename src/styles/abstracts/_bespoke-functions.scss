@@ -1,0 +1,7 @@
+@use 'sass:string';
+@use '@fortawesome/fontawesome-free/scss/functions' as fa;
+
+// A Font Awesome glyph as `content`. The empty alternative text after the slash marks it as decorative, so screen readers never announce it.
+@function icon-content($glyph) {
+	@return string.unquote('#{fa.fa-content($glyph)} / ""');
+}

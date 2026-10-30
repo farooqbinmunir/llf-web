@@ -1,0 +1,8 @@
+@use 'abstracts' as *;
+
+// Exposed so scripts match the same breakpoints as the stylesheets, with SCSS as the single source (see useBreakpointUp).
+:root {
+	@each $name, $width in $grid-breakpoints {
+		--breakpoint-#{$name}: #{$width};
+	}
+}

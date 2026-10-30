@@ -10,7 +10,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 	const { home } = await getDictionary(lang);
 
 	return (
-		<div className="rsg-container">
+		<div className="container-xxl">
 			<h1>{home.title}</h1>
 		</div>
 	);
