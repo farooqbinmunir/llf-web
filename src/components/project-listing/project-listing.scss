@@ -1,109 +1,113 @@
 @use 'abstracts' as *;
+@use 'core/link-primitives';
 
-.rsg-project-listing__header {
-	display: grid;
-	gap: var(--spacing-32);
-
-	margin-block-end: var(--spacing-40);
-
-	@include media-breakpoint-up(lg) {
-		grid-template-columns: 1fr 2fr;
-		align-items: start;
-
-		margin-block-end: var(--spacing-48);
-	}
-}
-
-.rsg-project-listing__phases {
-	display: flex;
-	gap: var(--spacing-12);
-
-	min-block-size: 2.75rem;
-}
-
-.rsg-project-listing__phase {
-	display: inline-flex;
-	align-items: center;
-
-	padding-inline: var(--spacing-24);
-
-	font-size: var(--font-size-sm);
-	font-weight: 600;
-	text-decoration: none;
-
-	color: colour('yellow', 0);
-	border: 1px solid colour('yellow', 0);
-	border-radius: var(--border-radius-pill);
-
-	transition:
-		background-color var(--speed-fast),
-		color var(--speed-fast);
-
-	&:hover,
-	&[aria-current='true'] {
-		background-color: colour('yellow', 0);
-		color: colour('charcoal', 0);
-	}
-}
-
-.rsg-project-listing__intro {
-	display: grid;
-	gap: var(--spacing-16);
-
-	max-inline-size: 40rem;
-}
-
-.rsg-project-listing__title {
-	font-size: var(--font-size-3xl);
-
-	@include media-breakpoint-up(lg) {
-		font-size: var(--font-size-4xl);
-	}
-}
-
-.rsg-project-listing__grid {
-	display: grid;
-	gap: var(--spacing-16);
-
-	margin-block-start: var(--spacing-24);
-
-	> li {
+.project-listing {
+	// A direct child only, so the tiles' own `.header` is left alone.
+	.container-xxl > .header {
 		display: grid;
+		gap: var(--spacing-32);
+
+		margin-block-end: var(--spacing-40);
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: 1fr 2fr;
+			align-items: start;
+
+			margin-block-end: var(--spacing-48);
+		}
 	}
 
-	@include media-breakpoint-up(md) {
-		grid-template-columns: repeat(2, 1fr);
+	.phases {
+		display: flex;
+		gap: var(--spacing-12);
+
+		min-block-size: var(--rsg-control-size);
 	}
 
-	@include media-breakpoint-up(lg) {
-		grid-template-columns: repeat(3, 1fr);
+	// Phase tabs are buttons that stay filled while their phase is shown.
+	.phase {
+		@extend %rsg-button;
+
+		&[aria-current='true'] {
+			background-color: var(--rsg-brand-colour-2);
+			color: var(--rsg-accent-text-colour);
+		}
+	}
+
+	.intro {
+		display: grid;
+		gap: var(--spacing-16);
+
+		max-inline-size: var(--container-width-md);
+	}
+
+	.grid {
+		@extend %no-list;
+
+		display: grid;
+		gap: var(--spacing-16);
+
+		margin-block-start: var(--spacing-24);
+
+		> li {
+			display: grid;
+		}
+
+		@include media-breakpoint-up(md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: repeat(3, 1fr);
+			gap: var(--spacing-24);
+
+			margin-block-start: var(--spacing-40);
+		}
+	}
+
+	.empty {
+		padding-block: var(--spacing-48);
+
+		text-align: center;
+	}
+
+	// Reserves roughly a row of tiles while results stream in, so the page below does not jump.
+	.loading {
+		min-block-size: calc(var(--spacing-160) * 4);
+	}
+
+	.more {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
 		gap: var(--spacing-24);
 
 		margin-block-start: var(--spacing-40);
 	}
-}
 
-.rsg-project-listing__empty {
-	padding-block: var(--spacing-48);
+	// A text-only action beside Load more that jumps back up to the filters.
+	.filters-jump {
+		@extend %unstyled-link;
 
-	text-align: center;
-}
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
 
-// Reserves roughly a row of cards while results stream in, so the page below does not jump.
-.rsg-project-listing__loading {
-	min-block-size: 40rem;
-}
+		min-block-size: var(--rsg-control-size);
+		padding-inline: var(--spacing-24);
 
-.rsg-project-listing__more {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: var(--spacing-24);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
 
-	margin-block-start: var(--spacing-40);
-}
+		transition: color var(--speed-fast) var(--transition-ease);
 
-.rsg-project-listing__to-filters::before {
-	@include icon($fa-var-sliders);
+		&::before {
+			@include icon($fa-var-sliders);
+		}
+
+		&:hover {
+			color: var(--rsg-brand-colour-2);
+		}
+	}
 }

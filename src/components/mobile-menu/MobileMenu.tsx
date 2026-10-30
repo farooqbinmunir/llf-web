@@ -3,8 +3,8 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import LanguageSwitcher from '@/components/language-switcher/LanguageSwitcher';
+import PrimaryNavigation from '@/components/primary-navigation/PrimaryNavigation';
 import SearchLink from '@/components/search-link/SearchLink';
-import SiteNav from '@/components/site-header/SiteNav';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 
@@ -21,7 +21,7 @@ export default function MobileMenu({ lang, dictionary }: MobileMenuProps) {
 	useEffect(() => {
 		if (!isOpen) return;
 
-		const header = toggleRef.current?.closest('header');
+		const header = toggleRef.current?.closest('.rsg-js-page-header');
 		// Everything outside the header is made inert, so keyboard and screen reader users stay inside the open menu.
 		const outside = [...(header?.parentElement?.children ?? [])].filter((element) => element !== header);
 		const closeOnEscape = (event: KeyboardEvent) => {
@@ -32,21 +32,21 @@ export default function MobileMenu({ lang, dictionary }: MobileMenuProps) {
 		};
 
 		outside.forEach((element) => element.setAttribute('inert', ''));
-		document.documentElement.classList.add('rsg-has-open-menu');
+		document.documentElement.classList.add('no-scroll');
 		document.addEventListener('keydown', closeOnEscape);
 
 		return () => {
 			outside.forEach((element) => element.removeAttribute('inert'));
-			document.documentElement.classList.remove('rsg-has-open-menu');
+			document.documentElement.classList.remove('no-scroll');
 			document.removeEventListener('keydown', closeOnEscape);
 		};
 	}, [isOpen]);
 
 	return (
-		<div className="rsg-mobile-menu" data-open={isOpen || undefined}>
+		<div className={`mobile-menu${isOpen ? ' is-open' : ''}`}>
 			<button
 				ref={toggleRef}
-				className="rsg-mobile-menu__toggle"
+				className="toggle"
 				type="button"
 				aria-expanded={isOpen}
 				aria-controls={panelId}
@@ -54,15 +54,15 @@ export default function MobileMenu({ lang, dictionary }: MobileMenuProps) {
 				onClick={() => setOpenOnPath(isOpen ? null : pathname)}
 			/>
 
-			<div id={panelId} className="rsg-mobile-menu__panel" hidden={!isOpen}>
-				<div className="rsg-mobile-menu__tools">
+			<div id={panelId} className="panel" hidden={!isOpen}>
+				<div className="tools">
 					<SearchLink lang={lang} label={dictionary.header.search} />
 					<LanguageSwitcher lang={lang} label={dictionary.a11y.changeLanguage} />
 				</div>
 
-				<nav className="rsg-mobile-menu__nav surface-dark" aria-label={dictionary.a11y.mainNavigation}>
-					<SiteNav lang={lang} labels={dictionary.nav} listClassName="rsg-mobile-menu__list" linkClassName="rsg-mobile-menu__link" />
-				</nav>
+				<div className="navigation rsg-surface-dark">
+					<PrimaryNavigation lang={lang} label={dictionary.a11y.mainNavigation} labels={dictionary.nav} variant="mobile" />
+				</div>
 			</div>
 		</div>
 	);

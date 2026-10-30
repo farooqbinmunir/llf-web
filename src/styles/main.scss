@@ -1,7 +1,10 @@
-@use 'base/root';
-@use 'base/reset';
-@use 'base/typography';
-@use 'base/layout';
-@use 'base/accessibility';
-@use 'base/icons';
+@use 'core/container-variables';
+@use 'core/js-helpers';
+@use 'core/fonts';
+@use 'core/reset';
+@use 'core/global';
+@use 'core/wrappers';
+@use 'core/link-primitives';
+@use 'core/card-primitives';
+@use 'core/rsg-module';
 @use 'components';

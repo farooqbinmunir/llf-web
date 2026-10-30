@@ -40,17 +40,17 @@ export default function LanguageSwitcher({ lang, label }: LanguageSwitcherProps)
 	}, [isOpen]);
 
 	return (
-		<div className="rsg-language-switcher" ref={rootRef} data-open={isOpen || undefined}>
-			<button ref={buttonRef} className="rsg-pill rsg-language-switcher__button" type="button" aria-expanded={isOpen} aria-controls={optionsId} aria-label={`${label}: ${localeDetails[lang].label}`} onClick={() => setIsOpen(!isOpen)}>
+		<div className={`language-switcher${isOpen ? ' is-open' : ''}`} ref={rootRef}>
+			<button ref={buttonRef} className="pill button" type="button" aria-expanded={isOpen} aria-controls={optionsId} aria-label={`${label}: ${localeDetails[lang].label}`} onClick={() => setIsOpen(!isOpen)}>
 				{localeDetails[lang].label}
 			</button>
 
-			<ul id={optionsId} className="rsg-language-switcher__options" role="list" hidden={!isOpen}>
+			<ul id={optionsId} className="options" role="list" hidden={!isOpen}>
 				{locales
 					.filter((locale) => locale !== lang)
 					.map((locale) => (
 						<li key={locale}>
-							<Link className="rsg-language-switcher__option" href={switchLocale(pathname, locale)} hrefLang={locale} lang={locale} onClick={() => setIsOpen(false)}>
+							<Link className="option" href={switchLocale(pathname, locale)} hrefLang={locale} lang={locale} onClick={() => setIsOpen(false)}>
 								{localeDetails[locale].label}
 							</Link>
 						</li>

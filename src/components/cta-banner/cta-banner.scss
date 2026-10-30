@@ -1,49 +1,50 @@
 @use 'abstracts' as *;
 
-.rsg-cta-banner {
+.cta-banner {
 	position: relative;
 
 	padding-block: var(--spacing-80);
 
 	overflow: hidden;
 
-	// A heavy shade, because the photo is texture only and the text must stay readable at any size.
+	// A heavy shade of the surface colour, because the photo is texture only and the text must stay readable at any size.
 	&::after {
 		content: '';
 
 		position: absolute;
 		inset: 0;
 
-		background-color: color-mix(in srgb, #{colour('charcoal', 0)} 65%, transparent);
+		background-color: color-mix(in srgb, var(--rsg-background-colour) 65%, transparent);
 	}
-}
 
-.rsg-cta-banner__image {
-	object-fit: cover;
-}
-
-.rsg-cta-banner__content {
-	position: relative;
-	z-index: 1;
-
-	display: grid;
-	gap: var(--spacing-32);
-	justify-items: start;
-
-	@include media-breakpoint-up(lg) {
-		grid-template-columns: 1fr auto;
-		align-items: center;
-		gap: var(--spacing-64);
+	.image {
+		object-fit: cover;
 	}
-}
 
-.rsg-cta-banner__text {
-	display: grid;
-	gap: var(--spacing-16);
+	.content {
+		position: relative;
+		z-index: 1;
 
-	max-inline-size: 36rem;
-}
+		display: grid;
+		gap: var(--spacing-32);
+		justify-items: start;
 
-.rsg-cta-banner__title {
-	font-size: var(--font-size-3xl);
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: 1fr auto;
+			align-items: center;
+			gap: var(--spacing-64);
+		}
+	}
+
+	.text {
+		display: grid;
+		gap: var(--spacing-16);
+
+		max-inline-size: var(--container-width-sm);
+	}
+
+	// The banner keeps the smaller heading size at every width.
+	.rsg-title {
+		font-size: var(--font-size-xl);
+	}
 }

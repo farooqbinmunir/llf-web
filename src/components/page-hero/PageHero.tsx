@@ -8,14 +8,14 @@ export default function PageHero({ hero }: PageHeroProps) {
 	const { eyebrow, title, text, image } = hero;
 
 	return (
-		<section className="rsg-page-hero surface-dark">
+		<section className="page-hero rsg-surface-dark">
 			{/* The photo is atmosphere behind the heading, so it is decorative. It is the largest element on load, hence preload. */}
-			{image && <Image className="rsg-page-hero__image" src={strapiMediaUrl(image.url)} alt="" fill sizes="100vw" preload />}
+			{image && <Image className="image" src={strapiMediaUrl(image.url)} alt="" fill sizes="100vw" preload />}
 
-			<div className="rsg-container rsg-page-hero__content">
-				{eyebrow && <p className="rsg-eyebrow">{eyebrow}</p>}
-				<h1 className="rsg-page-hero__title">{title}</h1>
-				{text && <p className="rsg-page-hero__text">{text}</p>}
+			<div className="container-xxl content">
+				{eyebrow && <p className="rsg-label">{eyebrow}</p>}
+				<h1 className="rsg-title">{title}</h1>
+				{text && <p className="text">{text}</p>}
 			</div>
 		</section>
 	);

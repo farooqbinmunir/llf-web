@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.primary-navigation {
+	.list {
+		@extend %no-list;
+	}
+
+	.link {
+		@extend %unstyled-link;
+
+		transition: color var(--speed-fast) var(--transition-ease);
+	}
+
+	&.desktop {
+		.list {
+			display: flex;
+			gap: var(--spacing-32);
+		}
+
+		.link {
+			font-size: var(--font-size-sm);
+
+			&:hover {
+				color: var(--rsg-brand-colour-2);
+			}
+
+			&[aria-current='page'] {
+				font-weight: var(--font-weight-semibold);
+			}
+		}
+	}
+
+	&.mobile .link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		padding-block: var(--spacing-16);
+
+		font-size: var(--font-size-md);
+
+		border-block-end: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+
+		&::after {
+			@include icon-arrow-diagonal;
+
+			font-size: var(--font-size-base);
+		}
+
+		&[aria-current='page'] {
+			color: var(--rsg-brand-colour-2);
+		}
+	}
+}

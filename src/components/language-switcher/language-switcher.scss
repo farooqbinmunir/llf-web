@@ -1,56 +1,60 @@
+@use 'sass:map';
 @use 'abstracts' as *;
 
-.rsg-language-switcher {
+.language-switcher {
 	position: relative;
-}
 
-.rsg-language-switcher__button {
-	&::before {
-		@include icon($fa-var-globe);
+	.button {
+		&::before {
+			@include icon($fa-var-globe);
+		}
+
+		&::after {
+			@include icon($fa-var-chevron-down);
+
+			margin-inline-start: var(--spacing-4);
+
+			font-size: var(--font-size-xs);
+
+			transition: transform var(--speed-fast) var(--transition-ease);
+		}
 	}
 
-	&::after {
-		@include icon($fa-var-chevron-down);
-
-		margin-inline-start: var(--spacing-4);
-
-		font-size: var(--font-size-xs);
-
-		transition: transform var(--speed-fast);
-	}
-
-	[data-open] > &::after {
+	&.is-open .button::after {
 		transform: rotate(180deg);
 	}
-}
 
-.rsg-language-switcher__options {
-	position: absolute;
-	inset-block-start: calc(100% + var(--spacing-4));
-	inset-inline-end: 0;
-	z-index: 20;
+	.options {
+		@extend %no-list;
 
-	min-inline-size: 100%;
-	padding-block: var(--spacing-8);
+		position: absolute;
+		inset-block-start: calc(100% + var(--spacing-4));
+		inset-inline-end: 0;
+		z-index: 20;
 
-	background-color: colour('white');
-	border: 1px solid colour('charcoal', 4);
-	border-radius: var(--border-radius-md);
-}
+		min-inline-size: 100%;
+		padding-block: var(--spacing-8);
 
-.rsg-language-switcher__option {
-	display: block;
+		background-color: var(--rsg-brand-colour-4);
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		border-radius: var(--border-radius-md);
+	}
 
-	padding-block: var(--spacing-8);
-	padding-inline: var(--spacing-16);
+	.option {
+		@extend %unstyled-link;
 
-	font-size: var(--font-size-sm);
-	text-align: center;
-	text-decoration: none;
+		display: block;
 
-	color: colour('charcoal', 0);
+		padding-block: var(--spacing-8);
+		padding-inline: var(--spacing-16);
 
-	&:hover {
-		background-color: colour('yellow', 4);
+		font-size: var(--font-size-sm);
+		text-align: center;
+
+		color: var(--rsg-foreground-colour);
+
+		&:hover {
+			background-color: var(--rsg-brand-colour-6);
+		}
 	}
 }

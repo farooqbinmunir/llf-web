@@ -1,104 +1,76 @@
 @use 'abstracts' as *;
 
-// Stops the page behind the open menu from scrolling.
-.rsg-has-open-menu {
-	overflow: hidden;
-}
+.mobile-menu {
+	.toggle {
+		display: grid;
+		place-items: center;
 
-.rsg-mobile-menu {
-	@include media-breakpoint-up(xl) {
-		display: none;
-	}
-}
+		inline-size: var(--rsg-control-size);
+		block-size: var(--rsg-control-size);
 
-.rsg-mobile-menu__toggle {
-	display: grid;
-	place-items: center;
+		font-size: var(--font-size-lg);
 
-	inline-size: 2.75rem;
-	block-size: 2.75rem;
-
-	font-size: var(--font-size-2xl);
-
-	&::before {
-		@include icon($fa-var-bars);
-	}
-
-	[data-open] > &::before {
-		content: icon-content($fa-var-xmark);
-	}
-}
-
-// Sits directly under the sticky header and fills the rest of the screen.
-.rsg-mobile-menu__panel {
-	position: absolute;
-	inset-block-start: 100%;
-	inset-inline: 0;
-	z-index: 10;
-
-	display: flex;
-	flex-direction: column;
-
-	block-size: 100dvh;
-	overflow-y: auto;
-
-	background-color: colour('yellow', 0);
-
-	&[hidden] {
-		display: none;
-	}
-}
-
-.rsg-mobile-menu__tools {
-	display: flex;
-	gap: var(--spacing-8);
-
-	padding-block: var(--spacing-16);
-	padding-inline: var(--spacing-24);
-
-	> * {
-		flex: 1;
-	}
-
-	// Full-width pills keep their label next to the leading icon and push the trailing icon to the end.
-	.rsg-pill {
-		inline-size: 100%;
-
-		&::after {
-			margin-inline-start: auto;
+		&::before {
+			@include icon($fa-var-bars);
 		}
 	}
-}
 
-.rsg-mobile-menu__nav {
-	flex: 1;
-
-	padding-block: var(--spacing-24) var(--spacing-96);
-	padding-inline: var(--spacing-24);
-
-	border-start-start-radius: var(--border-radius-xl);
-	border-start-end-radius: var(--border-radius-xl);
-}
-
-.rsg-mobile-menu__link {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	padding-block: var(--spacing-16);
-
-	font-size: var(--font-size-xl);
-	text-decoration: none;
-
-	border-block-end: 1px solid colour('charcoal', 1);
-
-	&::after {
-		@include icon-arrow-diagonal;
-
-		font-size: var(--font-size-md);
+	&.is-open .toggle::before {
+		content: icon-content($fa-var-xmark);
 	}
 
-	&[aria-current='page'] {
-		color: colour('yellow', 0);
+	// Sits directly under the sticky header and fills the rest of the screen.
+	.panel {
+		position: absolute;
+		inset-block-start: 100%;
+		inset-inline: 0;
+		z-index: 10;
+
+		display: flex;
+		flex-direction: column;
+
+		block-size: 100dvh;
+		overflow-y: auto;
+
+		background-color: var(--rsg-brand-colour-2);
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	.tools {
+		display: flex;
+		gap: var(--spacing-8);
+
+		padding-block: var(--spacing-16);
+		padding-inline: var(--spacing-24);
+
+		> * {
+			flex: 1;
+		}
+
+		// Full-width pills keep their label next to the leading icon and push the trailing icon to the end.
+		.pill {
+			inline-size: 100%;
+
+			&::after {
+				margin-inline-start: auto;
+			}
+		}
+	}
+
+	.navigation {
+		flex: 1;
+
+		padding-block: var(--spacing-24) var(--spacing-96);
+		padding-inline: var(--spacing-24);
+
+		border-start-start-radius: var(--border-radius-lg);
+		border-start-end-radius: var(--border-radius-lg);
+	}
+
+	@include media-breakpoint-up(xl) {
+		display: none;
 	}
 }

@@ -1,0 +1,98 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// Browser reset and HTML element defaults only.
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure {
+	margin: 0;
+}
+
+// The main region grows so the footer sits at the bottom of short pages.
+body {
+	display: flex;
+	flex-direction: column;
+
+	min-block-size: 100vh;
+
+	// The page is the light surface, so light sections blend into it.
+	background-color: var(--rsg-brand-colour-1);
+	color: var(--rsg-foreground-colour);
+
+	font-family: var(--font-family-primary);
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-regular);
+	line-height: var(--line-height-base);
+
+	-webkit-font-smoothing: antialiased;
+}
+
+main {
+	flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-md);
+}
+
+img,
+svg {
+	display: block;
+	max-inline-size: 100%;
+}
+
+button,
+input,
+select {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	padding: 0;
+
+	background: none;
+	border: 0;
+
+	cursor: pointer;
+}
+
+a {
+	color: inherit;
+}
+
+// Mouse users get no outline; keyboard users always get a visible one.
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline: map.get($border-widths, 2) solid currentColor;
+	outline-offset: map.get($border-widths, 2);
+}
+
+// `!important` is deliberate here: this is the one global override that must beat every component transition.
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
