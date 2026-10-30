@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import BaseWrapper from '@/components/contents/blocks/base-wrapper';
 import ListingBlockCarousel from '@/components/contents/blocks/listing-block/listing-block-carousel';
 import HeaderContentsSingle from '@/components/contents/post-types/header-contents/_blueprints/single';
-import NewsTileList from '@/components/contents/post-types/tiles/news/news-list';
+import NewsTileSlide from '@/components/contents/post-types/tiles/news/news-slide';
 import ResourceTileStandard from '@/components/contents/post-types/tiles/resource/resource-standard';
 import SearchFilters from '@/components/global/search/search-filters';
 import TemplateListingPage, { TemplateListingResults } from '@/components/views/template-listing-page';
@@ -103,7 +103,7 @@ export default async function LibraryPage({ params, searchParams }: PageProps<'/
 						gridFrom="lg"
 					>
 						{news.map((item) => (
-							<NewsTileList key={item.documentId} lang={lang} news={item} palette="dark" />
+							<NewsTileSlide key={item.documentId} lang={lang} news={item} palette="dark" />
 						))}
 					</ListingBlockCarousel>
 				</BaseWrapper>

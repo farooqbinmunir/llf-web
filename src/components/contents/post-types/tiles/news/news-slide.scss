@@ -3,7 +3,7 @@
 
 // On mobile the date and arrow share the top row, then the title, then the photo. From md up the photo takes the start
 // column and the date, title and arrow sit beside it.
-.tile.news.list {
+.tile.news.slide {
 	@extend %unstyled-link;
 
 	display: grid;

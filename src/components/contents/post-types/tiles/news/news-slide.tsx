@@ -7,11 +7,11 @@ import { formatDate } from '@/lib/format';
 // The tile takes tone 4 (card) of the palette of the section it sits in.
 type NewsTileProps = { lang: Locale; news: NewsCard; palette: 'dark' | 'light' };
 
-// A compact news row: the date and title beside the photo from md up, above it on mobile, with the corner arrow. The whole
-// tile is the link.
-export default function NewsTileList({ lang, news, palette }: NewsTileProps) {
+// A news card for carousels, such as Latest announcements: the date and title beside the photo from md up, above it on
+// mobile, with the corner arrow. The whole tile is the link.
+export default function NewsTileSlide({ lang, news, palette }: NewsTileProps) {
 	const { title, slug, publishDate, coverImage } = news;
-	const classes = ['tile', 'news', 'list', `rsg-surface-${palette}-4`, !coverImage && 'no-media'].filter(Boolean).join(' ');
+	const classes = ['tile', 'news', 'slide', `rsg-surface-${palette}-4`, !coverImage && 'no-media'].filter(Boolean).join(' ');
 
 	return (
 		<Link className={classes} href={localisedPath(lang, `/news/${slug}`)}>
