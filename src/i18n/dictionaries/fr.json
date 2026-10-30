@@ -103,6 +103,22 @@
 		"relatedStories": "Histoires liées",
 		"viewAllStories": "Toutes les histoires"
 	},
+	"library": {
+		"filterByType": "Filtrer par type",
+		"resourceType": "Type de ressource",
+		"allResources": "Toutes les ressources",
+		"loadMore": "Plus de ressources",
+		"noResults": "Aucune ressource de ce type pour l'instant.",
+		"showing": "{shown} ressources affichées sur {total}",
+		"fileSize": "Taille du fichier",
+		"download": "Télécharger le {type}",
+		"view": "Voir la ressource",
+		"opensInNewTab": "(s'ouvre dans un nouvel onglet)"
+	},
+	"announcements": {
+		"title": "Dernières annonces",
+		"viewAllNews": "Toutes les actualités"
+	},
 	"videoPlayer": {
 		"play": "Lecture",
 		"pause": "Pause",

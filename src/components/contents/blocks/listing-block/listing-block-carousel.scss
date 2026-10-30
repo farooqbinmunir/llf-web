@@ -14,4 +14,13 @@
 			margin-block-end: var(--spacing-32);
 		}
 	}
+
+	// A centred header lines up with the start of the track while the tiles are a carousel, as on mobile.
+	@include media-breakpoint-down(lg) {
+		.center-aligned .rsg-col-header {
+			margin-inline: 0;
+
+			text-align: start;
+		}
+	}
 }

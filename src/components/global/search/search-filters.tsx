@@ -25,14 +25,16 @@ type SearchFiltersProps = {
 	hiddenFields?: Record<string, string | undefined>;
 	reset?: { label: string; href: string };
 	applyLabel?: string;
+	// Shows the label before a pills-only bar, as the Library's "Filter by type".
+	showLabel?: boolean;
 	className?: string;
 };
 
 // A GET form, so filtering works before hydration and every result set has a shareable URL. Below the lg breakpoint the
 // fields collapse behind a toggle; as with the footer, CSS decides visibility and the script only swaps the toggle out.
-// A pills-only bar (every field a lozenge) applies on click, so it needs no toggle, Reset or Apply.
+// A pills-only bar (every field a lozenge) applies on click, so it needs no toggle, Reset or Apply; its label is only shown on request.
 // Callers should key it on the current filters, so its uncontrolled fields reset whenever the URL changes.
-export default function SearchFilters({ id, action, label, fields, hiddenFields = {}, reset, applyLabel, className }: SearchFiltersProps) {
+export default function SearchFilters({ id, action, label, fields, hiddenFields = {}, reset, applyLabel, showLabel, className }: SearchFiltersProps) {
 	const controlsId = useId();
 	const [isOpen, setIsOpen] = useState(false);
 	const isDesktop = useBreakpointUp('lg');
@@ -41,6 +43,13 @@ export default function SearchFilters({ id, action, label, fields, hiddenFields 
 
 	return (
 		<Form id={id} className={classes} action={action} scroll={false} aria-label={isPillsOnly ? label : undefined}>
+			{/* The form is already named by the label, so the shown copy is hidden from screen readers. */}
+			{isPillsOnly && showLabel && (
+				<p className="rsg-filters-toggle rsg-fa" aria-hidden="true">
+					{label}
+				</p>
+			)}
+
 			{!isPillsOnly &&
 				(isDesktop ? (
 					<p className="rsg-filters-toggle rsg-fa">{label}</p>

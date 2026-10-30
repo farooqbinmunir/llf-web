@@ -190,8 +190,45 @@
 
 		.rsg-filters-controls {
 			display: block;
+			flex: 0 1 auto;
+			min-inline-size: 0;
 
 			padding: 0;
+		}
+
+		.rsg-filters-toggle {
+			inline-size: auto;
+			margin-block-end: var(--spacing-12);
+
+			@include media-breakpoint-up(lg) {
+				margin-block-end: 0;
+			}
+		}
+
+		// One row that scrolls sideways when it outgrows the screen; the padding keeps the focus outline in view. A fieldset is
+		// at least as wide as its content by default, which would widen the page instead.
+		.radio-lozenge {
+			flex-wrap: nowrap;
+
+			min-inline-size: 0;
+
+			padding: var(--spacing-4);
+			margin: calc(-1 * var(--spacing-4));
+
+			overflow-x: auto;
+			scrollbar-width: none;
+		}
+
+		.rsg-filters-label {
+			flex: 0 0 auto;
+
+			white-space: nowrap;
+		}
+
+		@include media-breakpoint-up(lg) {
+			&.center-aligned {
+				justify-content: center;
+			}
 		}
 	}
 
@@ -201,13 +238,19 @@
 		gap: var(--spacing-12);
 	}
 
-	// A pill stays filled while its option is chosen.
+	// A pill stays filled while its option is chosen: orange on dark, and the text colour on light, where orange fails contrast
+	// and the Library design fills it dark.
 	.rsg-filters-label {
 		@extend %rsg-button;
 
 		cursor: pointer;
 
 		&:has(:checked) {
+			background-color: var(--rsg-foreground-colour);
+			color: var(--rsg-brand-colour-4);
+		}
+
+		.rsg-surface-dark &:has(:checked) {
 			background-color: var(--rsg-brand-colour-2);
 			color: var(--rsg-accent-text-colour);
 		}

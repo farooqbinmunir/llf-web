@@ -3,11 +3,9 @@ import TextWithBreaks from '@/components/helpers/text-with-breaks';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import type { ProjectDetail } from '@/lib/data/projects';
+import { formatMonth } from '@/lib/format';
 
 type ProjectHeaderProps = { lang: Locale; project: ProjectDetail; labels: Dictionary['project'] };
-
-// "April 2019". Latin digits in every language, as the content itself uses them. Dates are stored without a time, so they are read as UTC.
-const formatMonth = (lang: Locale, date: string) => new Intl.DateTimeFormat(`${lang}-u-nu-latn`, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
 
 // The project's photo across the page, then its title, terms, and the date range and "updated" line between dividers.
 export default function ProjectHeaderStandard({ lang, project, labels }: ProjectHeaderProps) {

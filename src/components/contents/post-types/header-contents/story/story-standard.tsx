@@ -6,12 +6,10 @@ import VideoPlayer from '@/components/helpers/video-player';
 import { absoluteUrl, localisedPath, type Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import type { StoryDetail } from '@/lib/data/stories';
+import { formatDate } from '@/lib/format';
 import { strapiMediaUrl } from '@/lib/strapi/client';
 
 type StoryHeaderProps = { lang: Locale; story: StoryDetail; labels: Dictionary['story']; playerLabels: Dictionary['videoPlayer'] };
-
-// "April 20, 2026". Latin digits in every language, as the content itself uses them. Dates are stored without a time, so they are read as UTC.
-const formatDate = (lang: Locale, date: string) => new Intl.DateTimeFormat(`${lang}-u-nu-latn`, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(date));
 
 // A video story opens on its player; any other story opens on its title, with the cover photo (the hero) after the meta line.
 export default function StoryHeaderStandard({ lang, story, labels, playerLabels }: StoryHeaderProps) {

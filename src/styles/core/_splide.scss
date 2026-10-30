@@ -76,6 +76,30 @@
 	}
 }
 
+// A carousel on small screens that is a plain grid from a breakpoint up (the helper's `gridFrom`). Splide is not mounted
+// there, so the grid also shows before hydration. Two columns, as Latest announcements is designed.
+@each $name, $width in map.remove($grid-breakpoints, xs) {
+	.splide.grid-#{$name} {
+		@include media-breakpoint-up($name) {
+			visibility: visible;
+
+			.splide__list {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: var(--splide-gap);
+			}
+
+			.splide__slide {
+				inline-size: auto;
+			}
+
+			.splide__pagination {
+				display: none;
+			}
+		}
+	}
+}
+
 // The dots and a footer link (such as "View all") on one row under the track.
 .rsg-carousel-footer {
 	display: flex;

@@ -103,6 +103,22 @@
 		"relatedStories": "Related stories",
 		"viewAllStories": "View all stories"
 	},
+	"library": {
+		"filterByType": "Filter by type",
+		"resourceType": "Resource type",
+		"allResources": "All resources",
+		"loadMore": "Load more resources",
+		"noResults": "No resources of this type yet.",
+		"showing": "Showing {shown} of {total} resources",
+		"fileSize": "File size",
+		"download": "Download {type}",
+		"view": "View resource",
+		"opensInNewTab": "(opens in a new tab)"
+	},
+	"announcements": {
+		"title": "Latest announcements",
+		"viewAllNews": "View all news"
+	},
 	"videoPlayer": {
 		"play": "Play",
 		"pause": "Pause",

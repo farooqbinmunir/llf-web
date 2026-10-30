@@ -103,6 +103,22 @@
 		"relatedStories": "قصص ذات صلة",
 		"viewAllStories": "عرض جميع القصص"
 	},
+	"library": {
+		"filterByType": "تصفية حسب النوع",
+		"resourceType": "نوع المورد",
+		"allResources": "جميع الموارد",
+		"loadMore": "عرض المزيد من الموارد",
+		"noResults": "لا توجد موارد من هذا النوع بعد.",
+		"showing": "عرض {shown} من {total} موردًا",
+		"fileSize": "حجم الملف",
+		"download": "تنزيل {type}",
+		"view": "عرض المورد",
+		"opensInNewTab": "(يُفتح في علامة تبويب جديدة)"
+	},
+	"announcements": {
+		"title": "أحدث الإعلانات",
+		"viewAllNews": "عرض جميع الأخبار"
+	},
 	"videoPlayer": {
 		"play": "تشغيل",
 		"pause": "إيقاف مؤقت",
