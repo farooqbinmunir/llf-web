@@ -1,8 +1,33 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-// Pieces shared by the listing tiles: the corner arrow, the taxonomy term pills and the key facts.
+// Pieces shared by the listing tiles: the stretched title link, the corner arrow, the taxonomy term pills and the key facts.
 // Each tile styles its own layout and only reuses these.
+
+// The title link covers its tile (which must be `position: relative`), so the tile is one target named by the title.
+%stretched-link {
+	@extend %unstyled-link;
+
+	&::before {
+		content: '';
+
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+
+		border-radius: inherit;
+	}
+
+	// The focus ring goes on the whole tile, which is what the stretched link covers.
+	&:focus-visible {
+		outline: none;
+
+		&::before {
+			outline: map.get($border-widths, 2) solid currentColor;
+			outline-offset: map.get($border-widths, 2);
+		}
+	}
+}
 
 .rsg-tile-icon {
 	display: inline-flex;
@@ -18,6 +43,13 @@
 	&::before {
 		@include icon-arrow-diagonal;
 	}
+
+	// Video stories open a player rather than a page.
+	&.play::before {
+		@include icon($fa-var-circle-play);
+
+		transform: none;
+	}
 }
 
 // Not %no-list: its `li` reset would outrank the term's own padding.
@@ -31,6 +63,13 @@
 	padding: 0;
 
 	list-style: none;
+}
+
+// Terms that share one line inside the column, such as the country and the story type.
+.rsg-tax-terms-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-4);
 }
 
 // Outlined by default; `solid` fills it with the text colour, as for the country.
@@ -53,6 +92,13 @@
 		background-color: var(--rsg-foreground-colour);
 		color: var(--rsg-background-colour);
 		border-color: var(--rsg-foreground-colour);
+	}
+
+	// The story type, in the hover tone.
+	&.accent {
+		background-color: var(--rsg-brand-colour-6);
+		color: var(--colour-black);
+		border-color: var(--rsg-brand-colour-6);
 	}
 }
 

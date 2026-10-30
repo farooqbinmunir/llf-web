@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'abstracts' as *;
 
 :root {
@@ -43,6 +44,13 @@
 	}
 }
 
+// A `|` in CMS or dictionary text (see TextWithBreaks) breaks the line on mobile only.
+.mobile-break {
+	@include media-breakpoint-up(md) {
+		display: none;
+	}
+}
+
 // The small uppercase label above a heading ("Our projects", "Library").
 .rsg-label {
 	display: inline-block;
@@ -68,5 +76,45 @@
 
 	@include media-breakpoint-up(lg) {
 		font-size: var(--font-size-2xl);
+	}
+}
+
+// Rich text from the CMS (Strapi blocks): spacing between paragraphs, lists and headings, and readable links.
+.rsg-text {
+	> * + * {
+		margin-block-start: var(--spacing-16);
+	}
+
+	h2,
+	h3,
+	h4 {
+		margin-block-start: var(--spacing-32);
+
+		font-size: var(--font-size-md);
+	}
+
+	ul,
+	ol {
+		display: grid;
+		gap: var(--spacing-16);
+
+		padding-inline-start: var(--spacing-20);
+	}
+
+	li ul,
+	li ol {
+		margin-block-start: var(--spacing-16);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+
+	blockquote {
+		margin-inline: 0;
+		padding-inline-start: var(--spacing-16);
+
+		border-inline-start: map.get($border-widths, 2) solid var(--rsg-brand-colour-2);
 	}
 }

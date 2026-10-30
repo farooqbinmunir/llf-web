@@ -1,4 +1,5 @@
 // Alphabetised index of component stylesheets. Each stylesheet lives next to its component.
+@use '../components/carousel/carousel';
 @use '../components/cta-banner/cta-banner';
 @use '../components/impact-stats/impact-stats';
 @use '../components/language-switcher/language-switcher';
@@ -7,8 +8,16 @@
 @use '../components/page-footer/page-footer';
 @use '../components/page-header/page-header';
 @use '../components/page-hero/page-hero';
+@use '../components/partners-contribution/partners-contribution';
 @use '../components/primary-navigation/primary-navigation';
+@use '../components/project-body/project-body';
+@use '../components/project-header/project-header';
 @use '../components/project-listing/project-listing';
+@use '../components/project-overview/project-overview';
+@use '../components/project-results/project-results';
 @use '../components/project-tile/project-tile';
+@use '../components/related-content/related-content';
 @use '../components/search-filters/search-filters';
 @use '../components/search-link/search-link';
+@use '../components/story-tile/story-tile';
+@use '../components/testimonial-carousel/testimonial-carousel';

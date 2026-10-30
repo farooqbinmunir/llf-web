@@ -34,6 +34,29 @@ export type CallToAction = {
 	image: Media | null;
 };
 
+export type Testimonial = {
+	quote: string;
+	name: string | null;
+	role: string | null;
+	photo: Media | null;
+};
+
+// Strapi's blocks (rich text) format: a list of block nodes, each holding inline text and links.
+export type BlocksText = { type: 'text'; text: string; bold?: boolean; italic?: boolean; underline?: boolean; strikethrough?: boolean; code?: boolean };
+export type BlocksLink = { type: 'link'; url: string; children: BlocksText[] };
+export type BlocksInline = BlocksText | BlocksLink;
+export type BlocksListItem = { type: 'list-item'; children: BlocksInline[] };
+export type BlocksList = { type: 'list'; format: 'ordered' | 'unordered'; children: (BlocksListItem | BlocksList)[] };
+
+export type BlocksNode =
+	| { type: 'paragraph'; children: BlocksInline[] }
+	| { type: 'heading'; level: 1 | 2 | 3 | 4 | 5 | 6; children: BlocksInline[] }
+	| { type: 'quote'; children: BlocksInline[] }
+	| { type: 'code'; children: BlocksText[] }
+	| BlocksList
+	// Images and any block type added later are not rendered; the editor's image block is not used on this site.
+	| { type: 'image' };
+
 export type Seo = {
 	metaTitle: string;
 	metaDescription: string;
