@@ -18,13 +18,17 @@
 @use '../components/global/svg/logo';
 
 // Blocks
+@use '../components/contents/blocks/_blueprints/accordion-item';
 @use '../components/contents/blocks/_blueprints/wrapped-collection';
 @use '../components/contents/blocks/content-box-block/content-box-block-cta';
+@use '../components/contents/blocks/content-box-block/content-box-block-stacked';
+@use '../components/contents/blocks/countries-block/countries-block-standard';
 @use '../components/contents/blocks/grouped-content-block/grouped-content-block-financing';
 @use '../components/contents/blocks/grouped-content-block/grouped-content-block-standard';
 @use '../components/contents/blocks/listing-block/listing-block-carousel';
 @use '../components/contents/blocks/listing-block/listing-block-standard';
 @use '../components/contents/blocks/media-block/media-block-standard';
+@use '../components/contents/blocks/partners-block/partners-block-accordion';
 @use '../components/contents/blocks/statistic-block/statistic-block-standard';
 @use '../components/contents/blocks/testimonial-block/testimonial-block-standard';
 @use '../components/contents/blocks/text-box-block/text-box-block-standard';
@@ -37,6 +41,8 @@
 // Post types - tiles
 @use '../components/contents/post-types/tiles/news/news-list' as tile-news-list;
 @use '../components/contents/post-types/tiles/news/news-slide' as tile-news-slide;
+@use '../components/contents/post-types/tiles/partner/partner-accordion' as tile-partner-accordion;
+@use '../components/contents/post-types/tiles/person-group/person-group-standard' as tile-person-group-standard;
 @use '../components/contents/post-types/tiles/project/project-standard' as tile-project-standard;
 @use '../components/contents/post-types/tiles/resource/resource-standard' as tile-resource-standard;
 @use '../components/contents/post-types/tiles/story/story-standard' as tile-story-standard;

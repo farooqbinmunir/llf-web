@@ -89,4 +89,53 @@
 	.row:has(.media-block) {
 		row-gap: var(--spacing-24);
 	}
+
+	// The heading media cut to the LLF shield, as the About intro shows its photo.
+	// It takes two-thirds of the width on mobile, as in the design, and its column from lg up.
+	&.shield-media .rsg-col-media .media-block {
+		inline-size: 66%;
+		max-inline-size: calc(var(--spacing-240) * 2);
+		margin-inline: auto;
+
+		@include media-breakpoint-up(lg) {
+			inline-size: auto;
+		}
+
+		mask: url('/images/shield.svg') center / contain no-repeat;
+	}
+
+	// The page's opening figures: large, in the accent, side by side at every width.
+	&.shield-media {
+		.rsg-col-header .rsg-title {
+			font-size: var(--font-size-xl);
+
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-2xl);
+			}
+		}
+
+		.rsg-col-header .rsg-text {
+			font-size: var(--font-size-base);
+			line-height: var(--line-height-base);
+		}
+
+		.statistic {
+			font-size: var(--font-size-2xl);
+			font-weight: var(--font-weight-bold);
+			line-height: 1;
+
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-3xl);
+			}
+		}
+
+		.statistic-block {
+			gap: var(--spacing-12);
+		}
+	}
+}
+
+// Blocks that share a section, such as Our focus areas and Cross-cutting themes, keep the section's spacing between them.
+.grouped-content-block.standard + .grouped-content-block.standard {
+	margin-block-start: var(--rsg-section-spacing);
 }

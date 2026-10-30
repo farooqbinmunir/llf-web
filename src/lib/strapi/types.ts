@@ -34,6 +34,28 @@ export type CallToAction = {
 	image: Media | null;
 };
 
+// The label, heading and intro above a section whose items come from their own collection.
+export type SectionHeader = {
+	label: string | null;
+	title: string;
+	text: string | null;
+};
+
+export type IconCard = {
+	id: number;
+	icon: Media | null;
+	title: string;
+	text: string | null;
+};
+
+// Icon cards under a header, over an optional background photo, with an optional link below.
+export type CardGroup = SectionHeader & {
+	image: Media | null;
+	cards: IconCard[];
+	linkLabel: string | null;
+	linkUrl: string | null;
+};
+
 export type Testimonial = {
 	quote: string;
 	name: string | null;

@@ -115,6 +115,10 @@
 		"view": "View resource",
 		"opensInNewTab": "(opens in a new tab)"
 	},
+	"about": {
+		"readMore": "Read more",
+		"opensInNewTab": "(opens in a new tab)"
+	},
 	"announcements": {
 		"title": "Latest announcements",
 		"viewAllNews": "View all news"

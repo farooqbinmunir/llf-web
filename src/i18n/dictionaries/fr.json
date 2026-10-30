@@ -115,6 +115,10 @@
 		"view": "Voir la ressource",
 		"opensInNewTab": "(s'ouvre dans un nouvel onglet)"
 	},
+	"about": {
+		"readMore": "En savoir plus",
+		"opensInNewTab": "(s'ouvre dans un nouvel onglet)"
+	},
 	"announcements": {
 		"title": "Dernières annonces",
 		"viewAllNews": "Toutes les actualités"

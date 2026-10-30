@@ -115,6 +115,10 @@
 		"view": "عرض المورد",
 		"opensInNewTab": "(يُفتح في علامة تبويب جديدة)"
 	},
+	"about": {
+		"readMore": "اقرأ المزيد",
+		"opensInNewTab": "(يُفتح في علامة تبويب جديدة)"
+	},
 	"announcements": {
 		"title": "أحدث الإعلانات",
 		"viewAllNews": "عرض جميع الأخبار"

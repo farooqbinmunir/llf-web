@@ -1,0 +1,77 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// An outlined card with a small icon: beside the text on mobile, above it from md up.
+.content-box-block.stacked {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--spacing-24);
+
+	block-size: 100%;
+	padding: var(--spacing-24);
+
+	color: var(--rsg-foreground-colour);
+
+	background-color: var(--rsg-background-colour);
+	border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	border-radius: var(--border-radius-base);
+
+	@include media-breakpoint-up(md) {
+		flex-direction: column;
+		gap: var(--spacing-32);
+
+		padding: var(--spacing-32);
+	}
+
+	.rsg-media-wrapper {
+		flex: 0 0 auto;
+
+		inline-size: var(--spacing-56);
+
+		@include media-breakpoint-up(md) {
+			inline-size: var(--spacing-80);
+		}
+	}
+
+	// min-inline-size lets long words wrap inside the flex item instead of overflowing the card.
+	.rsg-content-wrapper {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		gap: var(--spacing-12);
+
+		min-inline-size: 0;
+	}
+
+	.rsg-title {
+		margin: 0;
+
+		font-size: var(--font-size-md);
+		font-weight: var(--font-weight-semibold);
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-lg);
+		}
+	}
+
+	.rsg-text {
+		margin: 0;
+
+		font-size: var(--font-size-sm);
+		line-height: var(--line-height-base);
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-base);
+		}
+	}
+
+	// From md up the card's content is centred, as the Our model and Partner with us cards are. Mobile stays start-aligned.
+	&.center-aligned {
+		@include media-breakpoint-up(md) {
+			align-items: center;
+			gap: var(--spacing-24);
+
+			text-align: center;
+		}
+	}
+}

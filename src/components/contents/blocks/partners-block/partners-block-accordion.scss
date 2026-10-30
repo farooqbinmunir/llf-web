@@ -1,0 +1,16 @@
+@use 'abstracts' as *;
+
+// Space between partner type groups, and their titles when shown.
+.partners-block.accordion {
+	.rsg-partner-group + .rsg-partner-group {
+		margin-block-start: var(--spacing-56);
+	}
+
+	.rsg-group-title {
+		margin: 0 0 var(--spacing-24);
+
+		font-size: var(--font-size-base);
+		font-weight: var(--font-weight-semibold);
+		text-align: center;
+	}
+}

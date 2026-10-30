@@ -1,0 +1,82 @@
+@use 'abstracts' as *;
+
+// The description is cut to four lines, as in the design, so the photos line up across a row.
+.tile.person-group.standard {
+	@extend %unstyled-link;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: var(--spacing-20);
+
+	block-size: 100%;
+	padding: var(--spacing-20);
+
+	color: var(--rsg-foreground-colour);
+
+	background-color: var(--rsg-background-colour);
+	border-radius: var(--border-radius-base);
+
+	transition: background-color var(--speed-fast) var(--transition-ease);
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-16);
+	}
+
+	.rsg-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--spacing-16);
+	}
+
+	.rsg-title {
+		margin: 0;
+
+		font-size: var(--font-size-md);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-lg);
+		}
+	}
+
+	.rsg-description {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+
+		margin: 0;
+		overflow: hidden;
+
+		font-size: var(--font-size-sm);
+		line-height: var(--line-height-base);
+	}
+
+	.rsg-read-more {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-medium);
+
+		&::after {
+			@include icon-arrow-diagonal;
+
+			margin-inline-start: var(--spacing-8);
+
+			font-size: var(--font-size-xs);
+		}
+	}
+
+	.rsg-media-wrapper {
+		overflow: hidden;
+
+		border-radius: var(--border-radius-md);
+	}
+
+	&:hover,
+	&:focus-visible {
+		background-color: var(--rsg-brand-colour-6);
+	}
+}
