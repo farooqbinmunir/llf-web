@@ -60,5 +60,33 @@
 		"loadMore": "Load more projects",
 		"noResults": "No projects match these filters yet.",
 		"showing": "Showing {shown} of {total} projects"
+	},
+	"project": {
+		"dates": "Project dates",
+		"updated": "Updated based on {date}",
+		"targetReach": "Target reach",
+		"countryContext": "Country context",
+		"expectedResults": "Expected results",
+		"progress": "Progress to-date",
+		"partnersContribution": "Partners|contribution",
+		"testimonials": "Testimonials",
+		"relatedStories": "Related stories",
+		"relatedProjects": "Related projects",
+		"viewAllStories": "View all stories",
+		"viewAllProjects": "View all projects"
+	},
+	"carousel": {
+		"prev": "Previous slide",
+		"next": "Next slide",
+		"first": "Go to first slide",
+		"last": "Go to last slide",
+		"slideX": "Go to slide %s",
+		"pageX": "Go to page %s",
+		"play": "Start autoplay",
+		"pause": "Pause autoplay",
+		"carousel": "carousel",
+		"slide": "slide",
+		"select": "Select a slide to show",
+		"slideLabel": "%s of %s"
 	}
 }

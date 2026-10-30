@@ -60,5 +60,33 @@
 		"loadMore": "عرض المزيد من المشاريع",
 		"noResults": "لا توجد مشاريع تطابق هذه المرشحات حتى الآن.",
 		"showing": "عرض {shown} من أصل {total} مشروعًا"
+	},
+	"project": {
+		"dates": "مدة المشروع",
+		"updated": "آخر تحديث في {date}",
+		"targetReach": "الفئات المستهدفة",
+		"countryContext": "السياق القُطري",
+		"expectedResults": "النتائج المتوقعة",
+		"progress": "التقدم المحرز حتى الآن",
+		"partnersContribution": "مساهمة|الشركاء",
+		"testimonials": "شهادات",
+		"relatedStories": "قصص ذات صلة",
+		"relatedProjects": "مشاريع ذات صلة",
+		"viewAllStories": "عرض جميع القصص",
+		"viewAllProjects": "عرض جميع المشاريع"
+	},
+	"carousel": {
+		"prev": "الشريحة السابقة",
+		"next": "الشريحة التالية",
+		"first": "الانتقال إلى الشريحة الأولى",
+		"last": "الانتقال إلى الشريحة الأخيرة",
+		"slideX": "الانتقال إلى الشريحة %s",
+		"pageX": "الانتقال إلى الصفحة %s",
+		"play": "بدء التشغيل التلقائي",
+		"pause": "إيقاف التشغيل التلقائي مؤقتًا",
+		"carousel": "عرض دوّار",
+		"slide": "شريحة",
+		"select": "اختر شريحة لعرضها",
+		"slideLabel": "%s من %s"
 	}
 }

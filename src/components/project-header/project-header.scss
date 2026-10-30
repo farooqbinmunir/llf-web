@@ -1,0 +1,70 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.project-header {
+	.image {
+		inline-size: 100%;
+		block-size: auto;
+
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+
+		@include media-breakpoint-up(md) {
+			aspect-ratio: 12 / 5;
+		}
+	}
+
+	.content {
+		display: grid;
+		gap: var(--spacing-24);
+
+		max-inline-size: var(--container-width-lg);
+		margin-inline: auto;
+		padding-block-start: var(--spacing-40);
+	}
+
+	// The design lays the terms side by side here, not stacked as on the tiles.
+	.rsg-tax-terms {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: var(--spacing-8);
+	}
+
+	.meta {
+		@extend %no-list;
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+
+		padding-block: var(--spacing-12);
+
+		font-size: var(--font-size-sm);
+
+		border-block: map.get($border-widths, 1) solid var(--rsg-brand-colour-5);
+
+		@include media-breakpoint-up(md) {
+			flex-direction: row;
+			gap: var(--spacing-16);
+		}
+	}
+
+	.dates,
+	.updated {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		&::before {
+			font-size: var(--font-size-xs);
+		}
+	}
+
+	.dates::before {
+		@include icon($fa-var-calendar);
+	}
+
+	.updated::before {
+		@include icon($fa-var-check);
+	}
+}

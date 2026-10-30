@@ -60,5 +60,33 @@
 		"loadMore": "Voir plus de projets",
 		"noResults": "Aucun projet ne correspond encore à ces filtres.",
 		"showing": "{shown} projets affichés sur {total}"
+	},
+	"project": {
+		"dates": "Dates du projet",
+		"updated": "Mis à jour en {date}",
+		"targetReach": "Population ciblée",
+		"countryContext": "Contexte national",
+		"expectedResults": "Résultats attendus",
+		"progress": "Avancement à ce jour",
+		"partnersContribution": "Contribution|des partenaires",
+		"testimonials": "Témoignages",
+		"relatedStories": "Récits associés",
+		"relatedProjects": "Projets associés",
+		"viewAllStories": "Voir tous les récits",
+		"viewAllProjects": "Voir tous les projets"
+	},
+	"carousel": {
+		"prev": "Diapositive précédente",
+		"next": "Diapositive suivante",
+		"first": "Aller à la première diapositive",
+		"last": "Aller à la dernière diapositive",
+		"slideX": "Aller à la diapositive %s",
+		"pageX": "Aller à la page %s",
+		"play": "Lancer le défilement",
+		"pause": "Mettre le défilement en pause",
+		"carousel": "carrousel",
+		"slide": "diapositive",
+		"select": "Choisir une diapositive à afficher",
+		"slideLabel": "%s sur %s"
 	}
 }

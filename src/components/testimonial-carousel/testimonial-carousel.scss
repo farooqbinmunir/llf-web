@@ -1,0 +1,91 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.testimonial-carousel {
+	--testimonial-line: color-mix(in oklch, var(--rsg-foreground-colour) 15%, transparent);
+
+	// The track overflows on mobile (core/_splide), so the section clips the next quote at the screen edge.
+	overflow-x: clip;
+
+	.content {
+		max-inline-size: var(--container-width-lg);
+		margin-inline: auto;
+	}
+
+	.rsg-label {
+		margin-block-end: var(--spacing-8);
+	}
+
+	.context {
+		margin-block-end: var(--spacing-24);
+
+		font-size: var(--font-size-sm);
+	}
+
+	// One quote fills the track. The lines sit on the track, so the dots fall below the bottom one.
+	.carousel {
+		--carousel-slide-size: 100%;
+	}
+
+	.splide__track {
+		padding-block: var(--spacing-40);
+
+		border-block: map.get($border-widths, 1) solid var(--testimonial-line);
+	}
+
+	.testimonial {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-32);
+	}
+
+	.quote {
+		margin: 0;
+
+		font-weight: var(--font-weight-semibold);
+
+		&::before {
+			@include icon($fa-var-quote-left);
+
+			margin-block-end: var(--spacing-20);
+
+			font-size: var(--font-size-xl);
+
+			color: var(--rsg-brand-colour-2);
+		}
+	}
+
+	.person {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-20);
+	}
+
+	.photo {
+		flex: 0 0 auto;
+
+		inline-size: var(--spacing-80);
+		block-size: var(--spacing-80);
+
+		object-fit: cover;
+
+		border-radius: var(--border-radius-circle);
+	}
+
+	.details {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.name {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+	}
+
+	.role {
+		font-size: var(--font-size-xs);
+
+		color: color-mix(in oklch, var(--rsg-foreground-colour) 70%, transparent);
+	}
+}

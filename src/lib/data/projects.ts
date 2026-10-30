@@ -1,6 +1,7 @@
 import type { Locale } from '@/i18n/config';
+import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
-import type { CallToAction, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy } from '@/lib/strapi/types';
+import type { BlocksNode, CallToAction, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial } from '@/lib/strapi/types';
 
 export type ProjectCard = {
 	documentId: string;
@@ -12,6 +13,29 @@ export type ProjectCard = {
 	country: Taxonomy | null;
 	impact: Stat | null;
 	investment: Stat | null;
+};
+
+export type ProjectBodySection =
+	| { __component: 'project.text-section'; id: number; heading: string | null; body: BlocksNode[] | null }
+	| { __component: 'shared.media'; id: number; file: Media | null; caption: string | null };
+
+export type FinancingGroup = {
+	heading: string;
+	lines: { label: string; currency: string | null; amount: string; partner: { name: string } | null }[];
+};
+
+export type ProjectDetail = ProjectCard & {
+	startDate: string | null;
+	endDate: string | null;
+	lastUpdated: string | null;
+	targetReach: Stat[];
+	countryContext: BlocksNode[] | null;
+	body: ProjectBodySection[];
+	expectedResults: { text: string }[];
+	progress: Stat[];
+	financing: FinancingGroup[];
+	testimonials: Testimonial[];
+	seo: Seo | null;
 };
 
 export type ProjectsPage = {
@@ -32,6 +56,14 @@ type FilterOption = Taxonomy & { order?: number | null };
 
 const MEDIA_FIELDS = ['url', 'alternativeText', 'width', 'height'];
 const TAXONOMY_FIELDS = ['name', 'slug'];
+const CARD_FIELDS = ['title', 'slug', 'summary'];
+const CARD_POPULATE = {
+	heroImage: { fields: MEDIA_FIELDS },
+	focusArea: { fields: TAXONOMY_FIELDS },
+	country: { fields: TAXONOMY_FIELDS },
+	impact: true,
+	investment: true,
+};
 
 export async function getProjectsPage(lang: Locale) {
 	const { data } = await strapiGet<Single<ProjectsPage>>(
@@ -56,20 +88,14 @@ export async function getProjects(lang: Locale, filters: ProjectFilters, limit: 
 		'/projects',
 		{
 			locale: lang,
-			fields: ['title', 'slug', 'summary'],
+			fields: CARD_FIELDS,
 			filters: {
 				phase: { slug: { $eq: filters.phase } },
 				focusArea: filters.sector ? { slug: { $eq: filters.sector } } : undefined,
 				country: filters.country ? { slug: { $eq: filters.country } } : undefined,
 				projectStatus: filters.status ? { slug: { $eq: filters.status } } : undefined,
 			},
-			populate: {
-				heroImage: { fields: MEDIA_FIELDS },
-				focusArea: { fields: TAXONOMY_FIELDS },
-				country: { fields: TAXONOMY_FIELDS },
-				impact: true,
-				investment: true,
-			},
+			populate: CARD_POPULATE,
 			sort: ['title:asc'],
 			pagination: { page: 1, pageSize: limit },
 		},
@@ -95,12 +121,66 @@ export async function getProjectFilterOptions(lang: Locale) {
 		),
 	]);
 
-	const unique = <T extends Taxonomy>(items: (T | null)[]) => [...new Map(items.filter((item): item is T => item !== null).map((item) => [item.slug, item])).values()];
-
 	return {
 		phases: phases.data,
 		sectors: sectors.data,
-		countries: unique(projects.data.map((project) => project.country)).sort((a, b) => a.name.localeCompare(b.name, lang)),
-		statuses: unique(projects.data.map((project) => project.projectStatus)).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+		countries: uniqueBySlug(projects.data.map((project) => project.country)).sort((a, b) => a.name.localeCompare(b.name, lang)),
+		statuses: uniqueBySlug(projects.data.map((project) => project.projectStatus)).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
 	};
+}
+
+export async function getProject(lang: Locale, slug: string) {
+	const { data } = await strapiGet<Collection<ProjectDetail>>(
+		'/projects',
+		{
+			locale: lang,
+			fields: [...CARD_FIELDS, 'startDate', 'endDate', 'lastUpdated', 'countryContext'],
+			filters: { slug: { $eq: slug } },
+			populate: {
+				...CARD_POPULATE,
+				targetReach: true,
+				body: {
+					on: {
+						'project.text-section': true,
+						'shared.media': { populate: { file: { fields: MEDIA_FIELDS } } },
+					},
+				},
+				expectedResults: true,
+				progress: true,
+				financing: { populate: { lines: { populate: { partner: { fields: ['name'] } } } } },
+				testimonials: { populate: { photo: { fields: MEDIA_FIELDS } } },
+				seo: true,
+			},
+			pagination: { page: 1, pageSize: 1 },
+		},
+		['project'],
+	);
+
+	return data[0] ?? null;
+}
+
+// Slugs are per locale, so each language lists its own.
+export async function getProjectSlugs(lang: Locale) {
+	const { data } = await strapiGet<Collection<{ slug: string }>>('/projects', { locale: lang, fields: ['slug'], pagination: { page: 1, pageSize: 100 } }, ['project']);
+
+	return data.map((project) => project.slug);
+}
+
+// Related projects follow the design's priority: projects in the same country first, then the same focus area, then any
+// other project, so the rail is never empty while there are other projects.
+export async function getRelatedProjects(lang: Locale, project: ProjectDetail, limit: number) {
+	const query = (filter: Record<string, { slug: { $eq: string } }> = {}) =>
+		strapiGet<Collection<ProjectCard>>(
+			'/projects',
+			{ locale: lang, fields: CARD_FIELDS, filters: { slug: { $ne: project.slug }, ...filter }, populate: CARD_POPULATE, sort: ['title:asc'], pagination: { page: 1, pageSize: limit } },
+			['project'],
+		);
+
+	const results = await Promise.all([
+		project.country ? query({ country: { slug: { $eq: project.country.slug } } }) : null,
+		project.focusArea ? query({ focusArea: { slug: { $eq: project.focusArea.slug } } }) : null,
+		query(),
+	]);
+
+	return uniqueBySlug(results.flatMap((result) => result?.data ?? [])).slice(0, limit);
 }

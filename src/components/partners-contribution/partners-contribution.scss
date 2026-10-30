@@ -1,0 +1,98 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.partners-contribution {
+	.rsg-title {
+		margin-block-end: var(--spacing-40);
+
+		font-size: var(--font-size-lg);
+		text-align: center;
+
+		@include media-breakpoint-up(lg) {
+			margin-block-end: var(--spacing-56);
+		}
+	}
+
+	// Groups flow down two columns on wider screens, so a long group does not leave a gap beside a short one.
+	.groups {
+		max-inline-size: var(--container-width-lg);
+		margin-inline: auto;
+
+		@include media-breakpoint-up(md) {
+			columns: 2;
+			column-gap: var(--spacing-48);
+		}
+	}
+
+	.group {
+		break-inside: avoid;
+
+		padding-block-end: var(--spacing-32);
+	}
+
+	.heading {
+		padding-block-end: var(--spacing-16);
+
+		font-size: var(--font-size-sm);
+
+		border-block-end: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	}
+
+	.lines {
+		margin: 0;
+	}
+
+	.line {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-16);
+
+		padding-block: var(--spacing-16);
+
+		border-block-end: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	}
+
+	.label {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+
+		max-inline-size: 50%;
+
+		font-size: var(--font-size-sm);
+	}
+
+	.partner {
+		font-size: var(--font-size-xs);
+
+		color: color-mix(in oklch, var(--rsg-foreground-colour) 70%, transparent);
+	}
+
+	// The figure follows the design's orange, which is below contrast on light (see the roadmap backlog).
+	.amount {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--spacing-4);
+
+		margin: 0;
+
+		color: var(--rsg-brand-colour-2);
+
+		white-space: nowrap;
+	}
+
+	.currency {
+		font-size: var(--font-size-xs);
+	}
+
+	.value {
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-semibold);
+		line-height: 1;
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-2xl);
+		}
+	}
+}

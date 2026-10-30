@@ -1,5 +1,5 @@
-@use 'sass:map';
 @use 'abstracts' as *;
+@use 'core/card-primitives';
 
 .project-tile {
 	position: relative;
@@ -31,27 +31,7 @@
 	}
 
 	.link {
-		@extend %unstyled-link;
-
-		&::before {
-			content: '';
-
-			position: absolute;
-			inset: 0;
-			z-index: 1;
-
-			border-radius: inherit;
-		}
-
-		// The focus ring goes on the whole tile, which is what the stretched link covers.
-		&:focus-visible {
-			outline: none;
-
-			&::before {
-				outline: map.get($border-widths, 2) solid currentColor;
-				outline-offset: map.get($border-widths, 2);
-			}
-		}
+		@extend %stretched-link;
 	}
 
 	.summary {

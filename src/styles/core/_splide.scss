@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use '@splidejs/splide/dist/css/splide-core.min' as splide-core;
+
+// Shared Splide settings. The Carousel component reads the gap, speed and easing from here, so CSS drives the JS.
+:root {
+	--splide-gap: var(--spacing-16);
+	--splide-speed: var(--speed-slow);
+	--splide-ease: var(--transition-ease);
+}
+
+.splide {
+	// Slides overflow to the inline end, so the next one peeks in on mobile.
+	&__track {
+		@include media-breakpoint-down(md) {
+			overflow: visible;
+		}
+	}
+
+	&__pagination {
+		position: static;
+
+		gap: var(--spacing-8);
+
+		padding: 0;
+
+		&__page {
+			--pagination-dot-size: var(--spacing-10);
+
+			inline-size: var(--pagination-dot-size);
+			block-size: var(--pagination-dot-size);
+			margin: 0;
+			padding: 0;
+
+			background-color: var(--rsg-brand-colour-5);
+			border: 0;
+			border-radius: var(--border-radius-pill);
+
+			transition:
+				inline-size var(--speed-fast) var(--transition-ease),
+				background-color var(--speed-fast) var(--transition-ease);
+
+			&.is-active {
+				inline-size: calc(var(--pagination-dot-size) * 3);
+
+				background-color: var(--rsg-brand-colour-2);
+			}
+
+			&:focus-visible {
+				outline: map.get($border-widths, 2) solid currentColor;
+				outline-offset: map.get($border-widths, 2);
+			}
+		}
+	}
+}
