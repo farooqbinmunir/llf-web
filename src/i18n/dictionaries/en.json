@@ -119,6 +119,24 @@
 		"title": "Latest announcements",
 		"viewAllNews": "View all news"
 	},
+	"news": {
+		"filterNews": "Filter news",
+		"country": "Country",
+		"focusArea": "Focus area",
+		"topic": "Topic",
+		"year": "Year",
+		"allCountries": "All countries",
+		"allFocusAreas": "All focus areas",
+		"allTopics": "All topics",
+		"allYears": "All years",
+		"resetFilter": "Reset filter",
+		"apply": "Apply",
+		"loadMore": "Load more news",
+		"noResults": "No news matches these filters yet.",
+		"showing": "Showing {shown} of {total} news items",
+		"moreNews": "More news",
+		"viewAllNews": "View all news"
+	},
 	"videoPlayer": {
 		"play": "Play",
 		"pause": "Pause",

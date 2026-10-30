@@ -4,32 +4,30 @@ import { localisedPath, type Locale } from '@/i18n/config';
 import type { NewsCard } from '@/lib/data/news';
 import { formatDate } from '@/lib/format';
 
-// The tile takes tone 4 (card) of the palette of the section it sits in.
-type NewsTileProps = { lang: Locale; news: NewsCard; palette: 'dark' | 'light' };
+type NewsTileProps = { lang: Locale; news: NewsCard };
 
-// A compact news row: the date and title beside the photo from md up, above it on mobile, with the corner arrow. The whole
-// tile is the link.
-export default function NewsTileList({ lang, news, palette }: NewsTileProps) {
+// A news row, as in the News listing and More news: the photo, then the date and title, side by side from md up. Rows are
+// ruled off from one another; the whole row is the link.
+export default function NewsTileList({ lang, news }: NewsTileProps) {
 	const { title, slug, publishDate, coverImage } = news;
-	const classes = ['tile', 'news', 'list', `rsg-surface-${palette}-4`, !coverImage && 'no-media'].filter(Boolean).join(' ');
 
 	return (
-		<Link className={classes} href={localisedPath(lang, `/news/${slug}`)}>
+		<Link className={coverImage ? 'tile news list' : 'tile news list no-media'} href={localisedPath(lang, `/news/${slug}`)}>
 			{coverImage && (
 				<div className="rsg-media-wrapper">
-					<MediaBlockStandard image={coverImage} aspectRatio="3x2" sizes="(min-width: 768px) 15vw, 85vw" alt="" />
+					<MediaBlockStandard image={coverImage} aspectRatio="3x2" sizes="(min-width: 992px) 15vw, (min-width: 768px) 25vw, 100vw" alt="" />
 				</div>
 			)}
 
-			{publishDate && (
-				<time className="rsg-date" dateTime={publishDate}>
-					{formatDate(lang, publishDate)}
-				</time>
-			)}
+			<div className="rsg-content-wrapper">
+				{publishDate && (
+					<time className="rsg-date rsg-fa" dateTime={publishDate}>
+						{formatDate(lang, publishDate)}
+					</time>
+				)}
 
-			<p className="rsg-title">{title}</p>
-
-			<span className="rsg-tile-icon" aria-hidden="true" />
+				<p className="rsg-title">{title}</p>
+			</div>
 		</Link>
 	);
 }

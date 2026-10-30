@@ -2,8 +2,10 @@
 @use 'abstracts' as *;
 
 // Optional video player on top, title, introduction, term pills, project, then the date and share row between
-// dividers, then the hero photo.
-.header-contents.story.standard {
+// dividers, then the hero photo. News uses the same layout with only the title, meta and hero, as the rebuild's one
+// article header serves both.
+.header-contents.story.standard,
+.header-contents.news.standard {
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-24);

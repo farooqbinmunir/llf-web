@@ -1,85 +1,80 @@
+@use 'sass:map';
 @use 'abstracts' as *;
 @use 'core/link-primitives';
 
-// On mobile the date and arrow share the top row, then the title, then the photo. From md up the photo takes the start
-// column and the date, title and arrow sit beside it.
+$news-list-rule: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+
+// On mobile the photo runs the full width above the date and title; from md up it takes a quarter of the row beside them.
+// Each row is ruled below, and the first in a list above too.
 .tile.news.list {
 	@extend %unstyled-link;
 
-	display: grid;
-	grid-template-areas:
-		'date icon'
-		'title title'
-		'media media';
-	grid-template-columns: minmax(0, 1fr) auto;
-	grid-template-rows: auto auto 1fr;
-	align-content: start;
-	gap: var(--spacing-8) var(--spacing-16);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-16);
 
-	block-size: 100%;
-	padding: var(--spacing-16);
+	padding-block: var(--spacing-16);
 
-	background-color: var(--rsg-background-colour);
 	color: var(--rsg-foreground-colour);
-	border-radius: var(--border-radius-base);
-
-	transition: background-color var(--speed-fast) var(--transition-ease);
+	border-block-end: $news-list-rule;
 
 	@include media-breakpoint-up(md) {
-		grid-template-areas:
-			'media date icon'
-			'media title title';
-		grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
-		grid-template-rows: auto 1fr;
-		column-gap: var(--spacing-24);
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+		align-items: start;
+		gap: var(--spacing-24);
 	}
 
 	&.no-media {
-		grid-template-areas:
-			'date icon'
-			'title title';
-		grid-template-columns: minmax(0, 1fr) auto;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	[role='listitem']:first-child > & {
+		border-block-start: $news-list-rule;
 	}
 
 	&:hover,
 	&:focus-visible {
-		background-color: var(--rsg-brand-colour-6);
-	}
-
-	.rsg-media-wrapper {
-		grid-area: media;
-		align-self: end;
-
-		margin-block-start: var(--spacing-8);
-
-		overflow: hidden;
-
-		border-radius: var(--border-radius-md);
-
-		@include media-breakpoint-up(md) {
-			align-self: start;
-
-			margin-block-start: 0;
+		.rsg-title {
+			text-decoration-color: currentColor;
 		}
 	}
 
-	.rsg-date {
-		grid-area: date;
-		align-self: center;
+	.rsg-media-wrapper {
+		overflow: hidden;
 
+		border-radius: var(--border-radius-md);
+	}
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-8);
+	}
+
+	// The design dates news in the accent colour, with the calendar glyph.
+	.rsg-date {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+
+		color: var(--rsg-brand-colour-2);
 		font-size: var(--font-size-xs);
 		font-weight: var(--font-weight-semibold);
+
+		&::before {
+			@include icon($fa-var-calendar);
+		}
 	}
 
 	.rsg-title {
-		grid-area: title;
-
 		font-size: var(--font-size-md);
 		font-weight: var(--font-weight-semibold);
 		line-height: var(--line-height-md);
-	}
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
 
-	.rsg-tile-icon {
-		grid-area: icon;
+		transition: text-decoration-color var(--speed-fast) var(--transition-ease);
 	}
 }

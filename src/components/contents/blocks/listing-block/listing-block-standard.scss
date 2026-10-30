@@ -1,0 +1,14 @@
+@use 'abstracts' as *;
+
+.listing-block.standard {
+	// The design labels these sections in orange, as the carousels.
+	--rsg-label-colour: var(--rsg-brand-colour-2);
+
+	.rsg-col-header {
+		margin-block-end: var(--spacing-24);
+
+		@include media-breakpoint-up(lg) {
+			margin-block-end: var(--spacing-32);
+		}
+	}
+}

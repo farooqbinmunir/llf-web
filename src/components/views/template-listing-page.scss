@@ -42,6 +42,11 @@
 
 			margin-block-start: var(--spacing-40);
 		}
+
+		// Ruled rows bring their own spacing.
+		&.list {
+			row-gap: 0;
+		}
 	}
 
 	.rsg-no-results {
