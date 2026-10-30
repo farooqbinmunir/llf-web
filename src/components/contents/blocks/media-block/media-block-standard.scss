@@ -1,0 +1,11 @@
+@use 'abstracts' as *;
+
+// Rounded corners only when placed straight in a section, or in a row of photos; tiles and headers shape their own.
+.media-block.standard {
+	.rsg-module > * > .row > .col > &,
+	.grouped-content-block .col > & {
+		.rsg-picture img {
+			border-radius: var(--border-radius-base);
+		}
+	}
+}

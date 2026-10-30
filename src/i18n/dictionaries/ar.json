@@ -10,7 +10,9 @@
 		"footerNavigation": "تذييل الصفحة",
 		"openMenu": "فتح القائمة",
 		"closeMenu": "إغلاق القائمة",
-		"changeLanguage": "تغيير اللغة"
+		"changeLanguage": "تغيير اللغة",
+		"legalNavigation": "روابط قانونية",
+		"socialNavigation": "وسائل التواصل الاجتماعي"
 	},
 	"header": {
 		"search": "بحث"

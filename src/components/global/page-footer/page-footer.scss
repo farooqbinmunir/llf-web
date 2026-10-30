@@ -1,0 +1,84 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.rsg-page-footer {
+	--footer-divider: var(--rsg-brand-colour-3);
+	--footer-link-colour: color-mix(in srgb, var(--rsg-foreground-colour) 80%, transparent);
+
+	padding-block: var(--spacing-24);
+
+	font-size: var(--font-size-sm);
+
+	@include media-breakpoint-up(lg) {
+		padding-block: var(--spacing-64) var(--spacing-24);
+	}
+
+	.rsg-row-top {
+		@include media-breakpoint-up(lg) {
+			--grid-gutter: var(--spacing-48);
+
+			padding-block-end: var(--spacing-64);
+		}
+	}
+
+	.rsg-col-brand {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-24);
+
+		padding-block-end: var(--spacing-24);
+
+		@include media-breakpoint-up(lg) {
+			flex-direction: column;
+			align-items: flex-start;
+
+			padding-block-end: 0;
+		}
+	}
+
+	.rsg-footer-logo-link {
+		display: inline-flex;
+
+		color: inherit;
+	}
+
+	.rsg-footer-strapline {
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+		white-space: pre-line;
+	}
+
+	.rsg-row-bottom {
+		display: flex;
+		flex-direction: column-reverse;
+		gap: var(--spacing-24);
+
+		padding-block-start: var(--spacing-24);
+
+		@include media-breakpoint-up(lg) {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+
+			border-block-start: map.get($border-widths, 1) solid var(--footer-divider);
+		}
+	}
+
+	.rsg-footer-copyright {
+		font-size: var(--font-size-xs);
+	}
+
+	// Footer links share one colour and hover, whichever navigation they belong to.
+	.rsg-nav-link {
+		@extend %unstyled-link;
+
+		color: var(--footer-link-colour);
+
+		transition: color var(--speed-fast) var(--transition-ease);
+
+		&:hover {
+			color: var(--rsg-brand-colour-2);
+		}
+	}
+}

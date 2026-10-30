@@ -1,0 +1,57 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.rsg-primary-navigation {
+	.rsg-primary-navigation-list {
+		@extend %no-list;
+	}
+
+	.rsg-nav-link {
+		@extend %unstyled-link;
+
+		transition: color var(--speed-fast) var(--transition-ease);
+	}
+
+	&.is-desktop {
+		.rsg-primary-navigation-list {
+			display: flex;
+			gap: var(--spacing-32);
+		}
+
+		.rsg-nav-link {
+			font-size: var(--font-size-sm);
+
+			&:hover {
+				color: var(--rsg-brand-colour-2);
+			}
+		}
+
+		.current .rsg-nav-link {
+			font-weight: var(--font-weight-semibold);
+		}
+	}
+
+	&.is-mobile {
+		.rsg-nav-link {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			padding-block: var(--spacing-16);
+
+			font-size: var(--font-size-md);
+
+			border-block-end: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+
+			&::after {
+				@include icon-arrow-diagonal;
+
+				font-size: var(--font-size-base);
+			}
+		}
+
+		.current .rsg-nav-link {
+			color: var(--rsg-brand-colour-2);
+		}
+	}
+}

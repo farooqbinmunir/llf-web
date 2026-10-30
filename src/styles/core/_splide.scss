@@ -2,7 +2,7 @@
 @use 'abstracts' as *;
 @use '@splidejs/splide/dist/css/splide-core.min' as splide-core;
 
-// Shared Splide settings. The Carousel component reads the gap, speed and easing from here, so CSS drives the JS.
+// Shared Splide settings. The carousel helper reads the gap, speed and easing from here, so CSS drives the JS.
 :root {
 	--splide-gap: var(--spacing-16);
 	--splide-speed: var(--speed-slow);
@@ -10,6 +10,28 @@
 }
 
 .splide {
+	// About one tile and a peek on mobile, two on tablets and three on desktop. Blocks set 100% for one slide at a time.
+	--carousel-slide-size: 85%;
+
+	@include media-breakpoint-up(md) {
+		--carousel-slide-size: calc((100% - var(--splide-gap)) / 2);
+	}
+
+	@include media-breakpoint-up(lg) {
+		--carousel-slide-size: calc((100% - 2 * var(--splide-gap)) / 3);
+	}
+
+	// Slides stretch to the tallest one, so tiles in a row line up.
+	&__slide {
+		display: flex;
+
+		inline-size: var(--carousel-slide-size);
+
+		> * {
+			flex: 1;
+		}
+	}
+
 	// Slides overflow to the inline end, so the next one peeks in on mobile.
 	&__track {
 		@include media-breakpoint-down(md) {
@@ -50,6 +72,28 @@
 				outline: map.get($border-widths, 2) solid currentColor;
 				outline-offset: map.get($border-widths, 2);
 			}
+		}
+	}
+}
+
+// The dots and a footer link (such as "View all") on one row under the track.
+.rsg-carousel-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--spacing-24);
+
+	margin-block-start: var(--spacing-32);
+
+	// Dots on the left and the footer centred, as designed. Splide hides the dots when every slide is in view, so the
+	// footer is placed explicitly rather than taking the first free column.
+	@include media-breakpoint-up(lg) {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+
+		> :not(.splide__pagination) {
+			grid-column: 2;
 		}
 	}
 }

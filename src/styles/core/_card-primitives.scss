@@ -1,33 +1,8 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-// Pieces shared by the listing tiles: the stretched title link, the corner arrow, the taxonomy term pills and the key facts.
+// Pieces shared by the tiles and headers: the corner arrow, the taxonomy term pills and the key facts.
 // Each tile styles its own layout and only reuses these.
-
-// The title link covers its tile (which must be `position: relative`), so the tile is one target named by the title.
-%stretched-link {
-	@extend %unstyled-link;
-
-	&::before {
-		content: '';
-
-		position: absolute;
-		inset: 0;
-		z-index: 1;
-
-		border-radius: inherit;
-	}
-
-	// The focus ring goes on the whole tile, which is what the stretched link covers.
-	&:focus-visible {
-		outline: none;
-
-		&::before {
-			outline: map.get($border-widths, 2) solid currentColor;
-			outline-offset: map.get($border-widths, 2);
-		}
-	}
-}
 
 .rsg-tile-icon {
 	display: inline-flex;

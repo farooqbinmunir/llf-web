@@ -1,7 +1,0 @@
-@use 'abstracts' as *;
-
-.search-link::after {
-	@include icon($fa-var-magnifying-glass);
-
-	font-size: var(--font-size-md);
-}

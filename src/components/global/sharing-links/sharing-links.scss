@@ -1,0 +1,55 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+$sharing-icons: (
+	'linkedin': ($fa-var-linkedin-in, 'brands'),
+	'facebook': ($fa-var-facebook, 'brands'),
+	'x-twitter': ($fa-var-x-twitter, 'brands'),
+	'email': ($fa-var-envelope, 'solid'),
+	'copy-link': ($fa-var-link, 'solid'),
+);
+
+// Square icon buttons, outlined in the section's divider tone.
+.rsg-sharing-links {
+	@extend %no-list;
+
+	display: flex;
+	gap: var(--spacing-8);
+
+	.rsg-fa {
+		@extend %unstyled-link;
+
+		display: grid;
+		place-items: center;
+
+		inline-size: var(--spacing-32);
+		block-size: var(--spacing-32);
+		padding: 0;
+
+		font-size: var(--font-size-xs);
+
+		background-color: transparent;
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		border-radius: var(--border-radius-sm);
+
+		cursor: pointer;
+
+		transition:
+			background-color var(--speed-fast) var(--transition-ease),
+			border-color var(--speed-fast) var(--transition-ease);
+
+		&:hover,
+		&.is-copied {
+			background-color: var(--rsg-brand-colour-2);
+			border-color: var(--rsg-brand-colour-2);
+		}
+
+		@each $name, $icon in $sharing-icons {
+			&.#{$name}::before {
+				@include icon(list.nth($icon, 1), list.nth($icon, 2));
+			}
+		}
+	}
+}

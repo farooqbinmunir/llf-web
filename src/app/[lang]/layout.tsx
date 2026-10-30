@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Cairo, Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import PageFooter from '@/components/page-footer/PageFooter';
-import PageHeader from '@/components/page-header/PageHeader';
+import PageFooter from '@/components/global/page-footer/page-footer';
+import PageHeader from '@/components/global/page-header/page-header';
 import { hasLocale, localeDetails, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import '@/styles/main.scss';

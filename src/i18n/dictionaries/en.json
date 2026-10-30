@@ -10,7 +10,9 @@
 		"footerNavigation": "Footer",
 		"openMenu": "Open menu",
 		"closeMenu": "Close menu",
-		"changeLanguage": "Change language"
+		"changeLanguage": "Change language",
+		"legalNavigation": "Legal",
+		"socialNavigation": "Social media"
 	},
 	"header": {
 		"search": "Search"

@@ -1,5 +1,6 @@
 @use 'sass:list';
 @use 'sass:map';
+@use 'sass:math';
 @use 'bootstrap/scss/mixins/breakpoints' as bootstrap;
 @use '@fortawesome/fontawesome-free/scss/variables' as fa;
 @use 'bootstrap-variables-overrides' as *;
@@ -17,6 +18,13 @@
 	@include bootstrap.media-breakpoint-down($name, $grid-breakpoints) {
 		@content;
 	}
+}
+
+// A column of the grid (core/_grid), for components that size their own columns, as Bootstrap's make-col() does.
+@mixin make-col($size, $columns: 12) {
+	flex: 0 0 auto;
+
+	inline-size: math.percentage(math.div($size, $columns));
 }
 
 // Emits a concrete class and a placeholder from one definition, so a shared style serves both markup and `@extend`.

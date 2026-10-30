@@ -1,12 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ContentBody from '@/components/content-body/ContentBody';
-import RelatedContent from '@/components/related-content/RelatedContent';
-import StoryFootnotes from '@/components/story-footnotes/StoryFootnotes';
-import StoryHeader from '@/components/story-header/StoryHeader';
-import StoryTile from '@/components/story-tile/StoryTile';
-import { withoutBreaks } from '@/components/text-with-breaks/TextWithBreaks';
-import { hasLocale, localisedPath } from '@/i18n/config';
+import { withoutBreaks } from '@/components/helpers/text-with-breaks';
+import SingleStory from '@/components/views/single-story';
+import { hasLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getRelatedStories, getStory, getStorySlugs } from '@/lib/data/stories';
 
@@ -40,26 +36,6 @@ export default async function StoryPage({ params }: PageProps<'/[lang]/field-upd
 	if (!story) notFound();
 
 	const related = await getRelatedStories(lang, { projectSlug: story.project?.slug, country: story.country, focusArea: story.focusArea, excludeSlug: story.slug }, RELATED_LIMIT);
-	const { story: labels, carousel } = dictionary;
 
-	return (
-		<>
-			{/* One section for the story itself, so its bottom spacing clears the rounded section after it whichever parts it has. */}
-			<article className="rsg-module section-wrapper-small">
-				<StoryHeader lang={lang} story={story} labels={labels} playerLabels={dictionary.videoPlayer} />
-
-				<ContentBody lang={lang} sections={story.body} />
-
-				{story.footnotes && story.footnotes.length > 0 && <StoryFootnotes lang={lang} label={labels.footnotes} content={story.footnotes} />}
-			</article>
-
-			{related.length > 0 && (
-				<RelatedContent id="related-stories-title" title={labels.relatedStories} palette="light" viewAll={{ label: labels.viewAllStories, href: localisedPath(lang, '/field-updates') }} labels={carousel}>
-					{related.map((relatedStory) => (
-						<StoryTile key={relatedStory.documentId} lang={lang} story={relatedStory} palette="light" />
-					))}
-				</RelatedContent>
-			)}
-		</>
-	);
+	return <SingleStory lang={lang} story={story} related={related} dictionary={dictionary} />;
 }

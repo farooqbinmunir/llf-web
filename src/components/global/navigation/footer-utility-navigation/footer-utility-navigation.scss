@@ -1,0 +1,14 @@
+@use 'abstracts' as *;
+
+.rsg-footer-utility-navigation ul {
+	@extend %no-list;
+
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	gap: var(--spacing-12) var(--spacing-32);
+
+	@include media-breakpoint-up(lg) {
+		display: flex;
+		gap: var(--spacing-32);
+	}
+}

@@ -1,0 +1,220 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+// The bar takes tone 4 (card) of its section, as the tiles do; on dark sections it takes the divider tone instead, as the
+// designs show. The fields take the border tone either way.
+.rsg-search-filters {
+	padding-block: var(--spacing-16);
+	padding-inline: var(--spacing-24);
+
+	background-color: var(--rsg-brand-colour-4);
+
+	.rsg-surface-dark & {
+		background-color: var(--rsg-brand-colour-3);
+	}
+	border-radius: var(--border-radius-base);
+
+	@include media-breakpoint-up(lg) {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-24);
+
+		padding-block: var(--spacing-20);
+	}
+
+	.rsg-filters-toggle {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-12);
+
+		inline-size: 100%;
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		white-space: nowrap;
+
+		&::before {
+			@include icon($fa-var-sliders);
+		}
+
+		@include media-breakpoint-up(lg) {
+			inline-size: auto;
+		}
+	}
+
+	button.rsg-filters-toggle {
+		min-block-size: var(--rsg-control-size);
+
+		&::after {
+			@include icon($fa-var-chevron-down);
+
+			margin-inline-start: auto;
+
+			font-size: var(--font-size-xs);
+
+			transition: transform var(--speed-fast) var(--transition-ease);
+		}
+
+		// The server renders the mobile toggle; hiding its chevron avoids a flash on desktop before hydration swaps it out.
+		@include media-breakpoint-up(lg) {
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	&.is-open button.rsg-filters-toggle::after {
+		transform: rotate(180deg);
+	}
+
+	.rsg-filters-controls {
+		display: none;
+		gap: var(--spacing-12);
+
+		padding-block-start: var(--spacing-16);
+
+		@include media-breakpoint-up(lg) {
+			display: flex;
+			flex: 1;
+			align-items: center;
+
+			padding-block-start: 0;
+		}
+	}
+
+	@include media-breakpoint-down(lg) {
+		&.is-open .rsg-filters-controls {
+			display: grid;
+		}
+	}
+
+	.rsg-filter-fieldset {
+		position: relative;
+
+		margin: 0;
+		padding: 0;
+
+		border: 0;
+
+		@include media-breakpoint-up(lg) {
+			flex: 1;
+		}
+	}
+
+	// Replaces the native select arrow; inset-inline-end keeps it at the end in both reading directions.
+	.select {
+		&::after {
+			@include icon($fa-var-chevron-down);
+
+			position: absolute;
+			inset-block-start: 50%;
+			inset-inline-end: var(--spacing-16);
+
+			font-size: var(--font-size-xs);
+
+			transform: translateY(-50%);
+			pointer-events: none;
+		}
+
+		select {
+			inline-size: 100%;
+			min-block-size: var(--rsg-control-size);
+			padding-inline: var(--spacing-16) var(--spacing-40);
+
+			font-size: var(--font-size-sm);
+
+			background-color: transparent;
+			border: map.get($border-widths, 1) solid var(--rsg-brand-colour-5);
+			border-radius: var(--border-radius-pill);
+
+			appearance: none;
+			cursor: pointer;
+		}
+
+		// The open list uses the platform's own colours, which are light, so options need the dark text colour.
+		option {
+			color: var(--colour-black);
+		}
+	}
+
+	.rsg-form-buttons {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--spacing-24);
+
+		font-size: var(--font-size-sm);
+		white-space: nowrap;
+	}
+
+	.rsg-filters-reset {
+		@extend %unstyled-link;
+
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		color: color-mix(in srgb, var(--rsg-foreground-colour) 80%, transparent);
+
+		&::before {
+			@include icon($fa-var-rotate-left);
+		}
+
+		&:hover {
+			color: var(--rsg-foreground-colour);
+		}
+	}
+
+	.rsg-filter-submit {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		min-block-size: var(--rsg-control-size);
+
+		font-weight: var(--font-weight-semibold);
+
+		color: var(--rsg-button-text-colour);
+
+		&::before {
+			@include icon($fa-var-check);
+		}
+	}
+
+	// Pills: one choice applies on click, so the bar is just the row of pills, without its own background.
+	&.pills-only {
+		padding: 0;
+
+		background-color: transparent;
+
+		.rsg-filters-controls {
+			display: block;
+
+			padding: 0;
+		}
+	}
+
+	.radio-lozenge {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-12);
+	}
+
+	// A pill stays filled while its option is chosen.
+	.rsg-filters-label {
+		@extend %rsg-button;
+
+		cursor: pointer;
+
+		&:has(:checked) {
+			background-color: var(--rsg-brand-colour-2);
+			color: var(--rsg-accent-text-colour);
+		}
+
+		&:has(:focus-visible) {
+			outline: map.get($border-widths, 2) solid currentColor;
+			outline-offset: map.get($border-widths, 2);
+		}
+	}
+}
