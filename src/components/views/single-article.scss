@@ -1,9 +1,9 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-// The header sits in a centred column; the body is built from blocks, which bring their own sections; the footnotes
-// close the story in the text column.
-.single-story-content {
+// An article page (story or news), as the rebuild's single-article view: the header sits in a centred column; the body is
+// built from blocks, which bring their own sections; a story's footnotes close it in the text column.
+.single-article-content {
 	// Only the top: every body block brings its section's bottom spacing, and the footnotes bring their own.
 	padding-block-start: var(--spacing-48);
 

@@ -57,7 +57,7 @@ export type BlocksNode =
 	// Images and any block type added later are not rendered; the editor's image block is not used on this site.
 	| { type: 'image' };
 
-// Blocks of a `body` dynamic zone. Projects use text sections and media; stories use all of them.
+// Blocks of a `body` dynamic zone. Projects use text sections and media; stories and news use all of them.
 export type BodySection =
 	| { __component: 'shared.text-section'; id: number; heading: string | null; body: BlocksNode[] | null }
 	| { __component: 'shared.media'; id: number; file: Media | null; caption: string | null }

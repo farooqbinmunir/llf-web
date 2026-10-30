@@ -17,7 +17,7 @@ export default function SingleStory({ lang, story, related, dictionary }: Single
 
 	return (
 		<>
-			<article className="single-story-content">
+			<article className="single-article-content">
 				<div className="container-xxl">
 					<div className="row">
 						<div className="col col-12 col-lg-8 offset-lg-2">

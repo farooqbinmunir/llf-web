@@ -1,0 +1,80 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+$news-list-rule: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+
+// On mobile the photo runs the full width above the date and title; from md up it takes a quarter of the row beside them.
+// Each row is ruled below, and the first in a list above too.
+.tile.news.list {
+	@extend %unstyled-link;
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-16);
+
+	padding-block: var(--spacing-16);
+
+	color: var(--rsg-foreground-colour);
+	border-block-end: $news-list-rule;
+
+	@include media-breakpoint-up(md) {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+		align-items: start;
+		gap: var(--spacing-24);
+	}
+
+	&.no-media {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	[role='listitem']:first-child > & {
+		border-block-start: $news-list-rule;
+	}
+
+	&:hover,
+	&:focus-visible {
+		.rsg-title {
+			text-decoration-color: currentColor;
+		}
+	}
+
+	.rsg-media-wrapper {
+		overflow: hidden;
+
+		border-radius: var(--border-radius-md);
+	}
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-8);
+	}
+
+	// The design dates news in the accent colour, with the calendar glyph.
+	.rsg-date {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+
+		color: var(--rsg-brand-colour-2);
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-semibold);
+
+		&::before {
+			@include icon($fa-var-calendar);
+		}
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-md);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
+
+		transition: text-decoration-color var(--speed-fast) var(--transition-ease);
+	}
+}

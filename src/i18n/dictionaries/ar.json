@@ -119,6 +119,24 @@
 		"title": "أحدث الإعلانات",
 		"viewAllNews": "عرض جميع الأخبار"
 	},
+	"news": {
+		"filterNews": "تصفية الأخبار",
+		"country": "الدولة",
+		"focusArea": "مجال التركيز",
+		"topic": "الموضوع",
+		"year": "السنة",
+		"allCountries": "جميع الدول",
+		"allFocusAreas": "جميع المجالات",
+		"allTopics": "جميع المواضيع",
+		"allYears": "جميع السنوات",
+		"resetFilter": "إعادة الضبط",
+		"apply": "تطبيق",
+		"loadMore": "عرض المزيد من الأخبار",
+		"noResults": "لا توجد أخبار تطابق هذه المرشحات بعد.",
+		"showing": "عرض {shown} من أصل {total} خبر",
+		"moreNews": "المزيد من الأخبار",
+		"viewAllNews": "عرض جميع الأخبار"
+	},
 	"videoPlayer": {
 		"play": "تشغيل",
 		"pause": "إيقاف مؤقت",

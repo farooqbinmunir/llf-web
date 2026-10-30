@@ -20,6 +20,8 @@ type TemplateListingResultsProps = {
 	status: string;
 	noResults: string;
 	tiles: { key: string; tile: ReactNode }[];
+	// `list` stacks the tiles as ruled rows in a centred column, as the News listing; tiles sit in a three-column grid otherwise.
+	layout?: 'grid' | 'list';
 	loadMore: { nextHref?: string; label: string; filters: { id: string; label: string } };
 };
 
@@ -39,7 +41,9 @@ export default function TemplateListingPage({ labelledBy, brand, wrapperClasses,
 	);
 }
 
-export function TemplateListingResults({ filters, status, noResults, tiles, loadMore }: TemplateListingResultsProps) {
+const COLUMNS = { grid: 'col-12 col-md-6 col-lg-4', list: 'col-12 col-lg-8 offset-lg-2' };
+
+export function TemplateListingResults({ filters, status, noResults, tiles, layout = 'grid', loadMore }: TemplateListingResultsProps) {
 	return (
 		<>
 			{filters}
@@ -49,9 +53,9 @@ export function TemplateListingResults({ filters, status, noResults, tiles, load
 			</p>
 
 			{tiles.length > 0 ? (
-				<div className="row rsg-listing-results" role="list">
+				<div className={`row rsg-listing-results ${layout}`} role="list">
 					{tiles.map(({ key, tile }) => (
-						<div key={key} className="col col-12 col-md-6 col-lg-4" role="listitem">
+						<div key={key} className={`col ${COLUMNS[layout]}`} role="listitem">
 							{tile}
 						</div>
 					))}

@@ -119,6 +119,24 @@
 		"title": "Dernières annonces",
 		"viewAllNews": "Toutes les actualités"
 	},
+	"news": {
+		"filterNews": "Filtrer les actualités",
+		"country": "Pays",
+		"focusArea": "Domaine d'intervention",
+		"topic": "Thème",
+		"year": "Année",
+		"allCountries": "Tous les pays",
+		"allFocusAreas": "Tous les domaines",
+		"allTopics": "Tous les thèmes",
+		"allYears": "Toutes les années",
+		"resetFilter": "Réinitialiser",
+		"apply": "Appliquer",
+		"loadMore": "Plus d'actualités",
+		"noResults": "Aucune actualité ne correspond encore à ces filtres.",
+		"showing": "{shown} actualités affichées sur {total}",
+		"moreNews": "Autres actualités",
+		"viewAllNews": "Toutes les actualités"
+	},
 	"videoPlayer": {
 		"play": "Lecture",
 		"pause": "Pause",

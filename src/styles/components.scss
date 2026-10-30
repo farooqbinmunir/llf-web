@@ -23,6 +23,7 @@
 @use '../components/contents/blocks/grouped-content-block/grouped-content-block-financing';
 @use '../components/contents/blocks/grouped-content-block/grouped-content-block-standard';
 @use '../components/contents/blocks/listing-block/listing-block-carousel';
+@use '../components/contents/blocks/listing-block/listing-block-standard';
 @use '../components/contents/blocks/media-block/media-block-standard';
 @use '../components/contents/blocks/statistic-block/statistic-block-standard';
 @use '../components/contents/blocks/testimonial-block/testimonial-block-standard';
@@ -34,12 +35,13 @@
 @use '../components/contents/post-types/header-contents/story/story-standard' as header-story-standard;
 
 // Post types - tiles
+@use '../components/contents/post-types/tiles/news/news-list' as tile-news-list;
 @use '../components/contents/post-types/tiles/news/news-slide' as tile-news-slide;
 @use '../components/contents/post-types/tiles/project/project-standard' as tile-project-standard;
 @use '../components/contents/post-types/tiles/resource/resource-standard' as tile-resource-standard;
 @use '../components/contents/post-types/tiles/story/story-standard' as tile-story-standard;
 
 // Views
+@use '../components/views/single-article';
 @use '../components/views/single-project';
-@use '../components/views/single-story';
 @use '../components/views/template-listing-page';
