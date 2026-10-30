@@ -1,0 +1,102 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// Pieces shared by the tiles and headers: the corner arrow, the taxonomy term pills and the key facts.
+// Each tile styles its own layout and only reuses these.
+
+.rsg-tile-icon {
+	display: inline-flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+
+	inline-size: var(--spacing-32);
+	block-size: var(--spacing-32);
+
+	font-size: var(--font-size-md);
+
+	&::before {
+		@include icon-arrow-diagonal;
+	}
+
+	// Video stories open a player rather than a page.
+	&.play::before {
+		@include icon($fa-var-circle-play);
+
+		transform: none;
+	}
+}
+
+// Not %no-list: its `li` reset would outrank the term's own padding.
+.rsg-tax-terms {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--spacing-4);
+
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+}
+
+// Terms that share one line inside the column, such as the country and the story type.
+.rsg-tax-terms-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-4);
+}
+
+// Outlined by default; `solid` fills it with the text colour, as for the country.
+.rsg-tax-term {
+	display: inline-flex;
+
+	padding-block: var(--spacing-4);
+	padding-inline: var(--spacing-12);
+
+	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-semibold);
+	letter-spacing: var(--letter-spacing-wide);
+	line-height: var(--line-height-md);
+	text-transform: uppercase;
+
+	border: map.get($border-widths, 1) solid currentColor;
+	border-radius: var(--border-radius-pill);
+
+	&.solid {
+		background-color: var(--rsg-foreground-colour);
+		color: var(--rsg-background-colour);
+		border-color: var(--rsg-foreground-colour);
+	}
+
+	// The story type, in the hover tone.
+	&.accent {
+		background-color: var(--rsg-brand-colour-6);
+		color: var(--colour-black);
+		border-color: var(--rsg-brand-colour-6);
+	}
+}
+
+.rsg-facts {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--spacing-16);
+
+	margin: 0;
+
+	.rsg-fact {
+		padding-inline-start: var(--spacing-8);
+
+		border-inline-start: map.get($border-widths, 1) solid currentColor;
+	}
+
+	dt {
+		font-size: var(--font-size-xs);
+	}
+
+	dd {
+		margin: 0;
+
+		font-weight: var(--font-weight-semibold);
+	}
+}

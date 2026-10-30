@@ -1,0 +1,120 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+:root {
+	// 1 for left-to-right and -1 for right-to-left, for the few transforms that logical properties cannot express.
+	--inline-direction: 1;
+}
+
+:root[dir='rtl'] {
+	--inline-direction: -1;
+}
+
+// Set while the mobile menu is open, so the page behind it cannot scroll.
+.no-scroll {
+	overflow: hidden;
+}
+
+.rsg-visually-hidden {
+	position: absolute;
+
+	clip-path: inset(50%);
+	overflow: hidden;
+	white-space: nowrap;
+	inline-size: 1px;
+	block-size: 1px;
+}
+
+// Takes its colours from the surface class it is given in the markup.
+.rsg-skip-to-content-link {
+	position: absolute;
+	inset-block-start: var(--spacing-8);
+	inset-inline-start: var(--spacing-8);
+	z-index: 100;
+
+	padding-block: var(--spacing-8);
+	padding-inline: var(--spacing-16);
+
+	border-radius: var(--border-radius-md);
+
+	transform: translateY(-200%);
+
+	&:focus-visible {
+		transform: none;
+	}
+}
+
+// A `|` in CMS or dictionary text (see TextWithBreaks) breaks the line on mobile only.
+.mobile-break {
+	@include media-breakpoint-up(md) {
+		display: none;
+	}
+}
+
+// The small uppercase label above a heading ("Our projects", "Library").
+.rsg-label {
+	display: inline-block;
+
+	margin-block-end: var(--spacing-12);
+
+	font-size: var(--font-size-xs);
+	font-weight: var(--font-weight-semibold);
+	letter-spacing: var(--letter-spacing-wide);
+	line-height: var(--line-height-md);
+	text-transform: uppercase;
+
+	color: var(--rsg-label-colour);
+}
+
+// A section heading. Components that need another size set it in their own scope.
+.rsg-title {
+	font-size: var(--font-size-xl);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-md);
+
+	color: var(--rsg-title-colour);
+
+	@include media-breakpoint-up(lg) {
+		font-size: var(--font-size-2xl);
+	}
+}
+
+// Rich text from the CMS (Strapi blocks): spacing between paragraphs, lists and headings, and readable links.
+.rsg-text {
+	> * + * {
+		margin-block-start: var(--spacing-16);
+	}
+
+	h2,
+	h3,
+	h4 {
+		margin-block-start: var(--spacing-32);
+
+		font-size: var(--font-size-md);
+	}
+
+	ul,
+	ol {
+		display: grid;
+		gap: var(--spacing-16);
+
+		padding-inline-start: var(--spacing-20);
+	}
+
+	li ul,
+	li ol {
+		margin-block-start: var(--spacing-16);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+
+	blockquote {
+		margin-inline: 0;
+		padding-inline-start: var(--spacing-16);
+
+		border-inline-start: map.get($border-widths, 2) solid var(--rsg-brand-colour-2);
+	}
+}

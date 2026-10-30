@@ -1,0 +1,77 @@
+@use 'abstracts' as *;
+
+// A full-width page section. Spacing comes from a `section-wrapper-*` class; a section with a surface pads its top too.
+.rsg-module {
+	&.section-wrapper-small {
+		--rsg-section-spacing: var(--spacing-64);
+
+		@include media-breakpoint-up(md) {
+			--rsg-section-spacing: var(--spacing-80);
+		}
+	}
+
+	&[class*='section-wrapper-'] {
+		padding-block-end: var(--rsg-section-spacing);
+
+		&[class*='rsg-surface-'] {
+			padding-block-start: var(--rsg-section-spacing);
+		}
+	}
+
+	// The section rounds its top corners and slides up by the radius, so the section above shows in the corners, as the page designs stack them.
+	&.section-rounded-top {
+		--rsg-rounded-top-radius: var(--border-radius-xl);
+
+		position: relative;
+		z-index: 1;
+
+		margin-block-start: calc(var(--rsg-rounded-top-radius) * -1);
+
+		border-start-start-radius: var(--rsg-rounded-top-radius);
+		border-start-end-radius: var(--rsg-rounded-top-radius);
+
+		@include media-breakpoint-down(md) {
+			--rsg-rounded-top-radius: var(--border-radius-lg);
+		}
+	}
+
+	// A photo behind the section's content, as texture only: it covers the section under a heavy shade of the surface
+	// colour, so the text stays readable at any size.
+	&.has-background-media {
+		position: relative;
+		isolation: isolate;
+
+		overflow: hidden;
+
+		.rsg-background-media {
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+
+			&::after {
+				content: '';
+
+				position: absolute;
+				inset: 0;
+
+				background-color: color-mix(in srgb, var(--rsg-background-colour) 65%, transparent);
+			}
+
+			.rsg-picture,
+			img {
+				inline-size: 100%;
+				block-size: 100%;
+			}
+
+			img {
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+// In an article body, blocks without a surface leave their spacing below them, so a block with one (a highlight panel)
+// keeps the same space below it before the next block.
+.rsg-article-body > .rsg-module[class*='rsg-surface-'] {
+	margin-block-end: var(--rsg-section-spacing);
+}

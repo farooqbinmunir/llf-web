@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// The header runs across the page; target reach and the country context sit side by side in its column; the body is
+// built from blocks, which bring their own sections.
+.single-project-content {
+	.rsg-overview {
+		row-gap: var(--spacing-32);
+
+		padding-block: var(--spacing-40) var(--spacing-48);
+
+		@include media-breakpoint-up(md) {
+			padding-block-end: var(--spacing-64);
+		}
+
+		// On mobile the two columns stack, with a line between their blocks.
+		> .col + .col > * {
+			@include media-breakpoint-down(md) {
+				padding-block-start: var(--spacing-32);
+
+				border-block-start: map.get($border-widths, 1) solid var(--rsg-brand-colour-5);
+			}
+		}
+
+		// Both headings are the smaller section title, and the reach figures are in the text colour, as designed.
+		.rsg-col-header .rsg-title,
+		.text-box-block .rsg-title {
+			font-size: var(--font-size-md);
+		}
+
+		.rsg-col-header {
+			margin-block-end: var(--spacing-24);
+		}
+
+		.rsg-col-content > .row {
+			row-gap: var(--spacing-24);
+		}
+
+		.value {
+			color: inherit;
+		}
+
+		.statistic {
+			font-weight: var(--font-weight-semibold);
+		}
+	}
+}

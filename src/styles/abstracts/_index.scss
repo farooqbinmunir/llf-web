@@ -1,0 +1,11 @@
+// The token files also emit their custom properties and the surface classes. Sass loads a module once per compilation,
+// so they are output once, ahead of everything else in main.scss, however many component stylesheets use the abstracts.
+@forward 'bootstrap-variables-overrides';
+@forward 'bespoke-functions';
+@forward 'bespoke-mixins';
+@forward 'bespoke-variables-colour';
+@forward 'bespoke-variables-spacing';
+@forward 'bespoke-variables-speed-transition';
+@forward 'bespoke-variables-typography';
+@forward 'bespoke-placeholders';
+@forward '@fortawesome/fontawesome-free/scss/variables' as fa-*;

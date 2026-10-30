@@ -1,0 +1,57 @@
+@use 'abstracts' as *;
+
+.template-listing-page {
+	// The projects' phase pills beside the introduction, which keeps the full-size section title.
+	.rsg-listing-header {
+		row-gap: var(--spacing-32);
+
+		margin-block-end: var(--spacing-40);
+
+		@include media-breakpoint-up(lg) {
+			margin-block-end: var(--spacing-48);
+		}
+
+		.text-box-block {
+			max-inline-size: var(--container-width-md);
+		}
+
+		.rsg-title {
+			margin-block-end: var(--spacing-16);
+
+			font-size: var(--font-size-xl);
+
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-2xl);
+			}
+		}
+	}
+
+	.rsg-pills-loading {
+		min-block-size: var(--rsg-control-size);
+	}
+
+	.rsg-listing-results {
+		--grid-gutter: var(--spacing-16);
+
+		row-gap: var(--grid-gutter);
+
+		margin-block-start: var(--spacing-24);
+
+		@include media-breakpoint-up(lg) {
+			--grid-gutter: var(--spacing-24);
+
+			margin-block-start: var(--spacing-40);
+		}
+	}
+
+	.rsg-no-results {
+		padding-block: var(--spacing-48);
+
+		text-align: center;
+	}
+
+	// Reserves roughly a row of tiles while results stream in, so the page below does not jump.
+	.rsg-results-loading {
+		min-block-size: calc(var(--spacing-160) * 4);
+	}
+}

@@ -1,0 +1,21 @@
+%no-list {
+	margin: 0;
+	padding: 0;
+
+	list-style-type: none;
+
+	// Only the list's own items, so lists nested in them keep their styling.
+	> li {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+%unstyled-link {
+	font-weight: inherit;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: none;
+	}
+}

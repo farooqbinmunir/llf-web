@@ -1,0 +1,7 @@
+@use 'abstracts' as *;
+
+:root {
+	@each $breakpoint, $container-width in $container-max-widths {
+		--container-width-#{$breakpoint}: #{$container-width};
+	}
+}

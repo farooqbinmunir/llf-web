@@ -1,0 +1,63 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.header-contents.project.standard {
+	// Taller on mobile, a wide band from md up.
+	.rsg-hero .rsg-picture img {
+		@include media-breakpoint-down(md) {
+			aspect-ratio: 4 / 3;
+		}
+	}
+
+	.rsg-content-wrapper {
+		display: grid;
+		gap: var(--spacing-24);
+
+		padding-block-start: var(--spacing-40);
+	}
+
+	// The design lays the terms side by side here, not stacked as on the tiles.
+	.rsg-tax-terms {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: var(--spacing-8);
+	}
+
+	.rsg-meta {
+		@extend %no-list;
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+
+		padding-block: var(--spacing-12);
+
+		font-size: var(--font-size-sm);
+
+		border-block: map.get($border-widths, 1) solid var(--rsg-brand-colour-5);
+
+		@include media-breakpoint-up(md) {
+			flex-direction: row;
+			gap: var(--spacing-16);
+		}
+	}
+
+	.rsg-date,
+	.rsg-updated {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		&::before {
+			font-size: var(--font-size-xs);
+		}
+	}
+
+	.rsg-date::before {
+		@include icon($fa-var-calendar);
+	}
+
+	.rsg-updated::before {
+		@include icon($fa-var-check);
+	}
+}

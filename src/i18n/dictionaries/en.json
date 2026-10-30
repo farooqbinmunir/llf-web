@@ -1,0 +1,161 @@
+{
+	"meta": {
+		"siteName": "Lives and Livelihoods Fund",
+		"description": "The Lives and Livelihoods Fund turns collective action into lasting change across IsDB member countries."
+	},
+	"a11y": {
+		"skipToContent": "Skip to content",
+		"home": "Lives and Livelihoods Fund home",
+		"mainNavigation": "Main",
+		"footerNavigation": "Footer",
+		"openMenu": "Open menu",
+		"closeMenu": "Close menu",
+		"changeLanguage": "Change language",
+		"legalNavigation": "Legal",
+		"socialNavigation": "Social media"
+	},
+	"header": {
+		"search": "Search"
+	},
+	"nav": {
+		"aboutUs": "About us",
+		"ourProjects": "Our projects",
+		"fieldUpdates": "Field updates",
+		"library": "Library",
+		"news": "News",
+		"contact": "Contact",
+		"fromTheField": "From the field",
+		"ourPartners": "Our partners",
+		"governance": "Governance",
+		"partnerships": "Partnerships",
+		"fundingQueries": "Funding queries",
+		"careers": "Careers",
+		"newsMedia": "News & media",
+		"llfHub": "LLF Hub",
+		"privacyPolicy": "Privacy policy",
+		"termsOfUse": "Terms of use",
+		"accessibility": "Accessibility",
+		"sitemap": "Sitemap"
+	},
+	"footer": {
+		"ourWork": "Our work",
+		"getInvolved": "Get involved",
+		"resources": "Resources",
+		"getInTouch": "Get in touch",
+		"tagline": "Collective action.\nLasting impact.",
+		"rights": "Lives and Livelihoods Fund. All rights reserved."
+	},
+	"home": {
+		"title": "Collective action. Lasting impact."
+	},
+	"projects": {
+		"phases": "Programme phase",
+		"filterProjects": "Filter projects",
+		"sector": "Sector",
+		"country": "Country",
+		"status": "Status",
+		"allSectors": "All sectors",
+		"allCountries": "All countries",
+		"allStatuses": "All statuses",
+		"resetFilter": "Reset filter",
+		"apply": "Apply",
+		"loadMore": "Load more projects",
+		"noResults": "No projects match these filters yet.",
+		"showing": "Showing {shown} of {total} projects"
+	},
+	"project": {
+		"dates": "Project dates",
+		"updated": "Updated based on {date}",
+		"targetReach": "Target reach",
+		"countryContext": "Country context",
+		"expectedResults": "Expected results",
+		"progress": "Progress to-date",
+		"partnersContribution": "Partners|contribution",
+		"testimonials": "Testimonials",
+		"relatedStories": "Related stories",
+		"relatedProjects": "Related projects",
+		"viewAllStories": "View all stories",
+		"viewAllProjects": "View all projects"
+	},
+	"stories": {
+		"filterStories": "Filter stories",
+		"focusArea": "Focus area",
+		"country": "Country",
+		"storyType": "Story type",
+		"allFocusAreas": "All focus areas",
+		"allCountries": "All countries",
+		"allStoryTypes": "All story types",
+		"resetFilter": "Reset filter",
+		"apply": "Apply",
+		"loadMore": "Load more stories",
+		"noResults": "No stories match these filters yet.",
+		"showing": "Showing {shown} of {total} stories"
+	},
+	"story": {
+		"project": "Project",
+		"published": "Published {date}",
+		"share": "Share",
+		"shareOn": "Share on {network}",
+		"shareByEmail": "Share by email",
+		"copyLink": "Copy link",
+		"linkCopied": "Link copied",
+		"footnotes": "Notes",
+		"relatedStories": "Related stories",
+		"viewAllStories": "View all stories"
+	},
+	"library": {
+		"filterByType": "Filter by type",
+		"resourceType": "Resource type",
+		"allResources": "All resources",
+		"loadMore": "Load more resources",
+		"noResults": "No resources of this type yet.",
+		"showing": "Showing {shown} of {total} resources",
+		"fileSize": "File size",
+		"download": "Download {type}",
+		"view": "View resource",
+		"opensInNewTab": "(opens in a new tab)"
+	},
+	"announcements": {
+		"title": "Latest announcements",
+		"viewAllNews": "View all news"
+	},
+	"videoPlayer": {
+		"play": "Play",
+		"pause": "Pause",
+		"seek": "Seek",
+		"seekLabel": "{currentTime} of {duration}",
+		"played": "Played",
+		"buffered": "Buffered",
+		"currentTime": "Current time",
+		"duration": "Duration",
+		"volume": "Volume",
+		"mute": "Mute",
+		"unmute": "Unmute",
+		"enableCaptions": "Enable captions",
+		"disableCaptions": "Disable captions",
+		"enterFullscreen": "Enter fullscreen",
+		"exitFullscreen": "Exit fullscreen",
+		"frameTitle": "Player for {title}",
+		"captions": "Captions",
+		"settings": "Settings",
+		"menuBack": "Go back to previous menu",
+		"speed": "Speed",
+		"normal": "Normal",
+		"disabled": "Disabled",
+		"enabled": "Enabled"
+	},
+	"carousel": {
+		"prev": "Previous slide",
+		"next": "Next slide",
+		"first": "Go to first slide",
+		"last": "Go to last slide",
+		"slideX": "Go to slide %s",
+		"pageX": "Go to page %s",
+		"play": "Start autoplay",
+		"pause": "Pause autoplay",
+		"carousel": "carousel",
+		"slide": "slide",
+		"select": "Select a slide to show",
+		"slideLabel": "%s of %s"
+	}
+}

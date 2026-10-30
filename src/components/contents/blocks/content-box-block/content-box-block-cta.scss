@@ -1,0 +1,25 @@
+@use 'abstracts' as *;
+
+.content-box-block.cta {
+	display: grid;
+	gap: var(--spacing-32);
+	justify-items: start;
+
+	@include media-breakpoint-up(lg) {
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		gap: var(--spacing-64);
+	}
+
+	.rsg-header {
+		display: grid;
+		gap: var(--spacing-16);
+
+		max-inline-size: var(--container-width-sm);
+	}
+
+	// The band keeps the smaller heading size at every width.
+	.rsg-title {
+		font-size: var(--font-size-xl);
+	}
+}

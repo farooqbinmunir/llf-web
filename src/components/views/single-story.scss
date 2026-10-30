@@ -1,0 +1,43 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// The header sits in a centred column; the body is built from blocks, which bring their own sections; the footnotes
+// close the story in the text column.
+.single-story-content {
+	// Only the top: every body block brings its section's bottom spacing, and the footnotes bring their own.
+	padding-block-start: var(--spacing-48);
+
+	@include media-breakpoint-up(lg) {
+		padding-block-start: var(--spacing-80);
+	}
+
+	.rsg-article-body {
+		margin-block-start: var(--spacing-48);
+
+		@include media-breakpoint-up(md) {
+			margin-block-start: var(--spacing-64);
+		}
+	}
+
+	// A short rule at the start of the line, as footnotes conventionally have, rather than a full-width divider.
+	.rsg-col-footnotes {
+		padding-block-end: var(--spacing-64);
+
+		font-size: var(--font-size-xs);
+
+		@include media-breakpoint-up(md) {
+			padding-block-end: var(--spacing-80);
+		}
+
+		&::before {
+			content: '';
+
+			display: block;
+
+			inline-size: 33%;
+			margin-block-end: var(--spacing-16);
+
+			border-block-start: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		}
+	}
+}

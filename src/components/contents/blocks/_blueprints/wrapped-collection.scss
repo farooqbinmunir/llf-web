@@ -1,0 +1,34 @@
+@use 'abstracts' as *;
+
+// The header sits over the collection; blocks place it beside the collection or centre it with their own classes.
+.rsg-wrapped-collection {
+	.rsg-col-header {
+		display: grid;
+		gap: var(--spacing-16);
+
+		margin-block-end: var(--spacing-40);
+
+		@include media-breakpoint-up(lg) {
+			margin-block-end: var(--spacing-48);
+		}
+
+		.rsg-label {
+			margin: 0;
+		}
+	}
+
+	.rsg-main-links {
+		display: flex;
+		justify-content: center;
+
+		margin-block-start: var(--spacing-40);
+	}
+
+	// A centred header, as the section designs show for collective impact and the results lists.
+	&.center-aligned .rsg-col-header {
+		max-inline-size: var(--container-width-sm);
+		margin-inline: auto;
+
+		text-align: center;
+	}
+}

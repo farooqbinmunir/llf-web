@@ -1,0 +1,211 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// The sticky site header: logo, navigation and tools on desktop; logo and the menu button below xl, where the
+// navigation and tools move into the mobile menu panel, which has its own of each.
+.rsg-page-header {
+	position: sticky;
+	inset-block-start: 0;
+	z-index: 30;
+
+	border-block-end: map.get($border-widths, 4) solid var(--rsg-brand-colour-2);
+
+	.rsg-header-layout {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-24);
+
+		padding-block: var(--spacing-16);
+
+		@include media-breakpoint-up(xl) {
+			padding-block: var(--spacing-24);
+		}
+	}
+
+	.rsg-brand-link {
+		display: inline-flex;
+
+		color: inherit;
+	}
+
+	.rsg-header-primary-navigation,
+	.rsg-header-tools {
+		display: none;
+
+		@include media-breakpoint-up(xl) {
+			display: flex;
+		}
+	}
+
+	.rsg-header-tools {
+		align-items: center;
+		gap: var(--spacing-12);
+	}
+
+	// The rounded control shared by the search link and the language switcher, in the header and in the mobile menu.
+	.rsg-header-pill {
+		@extend %unstyled-link;
+
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		min-block-size: var(--spacing-40);
+		padding-inline: var(--spacing-16);
+
+		font-size: var(--font-size-sm);
+
+		background-color: var(--rsg-brand-colour-4);
+		color: var(--rsg-foreground-colour);
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		border-radius: var(--border-radius-pill);
+
+		transition: background-color var(--speed-fast) var(--transition-ease);
+
+		&:hover {
+			background-color: var(--rsg-brand-colour-6);
+		}
+	}
+
+	.rsg-header-search-link .rsg-fa::before {
+		@include icon($fa-var-magnifying-glass);
+
+		font-size: var(--font-size-md);
+	}
+
+	.rsg-language-switcher {
+		position: relative;
+
+		&.is-open .rsg-language-button::after {
+			transform: rotate(180deg);
+		}
+	}
+
+	.rsg-language-button {
+		&::before {
+			@include icon($fa-var-globe);
+		}
+
+		&::after {
+			@include icon($fa-var-chevron-down);
+
+			margin-inline-start: var(--spacing-4);
+
+			font-size: var(--font-size-xs);
+
+			transition: transform var(--speed-fast) var(--transition-ease);
+		}
+	}
+
+	.rsg-language-options {
+		@extend %no-list;
+
+		position: absolute;
+		inset-block-start: calc(100% + var(--spacing-4));
+		inset-inline-end: 0;
+		z-index: 20;
+
+		min-inline-size: 100%;
+		padding-block: var(--spacing-8);
+
+		background-color: var(--rsg-brand-colour-4);
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		border-radius: var(--border-radius-md);
+	}
+
+	.rsg-language-option {
+		@extend %unstyled-link;
+
+		display: block;
+
+		padding-block: var(--spacing-8);
+		padding-inline: var(--spacing-16);
+
+		font-size: var(--font-size-sm);
+		text-align: center;
+
+		color: var(--rsg-foreground-colour);
+
+		&:hover {
+			background-color: var(--rsg-brand-colour-6);
+		}
+	}
+
+	.rsg-hamburger-button {
+		display: grid;
+		place-items: center;
+
+		inline-size: var(--rsg-control-size);
+		block-size: var(--rsg-control-size);
+
+		font-size: var(--font-size-lg);
+
+		.rsg-fa::before {
+			@include icon($fa-var-bars);
+		}
+
+		&[aria-expanded='true'] .rsg-fa::before {
+			content: icon-content($fa-var-xmark);
+		}
+	}
+
+	// Sits directly under the sticky header and fills the rest of the screen.
+	.rsg-mobile-menu {
+		position: absolute;
+		inset-block-start: 100%;
+		inset-inline: 0;
+		z-index: 10;
+
+		display: flex;
+		flex-direction: column;
+
+		block-size: 100dvh;
+		overflow-y: auto;
+
+		background-color: var(--rsg-brand-colour-2);
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	.rsg-mobile-menu-tools {
+		display: flex;
+		gap: var(--spacing-8);
+
+		padding-block: var(--spacing-16);
+		padding-inline: var(--spacing-24);
+
+		> * {
+			flex: 1;
+		}
+
+		// Full-width pills keep their label next to the leading icon and push the trailing icon to the end.
+		.rsg-header-pill {
+			inline-size: 100%;
+
+			> :last-child,
+			&::after {
+				margin-inline-start: auto;
+			}
+		}
+	}
+
+	.rsg-mobile-menu-navigation {
+		flex: 1;
+
+		padding-block: var(--spacing-24) var(--spacing-96);
+		padding-inline: var(--spacing-24);
+
+		border-start-start-radius: var(--border-radius-lg);
+		border-start-end-radius: var(--border-radius-lg);
+	}
+
+	@include media-breakpoint-up(xl) {
+		.rsg-hamburger-button,
+		.rsg-mobile-menu {
+			display: none;
+		}
+	}
+}

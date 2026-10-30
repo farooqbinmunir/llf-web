@@ -1,0 +1,26 @@
+@use 'abstracts' as *;
+
+.listing-block.carousel {
+	// The design labels these sections in orange on light as well as on dark.
+	--rsg-label-colour: var(--rsg-brand-colour-2);
+
+	// On mobile the next tile peeks in past the container (core/_splide), so the block clips it at the screen edge.
+	overflow-x: clip;
+
+	.rsg-col-header {
+		margin-block-end: var(--spacing-24);
+
+		@include media-breakpoint-up(lg) {
+			margin-block-end: var(--spacing-32);
+		}
+	}
+
+	// A centred header lines up with the start of the track while the tiles are a carousel, as on mobile.
+	@include media-breakpoint-down(lg) {
+		.center-aligned .rsg-col-header {
+			margin-inline: 0;
+
+			text-align: start;
+		}
+	}
+}

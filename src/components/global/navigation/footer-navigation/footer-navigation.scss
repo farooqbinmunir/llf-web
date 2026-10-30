@@ -1,0 +1,119 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.rsg-footer-navigation {
+	@include media-breakpoint-up(lg) {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--spacing-24);
+	}
+
+	.rsg-footer-column-title {
+		margin-block-end: var(--spacing-16);
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+
+		@include media-breakpoint-down(lg) {
+			margin-block-end: 0;
+		}
+	}
+
+	// The link columns are accordions below lg, and a plain heading and list above it.
+	.rsg-footer-column:not(.rsg-footer-contact) {
+		border-block-start: map.get($border-widths, 1) solid var(--footer-divider);
+
+		@include media-breakpoint-up(lg) {
+			border-block-start: 0;
+		}
+
+		&.is-open .rsg-footer-column-toggle::after {
+			transform: rotate(180deg);
+		}
+
+		&.is-open .rsg-footer-column-links {
+			display: grid;
+		}
+	}
+
+	.rsg-footer-column-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		inline-size: 100%;
+		padding-block: var(--spacing-16);
+
+		font-weight: inherit;
+
+		&::after {
+			@include icon($fa-var-chevron-down);
+
+			font-size: var(--font-size-xs);
+
+			transition: transform var(--speed-fast) var(--transition-ease);
+		}
+
+		// The server renders the mobile toggle; hiding its chevron here avoids a flash on desktop before hydration swaps it out.
+		@include media-breakpoint-up(lg) {
+			padding-block: 0;
+
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	.rsg-footer-column-links {
+		@extend %no-list;
+
+		display: grid;
+		gap: var(--spacing-12);
+
+		@include media-breakpoint-down(lg) {
+			display: none;
+
+			padding-block-end: var(--spacing-16);
+		}
+	}
+
+	// On small screens the contact column is a single row: the contact link, then the social icons.
+	.rsg-footer-contact {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: var(--spacing-16);
+
+		padding-block: var(--spacing-16);
+
+		border-block: map.get($border-widths, 1) solid var(--footer-divider);
+
+		// The column's flex gap already spaces the heading, so its own margin would push the link below the other columns' links.
+		.rsg-footer-column-title {
+			margin-block-end: 0;
+
+			@include media-breakpoint-down(lg) {
+				display: none;
+			}
+		}
+
+		@include media-breakpoint-up(lg) {
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: flex-start;
+
+			padding-block: 0;
+
+			border-block: 0;
+		}
+	}
+
+	.rsg-contact-link {
+		@include media-breakpoint-down(lg) {
+			font-weight: var(--font-weight-semibold);
+
+			color: inherit;
+		}
+	}
+}

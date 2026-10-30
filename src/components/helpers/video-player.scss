@@ -1,0 +1,24 @@
+@use 'abstracts' as *;
+@use 'plyr/dist/plyr' as plyr;
+
+// Plyr's own styles, themed through its custom properties: the accent for progress and focus, rounded like the photos.
+.rsg-video {
+	--plyr-color-main: var(--rsg-brand-colour-2);
+	--plyr-video-background: var(--colour-black);
+	--plyr-font-family: inherit;
+
+	overflow: hidden;
+
+	aspect-ratio: 16 / 9;
+
+	background-color: var(--colour-black);
+	border-radius: var(--border-radius-base);
+
+	// Before Plyr loads, the native video fills the frame.
+	video {
+		display: block;
+
+		inline-size: 100%;
+		block-size: 100%;
+	}
+}

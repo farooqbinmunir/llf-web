@@ -1,0 +1,161 @@
+{
+	"meta": {
+		"siteName": "صندوق العيش والمعيشة",
+		"description": "يحوّل صندوق العيش والمعيشة العمل الجماعي إلى تغيير دائم في الدول الأعضاء في البنك الإسلامي للتنمية."
+	},
+	"a11y": {
+		"skipToContent": "الانتقال إلى المحتوى",
+		"home": "الصفحة الرئيسية لصندوق العيش والمعيشة",
+		"mainNavigation": "القائمة الرئيسية",
+		"footerNavigation": "تذييل الصفحة",
+		"openMenu": "فتح القائمة",
+		"closeMenu": "إغلاق القائمة",
+		"changeLanguage": "تغيير اللغة",
+		"legalNavigation": "روابط قانونية",
+		"socialNavigation": "وسائل التواصل الاجتماعي"
+	},
+	"header": {
+		"search": "بحث"
+	},
+	"nav": {
+		"aboutUs": "من نحن",
+		"ourProjects": "مشاريعنا",
+		"fieldUpdates": "أخبار من الميدان",
+		"library": "المكتبة",
+		"news": "الأخبار",
+		"contact": "تواصل معنا",
+		"fromTheField": "من الميدان",
+		"ourPartners": "شركاؤنا",
+		"governance": "الحوكمة",
+		"partnerships": "الشراكات",
+		"fundingQueries": "استفسارات التمويل",
+		"careers": "الوظائف",
+		"newsMedia": "الأخبار والإعلام",
+		"llfHub": "منصة الصندوق",
+		"privacyPolicy": "سياسة الخصوصية",
+		"termsOfUse": "شروط الاستخدام",
+		"accessibility": "إمكانية الوصول",
+		"sitemap": "خريطة الموقع"
+	},
+	"footer": {
+		"ourWork": "عملنا",
+		"getInvolved": "شارك معنا",
+		"resources": "الموارد",
+		"getInTouch": "تواصل معنا",
+		"tagline": "عمل جماعي.\nأثر دائم.",
+		"rights": "صندوق العيش والمعيشة. جميع الحقوق محفوظة."
+	},
+	"home": {
+		"title": "عمل جماعي. أثر دائم."
+	},
+	"projects": {
+		"phases": "مرحلة البرنامج",
+		"filterProjects": "تصفية المشاريع",
+		"sector": "القطاع",
+		"country": "الدولة",
+		"status": "الحالة",
+		"allSectors": "جميع القطاعات",
+		"allCountries": "جميع الدول",
+		"allStatuses": "جميع الحالات",
+		"resetFilter": "إعادة الضبط",
+		"apply": "تطبيق",
+		"loadMore": "عرض المزيد من المشاريع",
+		"noResults": "لا توجد مشاريع تطابق هذه المرشحات حتى الآن.",
+		"showing": "عرض {shown} من أصل {total} مشروعًا"
+	},
+	"project": {
+		"dates": "مدة المشروع",
+		"updated": "آخر تحديث في {date}",
+		"targetReach": "الفئات المستهدفة",
+		"countryContext": "السياق القُطري",
+		"expectedResults": "النتائج المتوقعة",
+		"progress": "التقدم المحرز حتى الآن",
+		"partnersContribution": "مساهمة|الشركاء",
+		"testimonials": "شهادات",
+		"relatedStories": "قصص ذات صلة",
+		"relatedProjects": "مشاريع ذات صلة",
+		"viewAllStories": "عرض جميع القصص",
+		"viewAllProjects": "عرض جميع المشاريع"
+	},
+	"stories": {
+		"filterStories": "تصفية القصص",
+		"focusArea": "مجال التركيز",
+		"country": "الدولة",
+		"storyType": "نوع القصة",
+		"allFocusAreas": "جميع المجالات",
+		"allCountries": "جميع الدول",
+		"allStoryTypes": "جميع الأنواع",
+		"resetFilter": "إعادة الضبط",
+		"apply": "تطبيق",
+		"loadMore": "عرض المزيد من القصص",
+		"noResults": "لا توجد قصص تطابق هذه المرشحات بعد.",
+		"showing": "عرض {shown} من أصل {total} قصة"
+	},
+	"story": {
+		"project": "المشروع",
+		"published": "نُشر في {date}",
+		"share": "مشاركة",
+		"shareOn": "المشاركة على {network}",
+		"shareByEmail": "المشاركة عبر البريد الإلكتروني",
+		"copyLink": "نسخ الرابط",
+		"linkCopied": "تم نسخ الرابط",
+		"footnotes": "ملاحظات",
+		"relatedStories": "قصص ذات صلة",
+		"viewAllStories": "عرض جميع القصص"
+	},
+	"library": {
+		"filterByType": "تصفية حسب النوع",
+		"resourceType": "نوع المورد",
+		"allResources": "جميع الموارد",
+		"loadMore": "عرض المزيد من الموارد",
+		"noResults": "لا توجد موارد من هذا النوع بعد.",
+		"showing": "عرض {shown} من {total} موردًا",
+		"fileSize": "حجم الملف",
+		"download": "تنزيل {type}",
+		"view": "عرض المورد",
+		"opensInNewTab": "(يُفتح في علامة تبويب جديدة)"
+	},
+	"announcements": {
+		"title": "أحدث الإعلانات",
+		"viewAllNews": "عرض جميع الأخبار"
+	},
+	"videoPlayer": {
+		"play": "تشغيل",
+		"pause": "إيقاف مؤقت",
+		"seek": "انتقال",
+		"seekLabel": "{currentTime} من {duration}",
+		"played": "تم تشغيله",
+		"buffered": "تم تحميله",
+		"currentTime": "الوقت الحالي",
+		"duration": "المدة",
+		"volume": "مستوى الصوت",
+		"mute": "كتم الصوت",
+		"unmute": "إلغاء كتم الصوت",
+		"enableCaptions": "تفعيل الترجمة",
+		"disableCaptions": "إيقاف الترجمة",
+		"enterFullscreen": "ملء الشاشة",
+		"exitFullscreen": "الخروج من ملء الشاشة",
+		"frameTitle": "مشغل {title}",
+		"captions": "الترجمة",
+		"settings": "الإعدادات",
+		"menuBack": "العودة إلى القائمة السابقة",
+		"speed": "السرعة",
+		"normal": "عادية",
+		"disabled": "معطّلة",
+		"enabled": "مفعّلة"
+	},
+	"carousel": {
+		"prev": "الشريحة السابقة",
+		"next": "الشريحة التالية",
+		"first": "الانتقال إلى الشريحة الأولى",
+		"last": "الانتقال إلى الشريحة الأخيرة",
+		"slideX": "الانتقال إلى الشريحة %s",
+		"pageX": "الانتقال إلى الصفحة %s",
+		"play": "بدء التشغيل التلقائي",
+		"pause": "إيقاف التشغيل التلقائي مؤقتًا",
+		"carousel": "عرض دوّار",
+		"slide": "شريحة",
+		"select": "اختر شريحة لعرضها",
+		"slideLabel": "%s من %s"
+	}
+}

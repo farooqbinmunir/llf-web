@@ -1,0 +1,161 @@
+{
+	"meta": {
+		"siteName": "Fonds pour la vie et les moyens de subsistance",
+		"description": "Le Fonds pour la vie et les moyens de subsistance transforme l'action collective en changement durable dans les pays membres de la BID."
+	},
+	"a11y": {
+		"skipToContent": "Aller au contenu",
+		"home": "Accueil du Fonds pour la vie et les moyens de subsistance",
+		"mainNavigation": "Principale",
+		"footerNavigation": "Pied de page",
+		"openMenu": "Ouvrir le menu",
+		"closeMenu": "Fermer le menu",
+		"changeLanguage": "Changer de langue",
+		"legalNavigation": "Mentions légales",
+		"socialNavigation": "Réseaux sociaux"
+	},
+	"header": {
+		"search": "Rechercher"
+	},
+	"nav": {
+		"aboutUs": "À propos",
+		"ourProjects": "Nos projets",
+		"fieldUpdates": "Nouvelles du terrain",
+		"library": "Bibliothèque",
+		"news": "Actualités",
+		"contact": "Contact",
+		"fromTheField": "Depuis le terrain",
+		"ourPartners": "Nos partenaires",
+		"governance": "Gouvernance",
+		"partnerships": "Partenariats",
+		"fundingQueries": "Demandes de financement",
+		"careers": "Carrières",
+		"newsMedia": "Actualités et médias",
+		"llfHub": "Espace LLF",
+		"privacyPolicy": "Politique de confidentialité",
+		"termsOfUse": "Conditions d'utilisation",
+		"accessibility": "Accessibilité",
+		"sitemap": "Plan du site"
+	},
+	"footer": {
+		"ourWork": "Notre action",
+		"getInvolved": "S'engager",
+		"resources": "Ressources",
+		"getInTouch": "Nous contacter",
+		"tagline": "Action collective.\nImpact durable.",
+		"rights": "Fonds pour la vie et les moyens de subsistance. Tous droits réservés."
+	},
+	"home": {
+		"title": "Action collective. Impact durable."
+	},
+	"projects": {
+		"phases": "Phase du programme",
+		"filterProjects": "Filtrer les projets",
+		"sector": "Secteur",
+		"country": "Pays",
+		"status": "Statut",
+		"allSectors": "Tous les secteurs",
+		"allCountries": "Tous les pays",
+		"allStatuses": "Tous les statuts",
+		"resetFilter": "Réinitialiser",
+		"apply": "Appliquer",
+		"loadMore": "Voir plus de projets",
+		"noResults": "Aucun projet ne correspond encore à ces filtres.",
+		"showing": "{shown} projets affichés sur {total}"
+	},
+	"project": {
+		"dates": "Dates du projet",
+		"updated": "Mis à jour en {date}",
+		"targetReach": "Population ciblée",
+		"countryContext": "Contexte national",
+		"expectedResults": "Résultats attendus",
+		"progress": "Avancement à ce jour",
+		"partnersContribution": "Contribution|des partenaires",
+		"testimonials": "Témoignages",
+		"relatedStories": "Récits associés",
+		"relatedProjects": "Projets associés",
+		"viewAllStories": "Voir tous les récits",
+		"viewAllProjects": "Voir tous les projets"
+	},
+	"stories": {
+		"filterStories": "Filtrer les histoires",
+		"focusArea": "Domaine d'intervention",
+		"country": "Pays",
+		"storyType": "Type d'histoire",
+		"allFocusAreas": "Tous les domaines",
+		"allCountries": "Tous les pays",
+		"allStoryTypes": "Tous les types",
+		"resetFilter": "Réinitialiser",
+		"apply": "Appliquer",
+		"loadMore": "Plus d'histoires",
+		"noResults": "Aucune histoire ne correspond encore à ces filtres.",
+		"showing": "{shown} histoires affichées sur {total}"
+	},
+	"story": {
+		"project": "Projet",
+		"published": "Publié le {date}",
+		"share": "Partager",
+		"shareOn": "Partager sur {network}",
+		"shareByEmail": "Partager par e-mail",
+		"copyLink": "Copier le lien",
+		"linkCopied": "Lien copié",
+		"footnotes": "Notes",
+		"relatedStories": "Histoires liées",
+		"viewAllStories": "Toutes les histoires"
+	},
+	"library": {
+		"filterByType": "Filtrer par type",
+		"resourceType": "Type de ressource",
+		"allResources": "Toutes les ressources",
+		"loadMore": "Plus de ressources",
+		"noResults": "Aucune ressource de ce type pour l'instant.",
+		"showing": "{shown} ressources affichées sur {total}",
+		"fileSize": "Taille du fichier",
+		"download": "Télécharger le {type}",
+		"view": "Voir la ressource",
+		"opensInNewTab": "(s'ouvre dans un nouvel onglet)"
+	},
+	"announcements": {
+		"title": "Dernières annonces",
+		"viewAllNews": "Toutes les actualités"
+	},
+	"videoPlayer": {
+		"play": "Lecture",
+		"pause": "Pause",
+		"seek": "Rechercher",
+		"seekLabel": "{currentTime} sur {duration}",
+		"played": "Lu",
+		"buffered": "En mémoire tampon",
+		"currentTime": "Temps écoulé",
+		"duration": "Durée",
+		"volume": "Volume",
+		"mute": "Couper le son",
+		"unmute": "Activer le son",
+		"enableCaptions": "Activer les sous-titres",
+		"disableCaptions": "Désactiver les sous-titres",
+		"enterFullscreen": "Plein écran",
+		"exitFullscreen": "Quitter le plein écran",
+		"frameTitle": "Lecteur pour {title}",
+		"captions": "Sous-titres",
+		"settings": "Paramètres",
+		"menuBack": "Revenir au menu précédent",
+		"speed": "Vitesse",
+		"normal": "Normale",
+		"disabled": "Désactivés",
+		"enabled": "Activés"
+	},
+	"carousel": {
+		"prev": "Diapositive précédente",
+		"next": "Diapositive suivante",
+		"first": "Aller à la première diapositive",
+		"last": "Aller à la dernière diapositive",
+		"slideX": "Aller à la diapositive %s",
+		"pageX": "Aller à la page %s",
+		"play": "Lancer le défilement",
+		"pause": "Mettre le défilement en pause",
+		"carousel": "carrousel",
+		"slide": "diapositive",
+		"select": "Choisir une diapositive à afficher",
+		"slideLabel": "%s sur %s"
+	}
+}

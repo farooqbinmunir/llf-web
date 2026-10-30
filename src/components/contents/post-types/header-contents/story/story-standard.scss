@@ -1,0 +1,98 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// Optional video player on top, title, introduction, term pills, project, then the date and share row between
+// dividers, then the hero photo.
+.header-contents.story.standard {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-24);
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-24);
+	}
+
+	// A video story leads with the player, so its title steps down a size, as in the design.
+	&.is-video .rsg-title {
+		font-size: var(--font-size-lg);
+	}
+
+	.rsg-introduction {
+		font-size: var(--font-size-md);
+	}
+
+	// The design lays the terms side by side here, not stacked as on the tiles.
+	.rsg-tax-terms {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: var(--spacing-8);
+	}
+
+	.rsg-project,
+	.rsg-meta {
+		padding-block-start: var(--spacing-16);
+
+		border-block-start: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	}
+
+	.rsg-project {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+
+		a {
+			color: inherit;
+			text-decoration-color: transparent;
+			text-underline-offset: 0.2em;
+
+			transition: text-decoration-color var(--speed-fast) var(--transition-ease);
+
+			&:hover {
+				text-decoration-color: currentColor;
+			}
+		}
+	}
+
+	.rsg-meta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-16);
+
+		@include media-breakpoint-up(md) {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+	.rsg-date {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		font-size: var(--font-size-xs);
+
+		&::before {
+			@include icon($fa-var-calendar);
+		}
+	}
+
+	.rsg-share {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-16);
+	}
+
+	.rsg-share-label {
+		font-size: var(--font-size-xs);
+	}
+
+	.rsg-hero {
+		margin-block-start: var(--spacing-24);
+
+		.rsg-picture img {
+			border-radius: var(--border-radius-base);
+		}
+	}
+}

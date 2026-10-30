@@ -1,0 +1,39 @@
+@use 'abstracts' as *;
+
+// The figure takes the accent. On light surfaces the design's orange is below contrast (see the roadmap backlog, M18).
+.statistic-block.standard {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-16);
+
+	.value {
+		display: flex;
+		flex-direction: column;
+
+		margin: 0;
+
+		color: var(--rsg-brand-colour-2);
+	}
+
+	.prefix {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+	}
+
+	.statistic {
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-medium);
+		line-height: var(--line-height-sm);
+	}
+
+	.footnote {
+		margin: 0;
+
+		font-size: var(--font-size-sm);
+	}
+
+	// An expected result has no figure, so its statement is the emphasis.
+	&.no-statistic .footnote {
+		font-weight: var(--font-weight-semibold);
+	}
+}

@@ -1,0 +1,92 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+.grouped-content-block.standard {
+	.rsg-col-header .rsg-title {
+		font-size: var(--font-size-lg);
+	}
+
+	// Items as cards: centred figures in the card tone, as for collective impact, under the full-size section title.
+	&.boxed-items {
+		.rsg-col-header .rsg-title {
+			font-size: var(--font-size-xl);
+
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-2xl);
+			}
+		}
+
+		.row {
+			--grid-gutter: var(--spacing-12);
+
+			row-gap: var(--grid-gutter);
+
+			@include media-breakpoint-up(lg) {
+				--grid-gutter: var(--spacing-16);
+			}
+		}
+
+		.statistic-block {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: var(--spacing-8);
+
+			block-size: 100%;
+			min-block-size: var(--spacing-160);
+			padding-block: var(--spacing-24);
+			padding-inline: var(--spacing-16);
+
+			text-align: center;
+
+			background-color: var(--rsg-brand-colour-4);
+			border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+			border-radius: var(--border-radius-base);
+
+			@include media-breakpoint-up(lg) {
+				min-block-size: var(--spacing-200);
+			}
+		}
+
+		.statistic {
+			font-size: var(--font-size-2xl);
+			font-weight: var(--font-weight-bold);
+			line-height: 1;
+
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-3xl);
+			}
+		}
+
+		.footnote {
+			max-inline-size: var(--spacing-200);
+
+			font-size: var(--font-size-base);
+		}
+	}
+
+	// A line above each item, and optionally below it; stacked on mobile, neighbours share the line between them.
+	&.top-border .col > * {
+		block-size: 100%;
+		padding-block: var(--spacing-24) var(--spacing-32);
+
+		border-block-start: map.get($border-widths, 1) solid var(--rsg-brand-colour-5);
+	}
+
+	&.bottom-border .col > * {
+		padding-block-end: var(--spacing-48);
+
+		border-block-end: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	}
+
+	&.top-border.bottom-border .col + .col > * {
+		@include media-breakpoint-down(md) {
+			border-block-start: 0;
+		}
+	}
+
+	// Photos side by side, stacked on mobile with room for each caption.
+	.row:has(.media-block) {
+		row-gap: var(--spacing-24);
+	}
+}

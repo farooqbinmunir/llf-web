@@ -1,0 +1,111 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+// The photo with the title over its foot, then a footer row of the date and size beside the download action.
+.tile.resource.standard {
+	@extend %unstyled-link;
+
+	display: flex;
+	flex-direction: column;
+
+	block-size: 100%;
+
+	overflow: hidden;
+
+	background-color: var(--rsg-background-colour);
+	color: var(--rsg-foreground-colour);
+	border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	border-radius: var(--border-radius-base);
+
+	transition: background-color var(--speed-fast) var(--transition-ease);
+
+	&:hover,
+	&:focus-visible {
+		background-color: var(--rsg-brand-colour-6);
+	}
+
+	// The title and the photo share one grid cell, so the title sits on the photo's foot whatever its length, as the
+	// design note asks. Without a photo the title sits on a dark band.
+	.rsg-media-wrapper {
+		display: grid;
+
+		background-color: var(--colour-black);
+
+		> * {
+			grid-area: 1 / 1;
+		}
+	}
+
+	.rsg-title {
+		position: relative;
+
+		align-self: end;
+
+		padding: var(--spacing-40) var(--spacing-16) var(--spacing-16);
+
+		font-size: var(--font-size-md);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+
+		background-image: linear-gradient(to top, color-mix(in srgb, var(--colour-black) 70%, transparent), transparent);
+		color: var(--colour-light-4);
+	}
+
+	.rsg-footer {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-12);
+
+		margin-block-start: auto;
+		padding: var(--spacing-16);
+
+		font-size: var(--font-size-xs);
+	}
+
+	.rsg-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--spacing-8);
+	}
+
+	.rsg-date::before {
+		@include icon($fa-var-calendar);
+
+		margin-inline-end: var(--spacing-4);
+	}
+
+	.rsg-size {
+		padding-inline-start: var(--spacing-8);
+
+		border-inline-start: map.get($border-widths, 1) solid currentColor;
+
+		&::before {
+			@include icon($fa-var-download);
+
+			margin-inline-end: var(--spacing-4);
+		}
+	}
+
+	.rsg-action {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		font-weight: var(--font-weight-semibold);
+
+		&::after {
+			@include icon($fa-var-circle-arrow-down);
+
+			font-size: var(--font-size-sm);
+		}
+	}
+
+	// A linked resource leaves the site, so it takes the "go to" arrow instead of the download icon.
+	&.external .rsg-action::after {
+		@include icon-arrow-diagonal;
+	}
+}

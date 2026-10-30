@@ -1,0 +1,68 @@
+$space-2: 0.125rem;
+$space-4: 0.25rem;
+$space-8: 0.5rem;
+$space-10: 0.625rem;
+$space-12: 0.75rem;
+$space-14: 0.875rem;
+$space-16: 1rem;
+$space-20: 1.25rem;
+$space-24: 1.5rem;
+$space-32: 2rem;
+$space-40: 2.5rem;
+$space-48: 3rem;
+$space-56: 3.5rem;
+$space-64: 4rem;
+
+$space-80: 5rem;
+$space-96: 6rem;
+$space-100: 6.25rem;
+$space-120: 7.5rem;
+$space-160: 10rem;
+$space-200: 12.5rem;
+$space-240: 15rem;
+
+$border-radius-xs: 0.125rem;
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-base: 1rem;
+$border-radius-lg: 1.5rem;
+$border-radius-xl: 2.5rem;
+$border-radius-pill: 9999px;
+$border-radius-circle: 50%;
+
+:root {
+	--spacing-2: #{$space-2};
+	--spacing-4: #{$space-4};
+	--spacing-8: #{$space-8};
+	--spacing-10: #{$space-10};
+	--spacing-12: #{$space-12};
+	--spacing-14: #{$space-14};
+	--spacing-16: #{$space-16};
+	--spacing-20: #{$space-20};
+	--spacing-24: #{$space-24};
+	--spacing-32: #{$space-32};
+	--spacing-40: #{$space-40};
+	--spacing-48: #{$space-48};
+	--spacing-56: #{$space-56};
+	--spacing-64: #{$space-64};
+
+	--spacing-80: #{$space-80};
+	--spacing-96: #{$space-96};
+	--spacing-100: #{$space-100};
+	--spacing-120: #{$space-120};
+	--spacing-160: #{$space-160};
+	--spacing-200: #{$space-200};
+	--spacing-240: #{$space-240};
+
+	--border-radius-xs: #{$border-radius-xs};
+	--border-radius-sm: #{$border-radius-sm};
+	--border-radius-md: #{$border-radius-md};
+	--border-radius-base: #{$border-radius-base};
+	--border-radius-lg: #{$border-radius-lg};
+	--border-radius-xl: #{$border-radius-xl};
+	--border-radius-pill: #{$border-radius-pill};
+	--border-radius-circle: #{$border-radius-circle};
+
+	// The smallest comfortable touch target, shared by buttons, toggles and form fields.
+	--rsg-control-size: calc(#{$space-40} + #{$space-4});
+}

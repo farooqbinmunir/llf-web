@@ -1,0 +1,37 @@
+@use 'sass:string';
+@use 'abstracts' as *;
+
+$image-ratios: (
+	'1x1': '1',
+	'3x2': '3 / 2',
+	'12x5': '12 / 5',
+);
+
+.rsg-picture {
+	display: block;
+
+	img {
+		display: block;
+
+		inline-size: 100%;
+		block-size: auto;
+	}
+
+	@each $name, $ratio in $image-ratios {
+		&.ratio-#{$name} img {
+			aspect-ratio: string.unquote($ratio);
+			object-fit: cover;
+		}
+	}
+}
+
+.rsg-figure {
+	margin: 0;
+
+	.rsg-figcaption {
+		margin-block-start: var(--spacing-12);
+		padding-inline: var(--spacing-16);
+
+		font-size: var(--font-size-xs);
+	}
+}

@@ -1,0 +1,67 @@
+// The fonts are loaded by next/font, which exposes each one as a custom property on the root element.
+$font-family-primary: var(--font-inter), system-ui, sans-serif;
+// Cairo carries the Arabic script; Inter has no Arabic glyphs.
+$font-family-primary-arabic: var(--font-cairo), system-ui, sans-serif;
+
+$line-height-base: 1.5;
+$line-height-md: 1.2;
+$line-height-sm: 1.1;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-md: 1.125rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+$font-size-2xl: 2.5rem;
+$font-size-3xl: 3rem;
+$font-size-4xl: 5rem;
+$font-size-5xl: 6rem;
+
+// Only the solid and brands faces are loaded (see core/_fonts).
+$icon-families: (
+	'solid': ('Font Awesome 7 Free', 900),
+	'brands': ('Font Awesome 7 Brands', 400),
+);
+
+:root {
+	--font-family-primary: #{$font-family-primary};
+	--line-height-base: #{$line-height-base};
+	--line-height-md: #{$line-height-md};
+	--line-height-sm: #{$line-height-sm};
+	// Uppercase labels and taxonomy terms.
+	--letter-spacing-wide: 0.15em;
+
+	--font-size-xs: #{$font-size-xs};
+	--font-size-sm: #{$font-size-sm};
+	--font-size-base: #{$font-size-base};
+	--font-size-md: #{$font-size-md};
+	--font-size-lg: #{$font-size-lg};
+	--font-size-xl: #{$font-size-xl};
+	--font-size-2xl: #{$font-size-2xl};
+	--font-size-3xl: #{$font-size-3xl};
+	--font-size-4xl: #{$font-size-4xl};
+	--font-size-5xl: #{$font-size-5xl};
+
+	--font-weight-100: 100;
+	--font-weight-200: 200;
+	--font-weight-300: 300;
+	--font-weight-400: 400;
+	--font-weight-500: 500;
+	--font-weight-600: 600;
+	--font-weight-700: 700;
+	--font-weight-900: 900;
+
+	--font-weight-thin: var(--font-weight-100);
+	--font-weight-extra-light: var(--font-weight-200);
+	--font-weight-light: var(--font-weight-300);
+	--font-weight-regular: var(--font-weight-400);
+	--font-weight-medium: var(--font-weight-500);
+	--font-weight-semibold: var(--font-weight-600);
+	--font-weight-bold: var(--font-weight-700);
+	--font-weight-black: var(--font-weight-900);
+}
+
+:root:lang(ar) {
+	--font-family-primary: #{$font-family-primary-arabic};
+}

@@ -1,0 +1,51 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'abstracts' as *;
+
+// Bootstrap's row and column classes, which blocks sit in as in Radstone's base wrapper (`rsg-module` > container >
+// `row` > `col`). They are written here with logical properties because Bootstrap's own grid offsets and pads with
+// physical ones, which would need a separate right-to-left stylesheet; this one serves both reading directions.
+$grid-columns: 12;
+
+.row {
+	--grid-gutter: var(--spacing-24);
+
+	display: flex;
+	flex-wrap: wrap;
+
+	margin-inline: calc(var(--grid-gutter) * -0.5);
+
+	> * {
+		flex-shrink: 0;
+
+		inline-size: 100%;
+		max-inline-size: 100%;
+		padding-inline: calc(var(--grid-gutter) * 0.5);
+	}
+}
+
+@each $breakpoint in map.keys($grid-breakpoints) {
+	$infix: '-#{$breakpoint}';
+
+	@if $breakpoint == 'xs' {
+		$infix: '';
+	}
+
+	@include media-breakpoint-up($breakpoint) {
+		.col#{$infix} {
+			flex: 1 0 0%;
+		}
+
+		@for $size from 1 through $grid-columns {
+			.col#{$infix}-#{$size} {
+				@include make-col($size);
+			}
+		}
+
+		@for $size from 0 through $grid-columns - 1 {
+			.offset#{$infix}-#{$size} {
+				margin-inline-start: math.percentage(math.div($size, $grid-columns));
+			}
+		}
+	}
+}

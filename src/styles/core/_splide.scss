@@ -1,0 +1,123 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use '@splidejs/splide/dist/css/splide-core.min' as splide-core;
+
+// Shared Splide settings. The carousel helper reads the gap, speed and easing from here, so CSS drives the JS.
+:root {
+	--splide-gap: var(--spacing-16);
+	--splide-speed: var(--speed-slow);
+	--splide-ease: var(--transition-ease);
+}
+
+.splide {
+	// About one tile and a peek on mobile, two on tablets and three on desktop. Blocks set 100% for one slide at a time.
+	--carousel-slide-size: 85%;
+
+	@include media-breakpoint-up(md) {
+		--carousel-slide-size: calc((100% - var(--splide-gap)) / 2);
+	}
+
+	@include media-breakpoint-up(lg) {
+		--carousel-slide-size: calc((100% - 2 * var(--splide-gap)) / 3);
+	}
+
+	// Slides stretch to the tallest one, so tiles in a row line up.
+	&__slide {
+		display: flex;
+
+		inline-size: var(--carousel-slide-size);
+
+		> * {
+			flex: 1;
+		}
+	}
+
+	// Slides overflow to the inline end, so the next one peeks in on mobile.
+	&__track {
+		@include media-breakpoint-down(md) {
+			overflow: visible;
+		}
+	}
+
+	&__pagination {
+		position: static;
+
+		gap: var(--spacing-8);
+
+		padding: 0;
+
+		&__page {
+			--pagination-dot-size: var(--spacing-10);
+
+			inline-size: var(--pagination-dot-size);
+			block-size: var(--pagination-dot-size);
+			margin: 0;
+			padding: 0;
+
+			background-color: var(--rsg-brand-colour-5);
+			border: 0;
+			border-radius: var(--border-radius-pill);
+
+			transition:
+				inline-size var(--speed-fast) var(--transition-ease),
+				background-color var(--speed-fast) var(--transition-ease);
+
+			&.is-active {
+				inline-size: calc(var(--pagination-dot-size) * 3);
+
+				background-color: var(--rsg-brand-colour-2);
+			}
+
+			&:focus-visible {
+				outline: map.get($border-widths, 2) solid currentColor;
+				outline-offset: map.get($border-widths, 2);
+			}
+		}
+	}
+}
+
+// A carousel on small screens that is a plain grid from a breakpoint up (the helper's `gridFrom`). Splide is not mounted
+// there, so the grid also shows before hydration. Two columns, as Latest announcements is designed.
+@each $name, $width in map.remove($grid-breakpoints, xs) {
+	.splide.grid-#{$name} {
+		@include media-breakpoint-up($name) {
+			visibility: visible;
+
+			.splide__list {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: var(--splide-gap);
+			}
+
+			.splide__slide {
+				inline-size: auto;
+			}
+
+			.splide__pagination {
+				display: none;
+			}
+		}
+	}
+}
+
+// The dots and a footer link (such as "View all") on one row under the track.
+.rsg-carousel-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--spacing-24);
+
+	margin-block-start: var(--spacing-32);
+
+	// Dots on the left and the footer centred, as designed. Splide hides the dots when every slide is in view, so the
+	// footer is placed explicitly rather than taking the first free column.
+	@include media-breakpoint-up(lg) {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+
+		> :not(.splide__pagination) {
+			grid-column: 2;
+		}
+	}
+}

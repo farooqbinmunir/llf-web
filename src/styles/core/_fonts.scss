@@ -1,0 +1,16 @@
+// Only the solid and brands faces are loaded. The font files are copied into public/fonts from @fortawesome/fontawesome-free/webfonts.
+@font-face {
+	font-family: 'Font Awesome 7 Free';
+	font-style: normal;
+	font-weight: 900;
+	font-display: block;
+	src: url('/fonts/fa-solid-900.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Font Awesome 7 Brands';
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url('/fonts/fa-brands-400.woff2') format('woff2');
+}
