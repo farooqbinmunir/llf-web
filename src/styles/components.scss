@@ -1,5 +1,6 @@
 // Alphabetised index of component stylesheets. Each stylesheet lives next to its component.
 @use '../components/carousel/carousel';
+@use '../components/content-body/content-body';
 @use '../components/cta-banner/cta-banner';
 @use '../components/impact-stats/impact-stats';
 @use '../components/language-switcher/language-switcher';
@@ -10,14 +11,19 @@
 @use '../components/page-hero/page-hero';
 @use '../components/partners-contribution/partners-contribution';
 @use '../components/primary-navigation/primary-navigation';
-@use '../components/project-body/project-body';
 @use '../components/project-header/project-header';
 @use '../components/project-listing/project-listing';
 @use '../components/project-overview/project-overview';
 @use '../components/project-results/project-results';
 @use '../components/project-tile/project-tile';
+@use '../components/pull-quote/pull-quote';
 @use '../components/related-content/related-content';
 @use '../components/search-filters/search-filters';
 @use '../components/search-link/search-link';
+@use '../components/share-links/share-links';
+@use '../components/story-footnotes/story-footnotes';
+@use '../components/story-header/story-header';
+@use '../components/story-listing/story-listing';
 @use '../components/story-tile/story-tile';
 @use '../components/testimonial-carousel/testimonial-carousel';
+@use '../components/video-player/video-player';

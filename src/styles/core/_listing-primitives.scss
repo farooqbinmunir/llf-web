@@ -1,0 +1,75 @@
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+// Shared by the filterable listings (projects, stories): the tile grid, the empty state, the space held while results
+// stream in, and the row under the grid with Load more and a jump back to the filters.
+
+%listing-grid {
+	@extend %no-list;
+
+	display: grid;
+	gap: var(--spacing-16);
+
+	margin-block-start: var(--spacing-24);
+
+	> li {
+		display: grid;
+	}
+
+	@include media-breakpoint-up(md) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include media-breakpoint-up(lg) {
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--spacing-24);
+
+		margin-block-start: var(--spacing-40);
+	}
+}
+
+%listing-empty {
+	padding-block: var(--spacing-48);
+
+	text-align: center;
+}
+
+// Reserves roughly a row of tiles while results stream in, so the page below does not jump.
+%listing-loading {
+	min-block-size: calc(var(--spacing-160) * 4);
+}
+
+%listing-more {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: var(--spacing-24);
+
+	margin-block-start: var(--spacing-40);
+}
+
+// A text-only action beside Load more that jumps back up to the filters.
+%listing-filters-jump {
+	@extend %unstyled-link;
+
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-8);
+
+	min-block-size: var(--rsg-control-size);
+	padding-inline: var(--spacing-24);
+
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-semibold);
+
+	transition: color var(--speed-fast) var(--transition-ease);
+
+	&::before {
+		@include icon($fa-var-sliders);
+	}
+
+	&:hover {
+		color: var(--rsg-brand-colour-2);
+	}
+}

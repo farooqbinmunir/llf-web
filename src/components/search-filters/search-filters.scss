@@ -1,12 +1,13 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-// Sits on a dark section, so the bar takes the section's divider tone and the fields its border tone.
+// On a dark section the bar takes the section's divider tone; a listing on a light section sets
+// --search-filters-background to its card tone, as the designs show. The fields take the border tone either way.
 .search-filters {
 	padding-block: var(--spacing-16);
 	padding-inline: var(--spacing-24);
 
-	background-color: var(--rsg-brand-colour-3);
+	background-color: var(--search-filters-background, var(--rsg-brand-colour-3));
 	border-radius: var(--border-radius-base);
 
 	@include media-breakpoint-up(lg) {

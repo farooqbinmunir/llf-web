@@ -1,0 +1,65 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+$share-icons: (
+	'linkedin': ($fa-var-linkedin-in, 'brands'),
+	'facebook': ($fa-var-facebook, 'brands'),
+	'x': ($fa-var-x-twitter, 'brands'),
+	'email': ($fa-var-envelope, 'solid'),
+	'copy': ($fa-var-link, 'solid'),
+);
+
+// "Share" followed by square icon buttons, outlined in the section's border tone.
+.share-links {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-16);
+
+	.label {
+		font-size: var(--font-size-xs);
+	}
+
+	.list {
+		@extend %no-list;
+
+		display: flex;
+		gap: var(--spacing-8);
+	}
+
+	.link {
+		@extend %unstyled-link;
+
+		display: grid;
+		place-items: center;
+
+		inline-size: var(--spacing-32);
+		block-size: var(--spacing-32);
+		padding: 0;
+
+		font-size: var(--font-size-xs);
+
+		background-color: transparent;
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		border-radius: var(--border-radius-sm);
+
+		cursor: pointer;
+
+		transition:
+			background-color var(--speed-fast) var(--transition-ease),
+			border-color var(--speed-fast) var(--transition-ease);
+
+		&:hover,
+		&.is-copied {
+			background-color: var(--rsg-brand-colour-2);
+			border-color: var(--rsg-brand-colour-2);
+		}
+
+		@each $name, $icon in $share-icons {
+			&.#{$name}::before {
+				@include icon(list.nth($icon, 1), list.nth($icon, 2));
+			}
+		}
+	}
+}

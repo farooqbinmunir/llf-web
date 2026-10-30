@@ -1,5 +1,6 @@
 @use 'abstracts' as *;
 @use 'core/link-primitives';
+@use 'core/listing-primitives';
 
 .project-listing {
 	// A direct child only, so the tiles' own `.header` is left alone.
@@ -42,72 +43,22 @@
 	}
 
 	.grid {
-		@extend %no-list;
-
-		display: grid;
-		gap: var(--spacing-16);
-
-		margin-block-start: var(--spacing-24);
-
-		> li {
-			display: grid;
-		}
-
-		@include media-breakpoint-up(md) {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		@include media-breakpoint-up(lg) {
-			grid-template-columns: repeat(3, 1fr);
-			gap: var(--spacing-24);
-
-			margin-block-start: var(--spacing-40);
-		}
+		@extend %listing-grid;
 	}
 
 	.empty {
-		padding-block: var(--spacing-48);
-
-		text-align: center;
+		@extend %listing-empty;
 	}
 
-	// Reserves roughly a row of tiles while results stream in, so the page below does not jump.
 	.loading {
-		min-block-size: calc(var(--spacing-160) * 4);
+		@extend %listing-loading;
 	}
 
 	.more {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: var(--spacing-24);
-
-		margin-block-start: var(--spacing-40);
+		@extend %listing-more;
 	}
 
-	// A text-only action beside Load more that jumps back up to the filters.
 	.filters-jump {
-		@extend %unstyled-link;
-
-		display: inline-flex;
-		align-items: center;
-		gap: var(--spacing-8);
-
-		min-block-size: var(--rsg-control-size);
-		padding-inline: var(--spacing-24);
-
-		font-size: var(--font-size-sm);
-		font-weight: var(--font-weight-semibold);
-
-		transition: color var(--speed-fast) var(--transition-ease);
-
-		&::before {
-			@include icon($fa-var-sliders);
-		}
-
-		&:hover {
-			color: var(--rsg-brand-colour-2);
-		}
+		@extend %listing-filters-jump;
 	}
 }

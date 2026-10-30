@@ -2,6 +2,7 @@ import type { NextConfig } from 'next';
 import path from 'node:path';
 
 if (!process.env.STRAPI_URL) throw new Error('STRAPI_URL is not set. Copy .env.example to .env.local.');
+if (!process.env.SITE_URL) throw new Error('SITE_URL is not set. Copy .env.example to .env.local.');
 
 const strapiUrl = new URL(process.env.STRAPI_URL);
 

@@ -57,6 +57,15 @@ export type BlocksNode =
 	// Images and any block type added later are not rendered; the editor's image block is not used on this site.
 	| { type: 'image' };
 
+// Blocks of a `body` dynamic zone. Projects use text sections and media; stories use all of them.
+export type BodySection =
+	| { __component: 'shared.text-section'; id: number; heading: string | null; body: BlocksNode[] | null }
+	| { __component: 'shared.media'; id: number; file: Media | null; caption: string | null }
+	| { __component: 'shared.media-row'; id: number; items: { id: number; file: Media | null; caption: string | null }[] }
+	| ({ __component: 'shared.testimonial'; id: number } & Testimonial)
+	| { __component: 'shared.stat-row'; id: number; items: Stat[] }
+	| { __component: 'shared.highlight'; id: number; heading: string | null; body: BlocksNode[] | null; quote: Testimonial | null };
+
 export type Seo = {
 	metaTitle: string;
 	metaDescription: string;

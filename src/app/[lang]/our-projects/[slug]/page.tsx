@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import ContentBody from '@/components/content-body/ContentBody';
 import PartnersContribution from '@/components/partners-contribution/PartnersContribution';
-import ProjectBody from '@/components/project-body/ProjectBody';
 import ProjectHeader from '@/components/project-header/ProjectHeader';
 import ProjectOverview from '@/components/project-overview/ProjectOverview';
 import ProjectResults from '@/components/project-results/ProjectResults';
@@ -45,7 +45,10 @@ export default async function ProjectPage({ params }: PageProps<'/[lang]/our-pro
 	const [project, dictionary] = await Promise.all([getProject(lang, slug), getDictionary(lang)]);
 	if (!project) notFound();
 
-	const [stories, relatedProjects] = await Promise.all([getRelatedStories(lang, project, RELATED_LIMIT), getRelatedProjects(lang, project, RELATED_LIMIT)]);
+	const [stories, relatedProjects] = await Promise.all([
+		getRelatedStories(lang, { projectSlug: project.slug, country: project.country, focusArea: project.focusArea }, RELATED_LIMIT),
+		getRelatedProjects(lang, project, RELATED_LIMIT),
+	]);
 	const { project: labels, carousel } = dictionary;
 
 	return (
@@ -57,7 +60,7 @@ export default async function ProjectPage({ params }: PageProps<'/[lang]/our-pro
 
 				<ProjectOverview lang={lang} targetReach={project.targetReach} countryContext={project.countryContext} labels={labels} />
 
-				<ProjectBody lang={lang} sections={project.body} />
+				<ContentBody lang={lang} sections={project.body} />
 			</div>
 
 			{project.expectedResults.length > 0 && <ProjectResults id="expected-results-title" title={labels.expectedResults} palette="yellow" items={project.expectedResults} />}

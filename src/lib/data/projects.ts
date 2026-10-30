@@ -1,7 +1,7 @@
 import type { Locale } from '@/i18n/config';
 import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
-import type { BlocksNode, CallToAction, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial } from '@/lib/strapi/types';
+import type { BlocksNode, BodySection, CallToAction, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial } from '@/lib/strapi/types';
 
 export type ProjectCard = {
 	documentId: string;
@@ -15,10 +15,6 @@ export type ProjectCard = {
 	investment: Stat | null;
 };
 
-export type ProjectBodySection =
-	| { __component: 'project.text-section'; id: number; heading: string | null; body: BlocksNode[] | null }
-	| { __component: 'shared.media'; id: number; file: Media | null; caption: string | null };
-
 export type FinancingGroup = {
 	heading: string;
 	lines: { label: string; currency: string | null; amount: string; partner: { name: string } | null }[];
@@ -30,7 +26,7 @@ export type ProjectDetail = ProjectCard & {
 	lastUpdated: string | null;
 	targetReach: Stat[];
 	countryContext: BlocksNode[] | null;
-	body: ProjectBodySection[];
+	body: BodySection[];
 	expectedResults: { text: string }[];
 	progress: Stat[];
 	financing: FinancingGroup[];
@@ -141,7 +137,7 @@ export async function getProject(lang: Locale, slug: string) {
 				targetReach: true,
 				body: {
 					on: {
-						'project.text-section': true,
+						'shared.text-section': true,
 						'shared.media': { populate: { file: { fields: MEDIA_FIELDS } } },
 					},
 				},

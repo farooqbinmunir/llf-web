@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import Carousel from '@/components/carousel/Carousel';
+import PullQuote from '@/components/pull-quote/PullQuote';
 import type { Dictionary } from '@/i18n/dictionaries';
-import { strapiMediaUrl } from '@/lib/strapi/client';
 import type { Testimonial } from '@/lib/strapi/types';
 
 type TestimonialCarouselProps = { title: string; context: string; testimonials: Testimonial[]; labels: Dictionary['carousel'] };
@@ -19,21 +18,7 @@ export default function TestimonialCarousel({ title, context, testimonials, labe
 
 					<Carousel label={title} labels={labels}>
 						{testimonials.map((testimonial) => (
-							<figure key={testimonial.quote} className="testimonial">
-								<blockquote className="quote">
-									<p>{testimonial.quote}</p>
-								</blockquote>
-
-								{(testimonial.name || testimonial.role || testimonial.photo) && (
-									<figcaption className="person">
-										{testimonial.photo && <Image className="photo" src={strapiMediaUrl(testimonial.photo.url)} alt="" width={96} height={96} />}
-										<span className="details">
-											{testimonial.name && <span className="name">{testimonial.name}</span>}
-											{testimonial.role && <span className="role">{testimonial.role}</span>}
-										</span>
-									</figcaption>
-								)}
-							</figure>
+							<PullQuote key={testimonial.quote} testimonial={testimonial} />
 						))}
 					</Carousel>
 				</div>

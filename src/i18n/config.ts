@@ -16,5 +16,8 @@ export const hasLocale = (value: string): value is Locale => (locales as readonl
 
 export const localisedPath = (lang: Locale, path: string) => `/${lang}${path === '/' ? '' : path}`;
 
+// The full URL of a page, for links that leave the site, such as share links.
+export const absoluteUrl = (lang: Locale, path: string) => `${process.env.SITE_URL}${localisedPath(lang, path)}`;
+
 // Editors enter site paths without a language ("/partnerships"), so the same entry works in every locale; full URLs pass through.
 export const resolveHref = (lang: Locale, url: string) => (url.startsWith('/') ? localisedPath(lang, url) : url);

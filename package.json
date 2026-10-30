@@ -12,6 +12,7 @@
     "@fortawesome/fontawesome-free": "^7.3.1",
     "@splidejs/splide": "^4.1.4",
     "next": "16.4.3",
+    "plyr": "3.8.4",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
