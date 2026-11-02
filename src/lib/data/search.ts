@@ -1,4 +1,5 @@
 import { localisedPath, type Locale } from '@/i18n/config';
+import { getPages } from '@/lib/data/pages';
 import { PROJECT_CARD_QUERY, type ProjectCard } from '@/lib/data/projects';
 import { RESOURCE_CARD_QUERY, type ResourceCard } from '@/lib/data/resources';
 import { strapiGet } from '@/lib/strapi/client';
@@ -140,13 +141,14 @@ const plainText = (blocks: BlocksNode[] | null) =>
 		.flatMap((block) => ('children' in block && block.type === 'paragraph' ? [block.children.map((child) => ('text' in child ? child.text : '')).join('')] : []))
 		.join(' ');
 
-// The site's own pages, each with its heading and the introduction it opens with. Single types cannot be filtered over REST,
-// so the handful of pages is fetched (from the cache) and matched here.
+// The site's own pages, each with its heading and the introduction it opens with: the page single types and the generic
+// pages (privacy policy, careers). Single types cannot be filtered over REST, so the handful of pages is fetched (from the
+// cache) and matched here.
 async function getSitePages(lang: Locale) {
 	const single = <T>(path: string, populate: Record<string, boolean>) => strapiGet<Single<T>>(path, { locale: lang, populate }, [path.slice(1)]).then(({ data }) => data);
 	type WithHero = { title: string; hero: PageHero | null };
 
-	const [about, projects, stories, library, news, contact, funding, partnerships] = await Promise.all([
+	const [about, projects, stories, library, news, contact, funding, partnerships, pages] = await Promise.all([
 		single<{ title: string; intro: { text: string | null } | null }>('/about-page', { intro: true }),
 		single<WithHero>('/projects-page', { hero: true }),
 		single<WithHero>('/stories-page', { hero: true }),
@@ -155,6 +157,7 @@ async function getSitePages(lang: Locale) {
 		single<{ title: string; intro: string | null }>('/contact-page', {}),
 		single<{ title: string; body: BlocksNode[] | null }>('/funding-page', {}),
 		single<{ title: string; lead: string | null }>('/partnerships-page', {}),
+		getPages(lang),
 	]);
 
 	return [
@@ -166,6 +169,7 @@ async function getSitePages(lang: Locale) {
 		contact && { path: '/contact', title: contact.title, text: contact.intro },
 		funding && { path: '/funding-queries', title: funding.title, text: plainText(funding.body) },
 		partnerships && { path: '/partnerships', title: partnerships.title, text: partnerships.lead },
+		...pages.map((page) => ({ path: `/${page.slug}`, title: page.title, text: page.intro })),
 	].filter((page) => !!page);
 }
 

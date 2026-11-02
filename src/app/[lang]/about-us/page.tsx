@@ -100,12 +100,12 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about-us'
 				/>
 			</BaseWrapper>
 
-			{model && <CardGroupSection lang={lang} id="about-model-title" group={model} />}
+			{model && <CardGroupSection lang={lang} id="our-model" group={model} />}
 
 			<BaseWrapper wrapperClasses="section-wrapper-small section-rounded-top" brand="light">
 				{page.focusAreas && (
 					<GroupedContentBlockStandard
-						heading={{ ...sectionHeading(page.focusAreas), id: 'about-focus-areas-title' }}
+						heading={{ ...sectionHeading(page.focusAreas), id: 'focus-areas' }}
 						classes="center-aligned boxed-items"
 						colClasses={THIRD_COLUMNS}
 						items={focusAreas.filter((area) => !area.isCrossCutting).map(focusAreaCard)}
@@ -157,11 +157,11 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about-us'
 
 			{page.countries && (
 				<BaseWrapper wrapperClasses="section-wrapper-small section-rounded-top" brand="dark" colClasses={NARROW_COLUMN}>
-					<CountriesBlockStandard lang={lang} heading={{ ...sectionHeading(page.countries), id: 'about-countries-title' }} countries={countries} />
+					<CountriesBlockStandard lang={lang} heading={{ ...sectionHeading(page.countries), id: 'countries' }} countries={countries} />
 				</BaseWrapper>
 			)}
 
-			{partnerWithUs && <CardGroupSection lang={lang} id="about-partner-with-us-title" group={partnerWithUs} />}
+			{partnerWithUs && <CardGroupSection lang={lang} id="partner-with-us" group={partnerWithUs} />}
 		</>
 	);
 }

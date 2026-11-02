@@ -1,0 +1,110 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+// The Sitemap page: the areas of the site in rows ruled from each other. An area's links run in columns beside its
+// sentence: two, or three for a long list (`wide`).
+.template-sitemap-page {
+	padding-block-start: var(--spacing-40);
+
+	@include media-breakpoint-up(lg) {
+		padding-block-start: var(--spacing-96);
+	}
+
+	.rsg-col-content > .row {
+		position: relative;
+
+		row-gap: var(--spacing-32);
+
+		padding-block: var(--spacing-40);
+
+		// The rule spans the text, not the row's gutters.
+		& + .row::before {
+			content: '';
+
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline: calc(var(--grid-gutter) * 0.5);
+
+			border-block-start: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		}
+
+		&:last-child {
+			padding-block-end: 0;
+		}
+	}
+
+	.area {
+		display: grid;
+		align-content: start;
+		gap: var(--spacing-16);
+
+		> .row {
+			row-gap: var(--spacing-16);
+		}
+	}
+
+	// The accent colour on light fails contrast at this size; it follows the design (see the backlog's orange-on-light item).
+	.area > .rsg-title {
+		font-size: var(--font-size-md);
+
+		color: var(--rsg-brand-colour-2);
+
+		a {
+			@extend %unstyled-link;
+
+			display: inline-flex;
+			align-items: center;
+			gap: var(--spacing-8);
+
+			&::after {
+				@include icon-arrow-diagonal;
+
+				font-size: var(--font-size-xs);
+			}
+
+			&:hover,
+			&:focus-visible {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.rsg-text {
+		font-size: var(--font-size-sm);
+	}
+
+	.rsg-link-list {
+		@extend %no-list;
+
+		column-gap: var(--spacing-24);
+
+		font-size: var(--font-size-sm);
+
+		@include media-breakpoint-up(md) {
+			columns: 2;
+		}
+
+		li {
+			break-inside: avoid;
+			padding-block-end: var(--spacing-12);
+		}
+
+		// Hover thickens the underline rather than turning the link orange, which would fail contrast on light.
+		a {
+			color: inherit;
+			text-decoration: underline;
+
+			&:hover,
+			&:focus-visible {
+				text-decoration-thickness: map.get($border-widths, 2);
+			}
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		.wide .rsg-link-list {
+			columns: 3;
+		}
+	}
+}

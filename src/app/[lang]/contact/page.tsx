@@ -51,6 +51,7 @@ export default async function ContactPage({ params }: PageProps<'/[lang]/contact
 
 	const follow = page.followTitle && {
 		key: 'follow',
+		id: 'follow',
 		colClasses: HALF_COLUMN,
 		content: (
 			<ContentBoxBlockInline title={page.followTitle} icon="share" surface="rsg-surface-light-4" classes="boxed">
@@ -61,6 +62,7 @@ export default async function ContactPage({ params }: PageProps<'/[lang]/contact
 
 	const newsletter = page.newsletter && {
 		key: 'newsletter',
+		id: 'newsletter',
 		colClasses: HALF_COLUMN,
 		content: (
 			<ContentBoxBlockInline title={page.newsletter.title} icon="bell" text={page.newsletter.text} surface="rsg-surface-dark" classes="boxed">
