@@ -236,6 +236,10 @@
 			"pages": "Pages"
 		}
 	},
+	"notFound": {
+		"title": "Page introuvable",
+		"text": "La page que vous cherchez a peut-être été déplacée ou n'existe plus. Lancez une recherche ou parcourez ces rubriques du site du LLF."
+	},
 	"carousel": {
 		"prev": "Diapositive précédente",
 		"next": "Diapositive suivante",

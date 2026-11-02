@@ -236,6 +236,10 @@
 			"pages": "Pages"
 		}
 	},
+	"notFound": {
+		"title": "Page not found",
+		"text": "The page you are looking for may have moved or no longer exists. Try a search, or explore these sections of the LLF website."
+	},
 	"carousel": {
 		"prev": "Previous slide",
 		"next": "Next slide",

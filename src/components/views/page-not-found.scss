@@ -1,0 +1,18 @@
+@use 'abstracts' as *;
+
+// Shares the search page's layout and styles (.search-page); only the heading and message are added.
+.page-not-found {
+	> .rsg-title {
+		margin-block-end: var(--spacing-24);
+
+		text-align: center;
+	}
+
+	.page-not-found-message {
+		max-inline-size: var(--container-width-sm);
+		margin-block-end: var(--spacing-40);
+		margin-inline: auto;
+
+		text-align: center;
+	}
+}
