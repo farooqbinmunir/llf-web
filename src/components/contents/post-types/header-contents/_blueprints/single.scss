@@ -77,7 +77,8 @@
 	}
 
 	// A plain band: no photo or shade, the label in the accent as the design shows, and the text centred from lg up.
-	&.layout-colour {
+	&.layout-colour,
+	&.layout-image-above {
 		--rsg-label-colour: var(--rsg-brand-colour-2);
 
 		min-block-size: 0;
@@ -116,6 +117,38 @@
 			.rsg-text {
 				max-inline-size: none;
 			}
+		}
+	}
+
+	// The band under a full-width photo: the photo sits in the flow, flush with the top, and the band keeps its padding.
+	&.layout-image-above {
+		display: block;
+
+		padding-block: 0;
+
+		.rsg-media-wrapper {
+			position: static;
+
+			// The wide band would be a sliver on a phone, so small screens crop the photo taller.
+			@include media-breakpoint-down(md) {
+				img {
+					aspect-ratio: 3 / 2;
+				}
+			}
+		}
+
+		.container-xxl {
+			padding-block: var(--spacing-48) var(--spacing-32);
+
+			@include media-breakpoint-up(lg) {
+				padding-block: var(--spacing-64) var(--spacing-40);
+			}
+		}
+
+		// The design keeps the introduction to a narrower measure than the plain band's.
+		.rsg-text {
+			max-inline-size: var(--container-width-sm);
+			margin-inline: auto;
 		}
 	}
 }
