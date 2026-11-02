@@ -10,13 +10,15 @@ type BaseWrapperProps = {
 	brand?: Palette;
 	// The column the block sits in, such as `col-12 col-lg-8 offset-lg-2`.
 	colClasses?: string;
+	// The block runs edge to edge, with no container, row or column, and places its own containers (the stories slider).
+	fullWidth?: boolean;
 	// A photo behind the section, as texture under its content.
 	backgroundImage?: Media | null;
 	children: ReactNode;
 };
 
 // The section every block sits in: `rsg-module` > container > row > column, as in Radstone's base wrapper.
-export default function BaseWrapper({ wrapperClasses = 'section-wrapper-small', brand, colClasses = 'col-12', backgroundImage, children }: BaseWrapperProps) {
+export default function BaseWrapper({ wrapperClasses = 'section-wrapper-small', brand, colClasses = 'col-12', fullWidth, backgroundImage, children }: BaseWrapperProps) {
 	const classes = ['rsg-module', wrapperClasses, brand && `rsg-surface-${brand}`, backgroundImage && 'has-background-media'].filter(Boolean).join(' ');
 
 	return (
@@ -27,11 +29,15 @@ export default function BaseWrapper({ wrapperClasses = 'section-wrapper-small', 
 				</div>
 			)}
 
-			<div className="container-xxl">
-				<div className="row">
-					<div className={`col ${colClasses}`}>{children}</div>
+			{fullWidth ? (
+				children
+			) : (
+				<div className="container-xxl">
+					<div className="row">
+						<div className={`col ${colClasses}`}>{children}</div>
+					</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }

@@ -7,13 +7,14 @@ type GroupedContentBlockProps = {
 	// The column each item takes, such as `col-12 col-md-6`.
 	colClasses: string;
 	// Presentation, as Radstone's item classes: `center-aligned` (centred header), `split-view` (header beside the
-	// items from lg up), `boxed-items` (items as cards), `top-border` / `bottom-border` (a line above or below each item).
+	// items from lg up), `shield-media` (heading media cut to the LLF shield), `boxed-items` (items as cards),
+	// `top-border` / `bottom-border` (a line above or below each item).
 	classes?: string;
 	links?: ReactNode;
 };
 
 // The classes the collection's own layout reads; the rest style the block's items.
-const COLLECTION_CLASSES = ['center-aligned', 'split-view'];
+const COLLECTION_CLASSES = ['center-aligned', 'split-view', 'shield-media'];
 
 // A row of like items (figures, photos, results, cards) under an optional header.
 export default function GroupedContentBlockStandard({ heading, items, colClasses, classes, links }: GroupedContentBlockProps) {

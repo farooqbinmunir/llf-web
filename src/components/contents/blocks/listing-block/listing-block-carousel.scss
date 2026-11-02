@@ -15,6 +15,13 @@
 		}
 	}
 
+	// Beside the header (split view, as the home page's Library) the carousel shows two tiles from lg up.
+	.split-view .splide {
+		@include media-breakpoint-up(lg) {
+			--carousel-slide-size: calc((100% - var(--splide-gap)) / 2);
+		}
+	}
+
 	// A centred header lines up with the start of the track while the tiles are a carousel, as on mobile.
 	@include media-breakpoint-down(lg) {
 		.center-aligned .rsg-col-header {

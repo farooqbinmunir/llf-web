@@ -42,6 +42,22 @@
 		}
 	}
 
+	// Beside the header the rows are a compact list: news rows drop their photos below md, and the link follows the
+	// list at its inline end, as the home page's Latest announcements is designed.
+	.split-view {
+		.tile.news.list .rsg-media-wrapper {
+			@include media-breakpoint-down(md) {
+				display: none;
+			}
+		}
+
+		.rsg-main-links {
+			@include media-breakpoint-down(lg) {
+				justify-content: flex-end;
+			}
+		}
+	}
+
 	// A short row is centred under the centred header, as Leadership's two people are in the design.
 	.center-aligned .rsg-listing-group .row {
 		justify-content: center;

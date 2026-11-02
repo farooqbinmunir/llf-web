@@ -1,0 +1,103 @@
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+// The photo fills the slide under a shade towards the text, which sits in the page's container with room above and
+// below for the slider's header and footer.
+.tile.story.slide {
+	--slide-shade: color-mix(in srgb, var(--rsg-background-colour) 75%, transparent);
+
+	@extend %unstyled-link;
+
+	position: relative;
+	isolation: isolate;
+
+	display: flex;
+	align-items: center;
+
+	min-block-size: calc(var(--spacing-240) * 2 + var(--spacing-160));
+	padding-block: var(--spacing-200) var(--spacing-160);
+
+	background-color: var(--rsg-background-colour);
+	color: var(--rsg-foreground-colour);
+
+	&::after {
+		content: '';
+
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+
+		background: linear-gradient(to right, var(--slide-shade), transparent 60%);
+	}
+
+	&:dir(rtl)::after {
+		background: linear-gradient(to left, var(--slide-shade), transparent 60%);
+	}
+
+	.rsg-media-wrapper {
+		position: absolute;
+		inset: 0;
+		z-index: -2;
+
+		.media-block,
+		.rsg-picture,
+		img {
+			inline-size: 100%;
+			block-size: 100%;
+		}
+
+		img {
+			object-fit: cover;
+		}
+	}
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-12);
+
+		max-inline-size: calc(var(--spacing-240) + var(--spacing-120));
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+	}
+
+	.rsg-project {
+		font-size: var(--font-size-xs);
+	}
+
+	.rsg-read-more {
+		margin-block-start: var(--spacing-12);
+
+		color: var(--rsg-brand-colour-2);
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
+
+		transition: text-decoration-color var(--speed-fast) var(--transition-ease);
+
+		&::after {
+			@include icon-arrow-diagonal;
+
+			margin-inline-start: var(--spacing-8);
+
+			font-size: var(--font-size-xs);
+		}
+	}
+
+	&:hover .rsg-read-more,
+	&:focus-visible .rsg-read-more {
+		text-decoration-color: currentColor;
+	}
+
+	// The focus ring sits inside the slide, which the slider clips at its edges.
+	&:focus-visible {
+		outline-offset: calc(var(--spacing-4) * -1);
+	}
+}

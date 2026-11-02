@@ -1,0 +1,159 @@
+@use 'abstracts' as *;
+
+// Below lg the map runs edge to edge above the header and figures; from lg up it fills the top of the section's
+// inline-end half, beside them.
+.map-block.standard {
+	.map {
+		margin-block-start: calc(var(--rsg-section-spacing) * -1);
+		margin-inline: calc(50% - 50vw);
+	}
+
+	// The canvas keeps the artwork's proportions (its viewBox), so the pins land on their countries.
+	.canvas {
+		position: relative;
+
+		aspect-ratio: 1000 / 758;
+	}
+
+	// The land is a mask filled with a tint of the text colour, so the map follows the section's palette.
+	.world {
+		display: block;
+
+		block-size: 100%;
+
+		background-color: color-mix(in srgb, var(--rsg-foreground-colour) 25%, transparent);
+
+		mask: url('/images/world-map.svg') center / 100% 100% no-repeat;
+	}
+
+	.pins {
+		@extend %no-list;
+	}
+
+	// A map is not mirrored in right-to-left languages, so the pins take physical offsets. The pin's tip sits on the country.
+	.pin {
+		position: absolute;
+		top: var(--pin-y);
+		left: var(--pin-x);
+
+		color: var(--rsg-foreground-colour);
+		font-size: var(--font-size-sm);
+
+		translate: -50% -100%;
+
+		&::before {
+			@include icon($fa-var-location-pin);
+		}
+	}
+
+	// The pins drop in one after another the first time the map scrolls into view (see MapCanvas).
+	.is-waiting .pin {
+		opacity: 0;
+	}
+
+	.is-in-view .pin {
+		animation: map-pin-drop var(--speed-normal) var(--transition-ease) both;
+		animation-delay: calc(var(--pin-index) * var(--speed-fast) / 5);
+	}
+
+	.map + .rsg-wrapped-collection {
+		margin-block-start: var(--spacing-24);
+	}
+
+	.rsg-col-header {
+		.rsg-title {
+			font-size: var(--font-size-lg);
+		}
+
+		.rsg-text {
+			max-inline-size: var(--container-width-sm);
+		}
+	}
+
+	// Two figures a row on mobile, then one row as wide as the figures need. A unit (USD) sits above its figure, so the
+	// figures share a baseline.
+	.statistics {
+		@extend %no-list;
+
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--spacing-32) var(--spacing-16);
+
+		&:has(.prefix) {
+			padding-block-start: calc(var(--font-size-sm) * var(--line-height-md));
+		}
+
+		@include media-breakpoint-up(md) {
+			display: flex;
+			flex-wrap: wrap;
+			column-gap: var(--spacing-48);
+		}
+	}
+
+	.statistic-block {
+		gap: var(--spacing-8);
+	}
+
+	.value {
+		position: relative;
+	}
+
+	.prefix {
+		position: absolute;
+		inset-block-end: 100%;
+		inset-inline-start: 0;
+	}
+
+	// Figures that count up keep the same width as their digits change.
+	.statistic {
+		font-size: var(--font-size-3xl);
+		font-weight: var(--font-weight-bold);
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+
+	.footnote {
+		max-inline-size: var(--spacing-100);
+	}
+
+	@include media-breakpoint-up(lg) {
+		.map {
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-end: 0;
+
+			inline-size: 50%;
+			margin: 0;
+		}
+
+		.map + .rsg-wrapped-collection {
+			margin-block-start: 0;
+		}
+
+		.rsg-wrapped-collection {
+			position: relative;
+
+			inline-size: 50%;
+			padding-block-start: var(--spacing-80);
+		}
+	}
+}
+
+// The section clips the edge-to-edge map to its own box, and from lg up places it.
+.rsg-module:has(.map-block.standard) {
+	position: relative;
+
+	overflow: clip;
+}
+
+@keyframes map-pin-drop {
+	from {
+		opacity: 0;
+		translate: -50% -300%;
+	}
+
+	to {
+		opacity: 1;
+		translate: -50% -100%;
+	}
+}

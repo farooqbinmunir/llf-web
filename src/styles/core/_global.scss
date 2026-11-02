@@ -44,6 +44,21 @@
 	}
 }
 
+// Bootstrap's display utilities, for the few sections designed differently on mobile and desktop (the home page's stories).
+.d-none {
+	display: none;
+}
+
+@include media-breakpoint-up(lg) {
+	.d-lg-none {
+		display: none;
+	}
+
+	.d-lg-block {
+		display: block;
+	}
+}
+
 // A `|` in CMS or dictionary text (see TextWithBreaks) breaks the line on mobile only.
 .mobile-break {
 	@include media-breakpoint-up(md) {

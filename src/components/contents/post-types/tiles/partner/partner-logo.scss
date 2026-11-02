@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// A card as tall as its row-mates, with the logo (or the name) centred in it.
+.tile.partner.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	block-size: 100%;
+	min-block-size: var(--spacing-120);
+	padding: var(--spacing-24);
+
+	text-align: center;
+
+	background-color: var(--rsg-background-colour);
+	color: var(--rsg-foreground-colour);
+	border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	border-radius: var(--border-radius-base);
+
+	@include media-breakpoint-up(lg) {
+		min-block-size: var(--spacing-160);
+		padding: var(--spacing-40);
+	}
+
+	// Logos share one box, so wide and tall marks appear at a consistent size, as the design notes ask.
+	.rsg-media-wrapper {
+		inline-size: 100%;
+
+		img {
+			inline-size: 100%;
+			block-size: var(--spacing-64);
+
+			object-fit: contain;
+		}
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-md);
+		}
+	}
+}

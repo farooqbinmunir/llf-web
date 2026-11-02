@@ -2,6 +2,9 @@
 
 // The figure takes the accent. On light surfaces the design's orange is below contrast (see the roadmap backlog, M18).
 .statistic-block.standard {
+	// How long a counted-up figure takes to reach its value (see CountUp).
+	--count-up-duration: var(--speed-slower);
+
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-16);
@@ -20,7 +23,12 @@
 		font-weight: var(--font-weight-semibold);
 	}
 
+	// Figures are written in Latin script, so "40M+" keeps its sign at the end in right-to-left languages, while the
+	// figure still aligns with the page's direction.
 	.statistic {
+		unicode-bidi: plaintext;
+		text-align: match-parent;
+
 		font-size: var(--font-size-lg);
 		font-weight: var(--font-weight-medium);
 		line-height: var(--line-height-sm);

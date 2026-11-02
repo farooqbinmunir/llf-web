@@ -4,13 +4,11 @@ import { Children, useEffect, useRef, type ReactNode } from 'react';
 import Splide from '@splidejs/splide';
 import { breakpointQuery, type BreakpointName } from '@/hooks/useBreakpointUp';
 import type { Dictionary } from '@/i18n/dictionaries';
+import { toMilliseconds } from '@/lib/css';
 
 // `header` sits above the track, inside the carousel's region; `footer` sits beside the dots, for a "View all" link.
 // `gridFrom` lays the slides out as a grid from that breakpoint up, with no carousel (see core/_splide.scss).
 type CarouselProps = { label: string; labels: Dictionary['carousel']; header?: ReactNode; footer?: ReactNode; gridFrom?: BreakpointName; children: ReactNode };
-
-// Reads a duration token such as `750ms` or `0.5s` in milliseconds.
-const toMilliseconds = (value: string) => (value.trim().endsWith('ms') ? Number.parseFloat(value) : Number.parseFloat(value) * 1000);
 
 // A Splide carousel of whatever slides it is given, paged by dots. Splide supplies the carousel semantics (region, slide
 // groups, labelled pagination tabs with arrow-key support), in the page's language through `labels`. Slide widths, the gap

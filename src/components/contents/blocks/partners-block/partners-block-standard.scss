@@ -1,0 +1,30 @@
+@use 'abstracts' as *;
+
+// Shared by the partner blocks (logo grid and accordion): the space between partner type groups, and their titles when shown.
+.partners-block {
+	.rsg-partner-group + .rsg-partner-group {
+		margin-block-start: var(--spacing-56);
+	}
+
+	.rsg-group-title {
+		margin: 0 0 var(--spacing-24);
+
+		font-size: var(--font-size-base);
+		font-weight: var(--font-weight-semibold);
+	}
+}
+
+.partners-block.standard {
+	// The design labels the section in orange on light, as the listing blocks.
+	--rsg-label-colour: var(--rsg-brand-colour-2);
+
+	.row {
+		--grid-gutter: var(--spacing-12);
+
+		row-gap: var(--grid-gutter);
+
+		@include media-breakpoint-up(lg) {
+			--grid-gutter: var(--spacing-24);
+		}
+	}
+}

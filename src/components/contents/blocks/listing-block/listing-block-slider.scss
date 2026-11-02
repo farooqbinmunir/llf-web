@@ -1,0 +1,58 @@
+@use 'abstracts' as *;
+
+// One full-width slide at a time. The header and the carousel footer sit over the slides, in the page's container.
+.listing-block.slider {
+	--splide-gap: 0;
+
+	.splide {
+		--carousel-slide-size: 100%;
+
+		position: relative;
+	}
+
+	// The label and title over the top of every slide. They let clicks through to the slide's link.
+	.splide > .container-xxl {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline: 0;
+		z-index: 1;
+
+		padding-block-start: var(--spacing-80);
+
+		pointer-events: none;
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-2xl);
+	}
+
+	// The dots on the inline-start side and the "View all" link on the other, over the foot of the slides, lined up
+	// with the page's container.
+	.rsg-carousel-footer {
+		position: absolute;
+		inset-block-end: var(--spacing-48);
+		inset-inline: 0;
+		z-index: 1;
+
+		display: flex;
+
+		max-inline-size: var(--container-width-xxl);
+		margin: 0 auto;
+		padding-inline: var(--spacing-24);
+
+		@include media-breakpoint-up(lg) {
+			padding-inline: var(--spacing-64);
+		}
+	}
+
+	// Over a photo the link is filled with the accent, as designed.
+	.rsg-button {
+		--rsg-button-background-colour: var(--rsg-brand-colour-2);
+		--rsg-button-text-colour: var(--rsg-accent-text-colour);
+	}
+}
+
+// The section's rounded corners cut the photos.
+.rsg-module:has(> .listing-block.slider) {
+	overflow: clip;
+}

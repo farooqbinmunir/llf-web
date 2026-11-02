@@ -41,6 +41,14 @@ export type SectionHeader = {
 	text: string | null;
 };
 
+// A section that points to another page: header, lead line, text and one link, beside a photo.
+export type Promo = SectionHeader & {
+	lead: string | null;
+	linkLabel: string | null;
+	linkUrl: string | null;
+	image: Media | null;
+};
+
 export type IconCard = {
 	id: number;
 	icon: Media | null;

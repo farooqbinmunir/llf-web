@@ -1,0 +1,33 @@
+@use 'abstracts' as *;
+
+.content-box-block.promo {
+	// A promo that follows another block in its section, as About us follows Impact in action, keeps the section's spacing.
+	* + & {
+		margin-block-start: var(--rsg-section-spacing);
+	}
+
+	.rsg-col-header {
+		margin-block-end: var(--spacing-24);
+
+		.rsg-title {
+			font-size: var(--font-size-xl);
+
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-2xl);
+			}
+		}
+
+		// The lead line under the heading.
+		.rsg-text {
+			font-size: var(--font-size-md);
+			font-weight: var(--font-weight-semibold);
+			line-height: var(--line-height-md);
+		}
+	}
+
+	.rsg-col-content {
+		display: grid;
+		justify-items: start;
+		gap: var(--spacing-32);
+	}
+}

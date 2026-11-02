@@ -2,7 +2,7 @@ import Accordion from '@/components/contents/blocks/_blueprints/accordion';
 import WrappedCollection, { type CollectionHeading } from '@/components/contents/blocks/_blueprints/wrapped-collection';
 import type { Palette } from '@/components/contents/blocks/base-wrapper';
 import PartnerTileAccordion from '@/components/contents/post-types/tiles/partner/partner-accordion';
-import type { Partner } from '@/lib/data/about';
+import { groupByPartnerType, type Partner } from '@/lib/data/about';
 
 type PartnersBlockAccordionProps = {
 	id: string;
@@ -22,15 +22,12 @@ const partnerTitle = ({ name, shortName }: Partner) => (shortName && !name.inclu
 export default function PartnersBlockAccordion({ id, heading, partners, palette, showGroupTitles = false, opensInNewTab }: PartnersBlockAccordionProps) {
 	if (partners.length === 0) return null;
 
-	const groups = Map.groupBy(partners, (partner) => partner.partnerType?.slug ?? '');
-	const sortedGroups = [...groups.values()].sort((a, b) => (a[0].partnerType?.order ?? 0) - (b[0].partnerType?.order ?? 0));
-
 	return (
 		<div id={id} className="partners-block accordion" role="region" aria-labelledby={heading.id}>
 			<WrappedCollection
 				classes="center-aligned"
 				heading={heading}
-				body={sortedGroups.map((group, index) => {
+				body={groupByPartnerType(partners).map((group, index) => {
 					const groupId = `${id}-${group[0].partnerType?.slug ?? 'other'}`;
 
 					return (

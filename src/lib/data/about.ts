@@ -29,7 +29,12 @@ export type Partner = {
 	partnerType: (Taxonomy & { order: number | null }) | null;
 };
 
-export type Country = Taxonomy & { region: (Taxonomy & { order: number | null }) | null };
+// The coordinates place the country's pin on the home page map.
+export type Country = Taxonomy & { latitude: number | null; longitude: number | null; region: (Taxonomy & { order: number | null }) | null };
+
+// Partners in one group per partner type (Founding partners, Supporting partners), in the types' order.
+export const groupByPartnerType = (partners: Partner[]) =>
+	[...Map.groupBy(partners, (partner) => partner.partnerType?.slug ?? '').values()].sort((a, b) => (a[0].partnerType?.order ?? 0) - (b[0].partnerType?.order ?? 0));
 
 const MEDIA_FIELDS = ['url', 'alternativeText', 'width', 'height'];
 const CARD_GROUP = { populate: { image: { fields: MEDIA_FIELDS }, cards: { populate: { icon: { fields: MEDIA_FIELDS } } } } };
@@ -103,7 +108,7 @@ export async function getPartners(lang: Locale) {
 export async function getCountries(lang: Locale) {
 	const { data } = await strapiGet<Collection<Country>>(
 		'/countries',
-		{ locale: lang, fields: ['name', 'slug'], populate: { region: { fields: ['name', 'slug', 'order'] } }, sort: ['name:asc'], pagination: { page: 1, pageSize: 100 } },
+		{ locale: lang, fields: ['name', 'slug', 'latitude', 'longitude'], populate: { region: { fields: ['name', 'slug', 'order'] } }, sort: ['name:asc'], pagination: { page: 1, pageSize: 100 } },
 		['country'],
 	);
 
