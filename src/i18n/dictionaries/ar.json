@@ -46,7 +46,12 @@
 		"rights": "صندوق العيش والمعيشة. جميع الحقوق محفوظة."
 	},
 	"home": {
-		"title": "عمل جماعي. أثر دائم."
+		"meetPartners": "تعرّف على شركائنا",
+		"viewAllProjects": "عرض جميع المشاريع",
+		"viewAllStories": "عرض جميع القصص",
+		"browseLibrary": "تصفّح المكتبة كاملة",
+		"playVideo": "شاهد الفيديو",
+		"readStory": "اقرأ القصة"
 	},
 	"projects": {
 		"phases": "مرحلة البرنامج",

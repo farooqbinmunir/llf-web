@@ -22,6 +22,8 @@ export type LibraryPage = {
 export type ResourceFilters = { type?: string };
 
 const MEDIA_FIELDS = ['url', 'alternativeText', 'width', 'height'];
+// What a resource tile needs; also used by pages that pick resources through a relation (the home page).
+export const RESOURCE_CARD_QUERY = { fields: ['title', 'publishDate', 'externalUrl'], populate: { coverImage: { fields: MEDIA_FIELDS }, file: { fields: ['url', 'ext', 'size'] } } };
 // Newest first; the title breaks ties so pages never overlap.
 const SORT = ['publishDate:desc', 'title:asc'];
 
@@ -36,9 +38,8 @@ export async function getResources(lang: Locale, filters: ResourceFilters, limit
 		'/resources',
 		{
 			locale: lang,
-			fields: ['title', 'publishDate', 'externalUrl'],
+			...RESOURCE_CARD_QUERY,
 			filters: { resourceType: filters.type ? { slug: { $eq: filters.type } } : undefined },
-			populate: { coverImage: { fields: MEDIA_FIELDS }, file: { fields: ['url', 'ext', 'size'] } },
 			sort: SORT,
 			pagination: { page: 1, pageSize: limit },
 		},

@@ -60,6 +60,8 @@ const CARD_POPULATE = {
 	impact: true,
 	investment: true,
 };
+// What a project tile needs, for pages that pick projects through a relation (the home page).
+export const PROJECT_CARD_QUERY = { fields: CARD_FIELDS, populate: CARD_POPULATE };
 
 export async function getProjectsPage(lang: Locale) {
 	const { data } = await strapiGet<Single<ProjectsPage>>(

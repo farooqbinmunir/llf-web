@@ -76,6 +76,15 @@
 		}
 	}
 
+	// The home page's opening: the header fills the screen below the site header, and the heading keeps its own line breaks.
+	&.layout-full-height {
+		--header-min-size: calc(100svh - var(--page-header-block-size));
+
+		.rsg-title {
+			max-inline-size: none;
+		}
+	}
+
 	// A plain band: no photo or shade, the label in the accent as the design shows, and the text centred from lg up.
 	&.layout-colour,
 	&.layout-image-above {

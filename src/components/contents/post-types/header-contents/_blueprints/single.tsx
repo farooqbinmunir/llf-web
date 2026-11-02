@@ -1,14 +1,16 @@
 import ResponsiveImage from '@/components/helpers/image';
+import TextWithBreaks from '@/components/helpers/text-with-breaks';
 import type { PageHero } from '@/lib/strapi/types';
 
-// `large-image` sets the heading over a full-width photo on dark; `colour` is a plain light band, centred from lg up;
-// `image-above` is that band under a full-width photo, as the governance pages have.
-type HeaderContentsSingleProps = { hero: PageHero; layout?: 'large-image' | 'colour' | 'image-above' };
+// `large-image` sets the heading over a full-width photo on dark, and `full-height` is that header filling the screen
+// under the site header, as the home page opens; `colour` is a plain light band, centred from lg up; `image-above` is that
+// band under a full-width photo, as the governance pages have.
+type HeaderContentsSingleProps = { hero: PageHero; layout?: 'large-image' | 'full-height' | 'colour' | 'image-above' };
 
 // A page's header: the label, the page heading and a short introduction.
 export default function HeaderContentsSingle({ hero, layout = 'large-image' }: HeaderContentsSingleProps) {
 	const { eyebrow, title, text, image } = hero;
-	const surface = layout === 'large-image' ? 'rsg-surface-dark' : 'rsg-surface-light';
+	const surface = layout === 'large-image' || layout === 'full-height' ? 'rsg-surface-dark' : 'rsg-surface-light';
 
 	return (
 		<div className={`header-contents blueprint single layout-${layout} ${surface}`}>
@@ -23,7 +25,9 @@ export default function HeaderContentsSingle({ hero, layout = 'large-image' }: H
 			<div className="container-xxl">
 				<div className="rsg-content-wrapper">
 					{eyebrow && <p className="rsg-label">{eyebrow}</p>}
-					<h1 className="rsg-title">{title}</h1>
+					<h1 className="rsg-title">
+						<TextWithBreaks text={title} />
+					</h1>
 					{text && <p className="rsg-text">{text}</p>}
 				</div>
 			</div>

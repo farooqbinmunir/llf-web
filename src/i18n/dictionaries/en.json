@@ -46,7 +46,12 @@
 		"rights": "Lives and Livelihoods Fund. All rights reserved."
 	},
 	"home": {
-		"title": "Collective action. Lasting impact."
+		"meetPartners": "Meet our partners",
+		"viewAllProjects": "View all projects",
+		"viewAllStories": "View all stories",
+		"browseLibrary": "Browse full library",
+		"playVideo": "Play video",
+		"readStory": "Read the story"
 	},
 	"projects": {
 		"phases": "Programme phase",

@@ -46,7 +46,12 @@
 		"rights": "Fonds pour la vie et les moyens de subsistance. Tous droits réservés."
 	},
 	"home": {
-		"title": "Action collective. Impact durable."
+		"meetPartners": "Découvrir nos partenaires",
+		"viewAllProjects": "Voir tous les projets",
+		"viewAllStories": "Toutes les histoires",
+		"browseLibrary": "Parcourir la bibliothèque",
+		"playVideo": "Lire la vidéo",
+		"readStory": "Lire l'histoire"
 	},
 	"projects": {
 		"phases": "Phase du programme",

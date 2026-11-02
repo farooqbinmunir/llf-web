@@ -1,6 +1,15 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
+// The header's height, from the same tokens as its logo, padding and border, so a full-screen section can leave room for it.
+:root {
+	--page-header-block-size: calc(var(--spacing-48) + 2 * var(--spacing-16) + #{map.get($border-widths, 4)});
+
+	@include media-breakpoint-up(xl) {
+		--page-header-block-size: calc(var(--spacing-48) + 2 * var(--spacing-24) + #{map.get($border-widths, 4)});
+	}
+}
+
 // The sticky site header: logo, navigation and tools on desktop; logo and the menu button below xl, where the
 // navigation and tools move into the mobile menu panel, which has its own of each.
 .rsg-page-header {

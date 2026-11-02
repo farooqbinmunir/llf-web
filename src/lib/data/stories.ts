@@ -53,6 +53,8 @@ const CARD_POPULATE = {
 	storyType: { fields: TAXONOMY_FIELDS },
 	project: { fields: ['title', 'slug'] },
 };
+// What a story tile needs, for pages that pick stories through a relation (the home page).
+export const STORY_CARD_QUERY = { fields: CARD_FIELDS, populate: CARD_POPULATE };
 // Newest first; the title breaks ties so pages never overlap.
 const SORT = ['publishDate:desc', 'title:asc'];
 
