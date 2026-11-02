@@ -215,6 +215,27 @@
 		"disabled": "Désactivés",
 		"enabled": "Activés"
 	},
+	"search": {
+		"label": "Rechercher",
+		"resultsFound": "{count} résultats pour : {query}",
+		"resultFound": "1 résultat pour : {query}",
+		"noResultsFor": "Aucun résultat pour : {query}",
+		"filterByType": "Filtrer par type",
+		"allResults": "Tous les résultats ({count})",
+		"typeCount": "{label} ({count})",
+		"viewAll": "Voir tout : {label} ({count})",
+		"loadMore": "Charger plus de résultats",
+		"loading": "Recherche en cours",
+		"groups": {
+			"projects": "Projets",
+			"case-studies": "Études de cas",
+			"success-stories": "Histoires de réussite",
+			"videos": "Vidéos",
+			"news": "Actualités",
+			"library": "Bibliothèque",
+			"pages": "Pages"
+		}
+	},
 	"carousel": {
 		"prev": "Diapositive précédente",
 		"next": "Diapositive suivante",

@@ -1,0 +1,227 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+$search-rule: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+
+@keyframes search-spin {
+	to {
+		transform: rotate(1turn);
+	}
+}
+
+// The Search page: the search box, the accent result count, the type pills (the chosen one filled), the result groups and,
+// before a search or after one that finds nothing, the message and quick links.
+.search-page {
+	padding-block-start: var(--spacing-40);
+
+	@include media-breakpoint-up(lg) {
+		padding-block-start: var(--spacing-120);
+	}
+
+	.rsg-search-summary,
+	.rsg-search-message {
+		margin-block-start: var(--spacing-24);
+
+		text-align: center;
+
+		@include media-breakpoint-up(lg) {
+			margin-block-start: var(--spacing-32);
+		}
+	}
+
+	// The accent colour on light fails contrast at this size; it follows the design (see the backlog's orange-on-light item).
+	.rsg-search-summary {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+
+		color: var(--rsg-brand-colour-2);
+	}
+
+	.rsg-search-message {
+		max-inline-size: var(--container-width-sm);
+		margin-inline: auto;
+
+		font-size: var(--font-size-sm);
+		white-space: pre-line;
+	}
+
+	.rsg-search-quick-links {
+		margin-block-start: var(--spacing-32);
+	}
+
+	// On mobile the pills sit in a card under a "Filter by type" toggle; from lg up they are a centred row on the page itself.
+	.rsg-search-types {
+		margin-block: var(--spacing-24) var(--spacing-40);
+		padding: var(--spacing-16) var(--spacing-24) var(--spacing-24);
+
+		background-color: var(--rsg-brand-colour-4);
+		border-radius: var(--border-radius-base);
+
+		@include media-breakpoint-up(lg) {
+			padding: 0;
+
+			background-color: transparent;
+		}
+
+		> summary {
+			display: flex;
+			align-items: center;
+			gap: var(--spacing-12);
+
+			min-block-size: var(--rsg-control-size);
+
+			font-size: var(--font-size-sm);
+			font-weight: var(--font-weight-semibold);
+
+			list-style: none;
+			cursor: pointer;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+
+			&::before {
+				@include icon($fa-var-sliders);
+			}
+
+			&::after {
+				@include icon($fa-var-chevron-down);
+
+				margin-inline-start: auto;
+
+				font-size: var(--font-size-xs);
+
+				transition: transform var(--speed-fast) var(--transition-ease);
+			}
+
+			@include media-breakpoint-up(lg) {
+				display: none;
+			}
+		}
+
+		&[open] > summary {
+			margin-block-end: var(--spacing-16);
+
+			&::after {
+				transform: rotate(180deg);
+			}
+		}
+
+		ul {
+			@extend %no-list;
+
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: var(--spacing-12);
+
+			@include media-breakpoint-up(lg) {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+		}
+	}
+
+	.rsg-search-type {
+		@extend %rsg-button;
+
+		inline-size: 100%;
+		padding-inline: var(--spacing-8);
+
+		font-size: var(--font-size-xs);
+		white-space: nowrap;
+
+		background-color: transparent;
+		color: var(--rsg-foreground-colour);
+		border-color: var(--rsg-brand-colour-5);
+
+		@include media-breakpoint-up(lg) {
+			inline-size: auto;
+			padding-inline: var(--spacing-16);
+
+			font-size: var(--font-size-sm);
+		}
+
+		&[aria-current='true'] {
+			background-color: var(--rsg-foreground-colour);
+			color: var(--rsg-brand-colour-4);
+			border-color: var(--rsg-foreground-colour);
+		}
+
+		// A type with no results stays in the row, so every count shows, but cannot be chosen.
+		&[aria-disabled='true'] {
+			opacity: 0.5;
+
+			&:hover {
+				background-color: transparent;
+				color: var(--rsg-foreground-colour);
+			}
+		}
+	}
+
+	.rsg-search-group + .rsg-search-group {
+		margin-block-start: var(--spacing-40);
+
+		@include media-breakpoint-up(lg) {
+			margin-block-start: var(--spacing-56);
+		}
+	}
+
+	.rsg-group-title {
+		padding-block-end: var(--spacing-16);
+
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-weight-semibold);
+
+		border-block-end: $search-rule;
+	}
+
+	.rsg-search-view-all {
+		@extend %unstyled-link;
+
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		margin-block-start: var(--spacing-16);
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+
+		transition: color var(--speed-fast) var(--transition-ease);
+
+		&::after {
+			@include icon($fa-var-arrow-right);
+
+			transform: scaleX(var(--inline-direction));
+		}
+
+		&:hover {
+			color: var(--rsg-brand-colour-2);
+		}
+	}
+
+	// Reserves the height of a short results page while a search runs, so the footer does not jump up and back.
+	.rsg-search-loading {
+		display: flex;
+		justify-content: center;
+
+		min-block-size: calc(var(--spacing-160) * 3);
+		padding-block-start: var(--spacing-80);
+
+		font-size: var(--font-size-xl);
+
+		color: var(--rsg-brand-colour-2);
+
+		&::before {
+			@include icon($fa-var-spinner);
+
+			block-size: 1em;
+
+			@media (prefers-reduced-motion: no-preference) {
+				animation: search-spin 1s steps(8) infinite;
+			}
+		}
+	}
+}

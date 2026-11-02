@@ -16,6 +16,8 @@
 @use '../components/global/page-footer/page-footer';
 @use '../components/global/page-header/page-header';
 @use '../components/global/search/search-filters';
+@use '../components/global/search/search-form';
+@use '../components/global/search/search-quick-links';
 @use '../components/global/sharing-links/sharing-links';
 @use '../components/global/svg/logo';
 
@@ -46,6 +48,7 @@
 @use '../components/contents/post-types/header-contents/story/story-standard' as header-story-standard;
 
 // Post types - tiles
+@use '../components/contents/post-types/tiles/_blueprints/hc-search-result' as tile-hc-search-result;
 @use '../components/contents/post-types/tiles/news/news-list' as tile-news-list;
 @use '../components/contents/post-types/tiles/news/news-slide' as tile-news-slide;
 @use '../components/contents/post-types/tiles/partner/partner-accordion' as tile-partner-accordion;
@@ -58,6 +61,7 @@
 @use '../components/contents/post-types/tiles/story/story-standard' as tile-story-standard;
 
 // Views
+@use '../components/views/search';
 @use '../components/views/single-article';
 @use '../components/views/single-project';
 @use '../components/views/template-funding-page';

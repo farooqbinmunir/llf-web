@@ -1,0 +1,79 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// A pill-shaped field with the submit button inside its end, on the card tone of its section.
+.rsg-search-form {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+
+	input {
+		inline-size: 100%;
+		min-block-size: var(--spacing-48);
+		padding-inline: var(--spacing-16) var(--spacing-56);
+
+		font-size: var(--font-size-md);
+
+		background-color: var(--rsg-brand-colour-4);
+		color: var(--rsg-foreground-colour);
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-5);
+		border-radius: var(--border-radius-pill);
+
+		@include media-breakpoint-up(lg) {
+			min-block-size: var(--spacing-64);
+			padding-inline: var(--spacing-32) var(--spacing-64);
+
+			font-size: var(--font-size-lg);
+		}
+
+		&::placeholder {
+			color: color-mix(in srgb, var(--rsg-foreground-colour) 50%, transparent);
+		}
+
+		// The submit button sits where the browser's own clear button would, so that one is hidden.
+		&::-webkit-search-cancel-button {
+			appearance: none;
+		}
+
+		&:focus-visible {
+			outline: map.get($border-widths, 2) solid currentColor;
+			outline-offset: map.get($border-widths, 2);
+		}
+	}
+
+	button {
+		position: absolute;
+		inset-inline-end: var(--spacing-8);
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		inline-size: var(--rsg-control-size);
+		block-size: var(--rsg-control-size);
+
+		font-size: var(--font-size-md);
+
+		color: var(--rsg-foreground-colour);
+		background: none;
+		border: 0;
+		border-radius: var(--border-radius-pill);
+
+		cursor: pointer;
+
+		@include media-breakpoint-up(lg) {
+			inset-inline-end: var(--spacing-16);
+
+			font-size: var(--font-size-lg);
+		}
+
+		&::before {
+			@include icon($fa-var-magnifying-glass);
+		}
+
+		&:focus-visible {
+			outline: map.get($border-widths, 2) solid currentColor;
+		}
+	}
+}

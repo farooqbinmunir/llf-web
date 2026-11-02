@@ -215,6 +215,27 @@
 		"disabled": "معطّلة",
 		"enabled": "مفعّلة"
 	},
+	"search": {
+		"label": "بحث",
+		"resultsFound": "نتائج البحث عن: {query} ({count})",
+		"resultFound": "نتائج البحث عن: {query} (1)",
+		"noResultsFor": "لا توجد نتائج لـ: {query}",
+		"filterByType": "تصفية حسب النوع",
+		"allResults": "كل النتائج ({count})",
+		"typeCount": "{label} ({count})",
+		"viewAll": "عرض الكل: {label} ({count})",
+		"loadMore": "عرض مزيد من النتائج",
+		"loading": "جارٍ البحث",
+		"groups": {
+			"projects": "المشاريع",
+			"case-studies": "دراسات الحالة",
+			"success-stories": "قصص النجاح",
+			"videos": "مقاطع الفيديو",
+			"news": "الأخبار",
+			"library": "المكتبة",
+			"pages": "الصفحات"
+		}
+	},
 	"carousel": {
 		"prev": "الشريحة السابقة",
 		"next": "الشريحة التالية",

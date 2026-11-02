@@ -1,0 +1,130 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+@use 'core/link-primitives';
+
+$hc-search-result-rule: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+
+// On mobile the photo runs the full width above the text; from md up a fixed thumbnail sits beside it. Each row is ruled
+// below. The Library variant (.resource) adds the date, size and action.
+.tile.blueprint.hc-search-result {
+	@extend %unstyled-link;
+
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--spacing-16);
+
+	padding-block: var(--spacing-16);
+
+	color: var(--rsg-foreground-colour);
+	border-block-end: $hc-search-result-rule;
+
+	@include media-breakpoint-up(md) {
+		grid-template-columns: var(--spacing-160) minmax(0, 1fr);
+		gap: var(--spacing-20);
+
+		&.no-media {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	&:hover,
+	&:focus-visible {
+		.rsg-title {
+			text-decoration-color: currentColor;
+		}
+	}
+
+	.rsg-media-wrapper {
+		overflow: hidden;
+
+		border-radius: var(--border-radius-md);
+	}
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-8);
+
+		min-inline-size: 0;
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-md);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
+
+		transition: text-decoration-color var(--speed-fast) var(--transition-ease);
+	}
+
+	// Long introductions stop after two lines, as the design's Pages results do.
+	.rsg-description {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+
+		font-size: var(--font-size-sm);
+	}
+
+	.rsg-date,
+	.rsg-meta {
+		font-size: var(--font-size-xs);
+	}
+
+	.rsg-date {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+
+		&::before {
+			@include icon($fa-var-calendar);
+		}
+	}
+
+	.rsg-footer {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--spacing-16) var(--spacing-32);
+	}
+
+	.rsg-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--spacing-8);
+	}
+
+	.rsg-size {
+		padding-inline-start: var(--spacing-8);
+
+		border-inline-start: map.get($border-widths, 1) solid currentColor;
+
+		&::before {
+			@include icon($fa-var-download);
+
+			margin-inline-end: var(--spacing-4);
+		}
+	}
+
+	.rsg-action {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-8);
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+
+		&::after {
+			@include icon($fa-var-download);
+		}
+	}
+
+	// A linked resource leaves the site, so it takes the "go to" arrow instead of the download icon.
+	&.external .rsg-action::after {
+		@include icon-arrow-diagonal;
+	}
+}

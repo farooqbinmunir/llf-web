@@ -215,6 +215,27 @@
 		"disabled": "Disabled",
 		"enabled": "Enabled"
 	},
+	"search": {
+		"label": "Search",
+		"resultsFound": "{count} results found for: {query}",
+		"resultFound": "1 result found for: {query}",
+		"noResultsFor": "No results found for: {query}",
+		"filterByType": "Filter by type",
+		"allResults": "All results ({count})",
+		"typeCount": "{count} {label}",
+		"viewAll": "View all {label} ({count})",
+		"loadMore": "Load more results",
+		"loading": "Searching",
+		"groups": {
+			"projects": "Projects",
+			"case-studies": "Case studies",
+			"success-stories": "Success stories",
+			"videos": "Videos",
+			"news": "News",
+			"library": "Library",
+			"pages": "Pages"
+		}
+	},
 	"carousel": {
 		"prev": "Previous slide",
 		"next": "Next slide",
