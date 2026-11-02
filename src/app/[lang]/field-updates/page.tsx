@@ -8,6 +8,7 @@ import TemplateListingPage, { TemplateListingResults } from '@/components/views/
 import { hasLocale, localisedPath, type Locale } from '@/i18n/config';
 import { getDictionary, type Dictionary } from '@/i18n/dictionaries';
 import { getStories, getStoriesPage, getStoryFilterOptions, type StoryFilters } from '@/lib/data/stories';
+import { pageMetadata } from '@/lib/metadata';
 import { readParam, withQuery, type SearchParams } from '@/lib/search-params';
 
 const PAGE_SIZE = 9;
@@ -72,7 +73,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/field-upda
 
 	const page = await getStoriesPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription ?? page?.hero?.text ?? undefined };
+	return pageMetadata(lang, { path: '/field-updates', seo: page?.seo, title: page?.title, description: page?.hero?.text, image: page?.hero?.image });
 }
 
 export default async function FieldUpdatesPage({ params, searchParams }: PageProps<'/[lang]/field-updates'>) {

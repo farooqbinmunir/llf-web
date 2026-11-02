@@ -7,6 +7,7 @@ import FormEnquiry from '@/components/global/forms/form-enquiry';
 import { hasLocale, type Locale } from '@/i18n/config';
 import { getDictionary, type Dictionary } from '@/i18n/dictionaries';
 import { getContactPage, type ContactPage } from '@/lib/data/contact';
+import { pageMetadata } from '@/lib/metadata';
 import { isEnquiryTopic } from '@/lib/forms';
 import { readParam, type SearchParams } from '@/lib/search-params';
 
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/contact/en
 
 	const page = await getContactPage(lang);
 
-	return { title: page?.form?.title, description: page?.form?.text ?? undefined };
+	return pageMetadata(lang, { path: '/contact/enquiry', title: page?.form?.title, description: page?.form?.text });
 }
 
 export default async function EnquiryPage({ params, searchParams }: PageProps<'/[lang]/contact/enquiry'>) {

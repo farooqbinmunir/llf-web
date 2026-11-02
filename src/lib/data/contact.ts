@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY } from '@/lib/data/global';
 import { strapiGet } from '@/lib/strapi/client';
 import type { BlocksNode, Download, Seo, Single } from '@/lib/strapi/types';
 
@@ -48,7 +49,7 @@ const DOWNLOAD = { populate: { resource: { fields: ['externalUrl'], populate: { 
 export async function getContactPage(lang: Locale) {
 	const { data } = await strapiGet<Single<ContactPage>>(
 		'/contact-page',
-		{ locale: lang, populate: { channels: { populate: { download: DOWNLOAD } }, newsletter: true, form: true, seo: true } },
+		{ locale: lang, populate: { channels: { populate: { download: DOWNLOAD } }, newsletter: true, form: true, seo: SEO_QUERY } },
 		['contact-page', 'resource'],
 	);
 
@@ -56,13 +57,13 @@ export async function getContactPage(lang: Locale) {
 }
 
 export async function getFundingPage(lang: Locale) {
-	const { data } = await strapiGet<Single<FundingPage>>('/funding-page', { locale: lang, populate: { guidelines: DOWNLOAD, seo: true } }, ['funding-page', 'resource']);
+	const { data } = await strapiGet<Single<FundingPage>>('/funding-page', { locale: lang, populate: { guidelines: DOWNLOAD, seo: SEO_QUERY } }, ['funding-page', 'resource']);
 
 	return data;
 }
 
 export async function getPartnershipsPage(lang: Locale) {
-	const { data } = await strapiGet<Single<PartnershipsPage>>('/partnerships-page', { locale: lang, populate: { seo: true } }, ['partnerships-page']);
+	const { data } = await strapiGet<Single<PartnershipsPage>>('/partnerships-page', { locale: lang, populate: { seo: SEO_QUERY } }, ['partnerships-page']);
 
 	return data;
 }

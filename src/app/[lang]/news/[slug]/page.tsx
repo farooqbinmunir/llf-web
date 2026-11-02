@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { withoutBreaks } from '@/components/helpers/text-with-breaks';
+import StructuredData from '@/components/helpers/structured-data';
 import SingleNews from '@/components/views/single-news';
 import { hasLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
+import { getGlobal } from '@/lib/data/global';
 import { getNewsItem, getNewsSlugs, getRelatedNews } from '@/lib/data/news';
+import { articleData, pageMetadata, translatedPaths } from '@/lib/metadata';
 
 const RELATED_LIMIT = 3;
 
@@ -25,17 +28,32 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/news/[slug
 	const news = await getNewsItem(lang, slug);
 	if (!news) return {};
 
-	return { title: news.seo?.metaTitle ?? withoutBreaks(news.title), description: news.seo?.metaDescription ?? news.excerpt ?? undefined };
+	return pageMetadata(lang, {
+		path: `/news/${news.slug}`,
+		paths: translatedPaths(lang, '/news', news),
+		seo: news.seo,
+		title: withoutBreaks(news.title),
+		description: news.excerpt,
+		image: news.coverImage,
+		publishedTime: news.publishDate,
+	});
 }
 
 export default async function NewsItemPage({ params }: PageProps<'/[lang]/news/[slug]'>) {
 	const { lang, slug } = await params;
 	if (!hasLocale(lang)) notFound();
 
-	const [news, dictionary] = await Promise.all([getNewsItem(lang, slug), getDictionary(lang)]);
+	const [news, dictionary, site] = await Promise.all([getNewsItem(lang, slug), getDictionary(lang), getGlobal(lang)]);
 	if (!news) notFound();
 
 	const related = await getRelatedNews(lang, news, RELATED_LIMIT);
 
-	return <SingleNews lang={lang} news={news} related={related} dictionary={dictionary} />;
+	const article = { title: withoutBreaks(news.title), description: news.excerpt, image: news.coverImage, publishDate: news.publishDate };
+
+	return (
+		<>
+			<SingleNews lang={lang} news={news} related={related} dictionary={dictionary} />
+			<StructuredData data={articleData(lang, `/news/${news.slug}`, site, article, 'NewsArticle')} />
+		</>
+	);
 }

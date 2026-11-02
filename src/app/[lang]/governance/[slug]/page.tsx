@@ -10,6 +10,7 @@ import { hasLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getGovernanceBodies } from '@/lib/data/about';
 import { getGovernanceBody, getGovernancePeople } from '@/lib/data/governance';
+import { pageMetadata, translatedPaths } from '@/lib/metadata';
 
 // People and the Explore cards: three across from lg up, two from sm.
 const THIRD_COLUMNS = 'col-12 col-sm-6 col-lg-4';
@@ -32,7 +33,13 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/governance
 	const body = await getGovernanceBody(lang, slug);
 	if (!body) return {};
 
-	return { title: body.name, description: body.description ?? undefined };
+	return pageMetadata(lang, {
+		path: `/governance/${body.slug}`,
+		paths: translatedPaths(lang, '/governance', body),
+		title: body.name,
+		description: body.description,
+		image: body.image,
+	});
 }
 
 export default async function GovernancePage({ params }: PageProps<'/[lang]/governance/[slug]'>) {

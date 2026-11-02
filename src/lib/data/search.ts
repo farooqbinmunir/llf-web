@@ -1,4 +1,5 @@
 import { localisedPath, type Locale } from '@/i18n/config';
+import { SEO_QUERY } from '@/lib/data/global';
 import { getPages } from '@/lib/data/pages';
 import { PROJECT_CARD_QUERY, type ProjectCard } from '@/lib/data/projects';
 import { RESOURCE_CARD_QUERY, type ResourceCard } from '@/lib/data/resources';
@@ -51,7 +52,7 @@ const anyOf = (query: string, fields: string[]) => ({
 });
 
 export async function getSearchPage(lang: Locale) {
-	const { data } = await strapiGet<Single<SearchPage>>('/search-page', { locale: lang, populate: { quickLinks: true, seo: true } }, ['search-page']);
+	const { data } = await strapiGet<Single<SearchPage>>('/search-page', { locale: lang, populate: { quickLinks: true, seo: SEO_QUERY } }, ['search-page']);
 
 	return data;
 }

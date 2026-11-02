@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import SinglePage from '@/components/views/single-page';
 import { hasLocale } from '@/i18n/config';
 import { getPage, getPages } from '@/lib/data/pages';
+import { pageMetadata, translatedPaths } from '@/lib/metadata';
 
 // Generic pages live at the site's top level (/privacy-policy). The route catches every path no other route matches, so
 // an unknown address of any depth reaches `notFound()` and the branded 404 inside the site's layout. As for the detail
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/[...slug]'
 	const page = await getPage(lang, slug[0]);
 	if (!page) return {};
 
-	return { title: page.seo?.metaTitle ?? page.title, description: page.seo?.metaDescription ?? page.intro ?? undefined };
+	return pageMetadata(lang, { path: `/${page.slug}`, paths: translatedPaths(lang, '', page), seo: page.seo, title: page.title, description: page.intro });
 }
 
 export default async function GenericPage({ params }: PageProps<'/[lang]/[...slug]'>) {

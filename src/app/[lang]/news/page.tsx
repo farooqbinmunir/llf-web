@@ -8,6 +8,7 @@ import TemplateListingPage, { TemplateListingResults } from '@/components/views/
 import { hasLocale, localisedPath, type Locale } from '@/i18n/config';
 import { getDictionary, type Dictionary } from '@/i18n/dictionaries';
 import { getNews, getNewsFilterOptions, getNewsPage, type NewsFilters } from '@/lib/data/news';
+import { pageMetadata } from '@/lib/metadata';
 import { readParam, withQuery, type SearchParams } from '@/lib/search-params';
 
 const PAGE_SIZE = 9;
@@ -76,7 +77,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/news'>): P
 
 	const page = await getNewsPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription ?? page?.hero?.text ?? undefined };
+	return pageMetadata(lang, { path: '/news', seo: page?.seo, title: page?.title, description: page?.hero?.text, image: page?.hero?.image });
 }
 
 export default async function NewsPage({ params, searchParams }: PageProps<'/[lang]/news'>) {

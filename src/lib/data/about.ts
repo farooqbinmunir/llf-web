@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY } from '@/lib/data/global';
 import { strapiGet } from '@/lib/strapi/client';
 import type { CardGroup, Collection, Media, SectionHeader, Seo, Single, Stat, Taxonomy } from '@/lib/strapi/types';
 
@@ -53,7 +54,7 @@ export async function getAboutPage(lang: Locale) {
 				partners: true,
 				countries: true,
 				partnerWithUs: CARD_GROUP,
-				seo: true,
+				seo: SEO_QUERY,
 			},
 		},
 		['about-page', 'person-group'],

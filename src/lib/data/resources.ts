@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY } from '@/lib/data/global';
 import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
 import type { Collection, Media, PageHero, Seo, Single, Taxonomy } from '@/lib/strapi/types';
@@ -28,7 +29,7 @@ export const RESOURCE_CARD_QUERY = { fields: ['title', 'publishDate', 'externalU
 const SORT = ['publishDate:desc', 'title:asc'];
 
 export async function getLibraryPage(lang: Locale) {
-	const { data } = await strapiGet<Single<LibraryPage>>('/library-page', { locale: lang, populate: { hero: true, seo: true } }, ['library-page']);
+	const { data } = await strapiGet<Single<LibraryPage>>('/library-page', { locale: lang, populate: { hero: true, seo: SEO_QUERY } }, ['library-page']);
 
 	return data;
 }

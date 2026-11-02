@@ -5,6 +5,7 @@ import PageFooter from '@/components/global/page-footer/page-footer';
 import PageHeader from '@/components/global/page-header/page-header';
 import { hasLocale, localeDetails, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
+import { getGlobal } from '@/lib/data/global';
 import '@/styles/main.scss';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -18,9 +19,14 @@ export async function generateMetadata({ params }: LayoutProps<'/[lang]'>): Prom
 	const { lang } = await params;
 	if (!hasLocale(lang)) return {};
 
-	const { meta } = await getDictionary(lang);
+	const site = await getGlobal(lang);
 
-	return { title: { default: meta.siteName, template: `%s | ${meta.siteName}` }, description: meta.description };
+	// The base turns the pages' relative canonical and Open Graph addresses into full URLs.
+	return {
+		metadataBase: new URL(`${process.env.SITE_URL}`),
+		title: site && { default: site.siteName, template: `%s | ${site.siteName}` },
+		description: site?.siteDescription,
+	};
 }
 
 export default async function RootLayout({ children, params }: LayoutProps<'/[lang]'>) {

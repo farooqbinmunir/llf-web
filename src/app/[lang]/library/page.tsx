@@ -12,6 +12,7 @@ import { hasLocale, localisedPath, type Locale } from '@/i18n/config';
 import { getDictionary, type Dictionary } from '@/i18n/dictionaries';
 import { getLatestNews } from '@/lib/data/news';
 import { getLibraryPage, getResources, getResourceTypes } from '@/lib/data/resources';
+import { pageMetadata } from '@/lib/metadata';
 import { readParam, withQuery, type SearchParams } from '@/lib/search-params';
 
 const PAGE_SIZE = 18;
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/library'>)
 
 	const page = await getLibraryPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription ?? page?.hero?.text ?? undefined };
+	return pageMetadata(lang, { path: '/library', seo: page?.seo, title: page?.title, description: page?.hero?.text, image: page?.hero?.image });
 }
 
 export default async function LibraryPage({ params, searchParams }: PageProps<'/[lang]/library'>) {

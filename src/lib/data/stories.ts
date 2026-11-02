@@ -1,7 +1,8 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY, TRANSLATIONS_QUERY } from '@/lib/data/global';
 import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
-import type { BlocksNode, BodySection, Collection, Media, PageHero, Seo, Single, Taxonomy } from '@/lib/strapi/types';
+import type { BlocksNode, BodySection, Collection, Media, PageHero, Seo, Single, Taxonomy, Translation } from '@/lib/strapi/types';
 
 export type StoryCard = {
 	documentId: string;
@@ -31,6 +32,7 @@ export type StoryDetail = StoryCard & {
 	body: BodySection[];
 	footnotes: BlocksNode[] | null;
 	seo: Seo | null;
+	localizations: Translation[];
 };
 
 export type StoriesPage = {
@@ -59,7 +61,7 @@ export const STORY_CARD_QUERY = { fields: CARD_FIELDS, populate: CARD_POPULATE }
 const SORT = ['publishDate:desc', 'title:asc'];
 
 export async function getStoriesPage(lang: Locale) {
-	const { data } = await strapiGet<Single<StoriesPage>>('/stories-page', { locale: lang, populate: { hero: true, seo: true } }, ['stories-page']);
+	const { data } = await strapiGet<Single<StoriesPage>>('/stories-page', { locale: lang, populate: { hero: true, seo: SEO_QUERY } }, ['stories-page']);
 
 	return data;
 }
@@ -124,7 +126,8 @@ export async function getStory(lang: Locale, slug: string) {
 						'shared.highlight': { populate: { quote: { populate: { photo: { fields: MEDIA_FIELDS } } } } },
 					},
 				},
-				seo: true,
+				seo: SEO_QUERY,
+				localizations: TRANSLATIONS_QUERY,
 			},
 			pagination: { page: 1, pageSize: 1 },
 		},

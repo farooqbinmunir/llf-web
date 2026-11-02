@@ -5,6 +5,7 @@ import Search, { SearchLoading } from '@/components/views/search';
 import { hasLocale, localisedPath, type Locale } from '@/i18n/config';
 import { getDictionary, type Dictionary } from '@/i18n/dictionaries';
 import { getSearchPage, search, SEARCH_GROUPS, type SearchGroupKey, type SearchPage as SearchPageContent } from '@/lib/data/search';
+import { pageMetadata } from '@/lib/metadata';
 import { readParam, withQuery, type SearchParams } from '@/lib/search-params';
 
 // Each group shows its first few results until the type pills narrow the results to it; then it pages in tens, up to
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/search'>):
 
 	const page = await getSearchPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription ?? page?.intro ?? undefined };
+	return pageMetadata(lang, { path: '/search', seo: page?.seo, title: page?.title, description: page?.intro });
 }
 
 export default async function SearchPage({ params, searchParams }: PageProps<'/[lang]/search'>) {

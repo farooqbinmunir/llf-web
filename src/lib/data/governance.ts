@@ -1,7 +1,8 @@
 import type { Locale } from '@/i18n/config';
 import type { GovernanceBody } from '@/lib/data/about';
+import { TRANSLATIONS_QUERY } from '@/lib/data/global';
 import { strapiGet } from '@/lib/strapi/client';
-import type { Collection, Media, Taxonomy } from '@/lib/strapi/types';
+import type { Collection, Media, Taxonomy, Translation } from '@/lib/strapi/types';
 
 export type Person = {
 	documentId: string;
@@ -20,9 +21,14 @@ const MEDIA_FIELDS = ['url', 'alternativeText', 'width', 'height'];
 
 // A governance body is a top-level person group, so a child group's slug does not open a page of its own.
 export async function getGovernanceBody(lang: Locale, slug: string) {
-	const { data } = await strapiGet<Collection<GovernanceBody>>(
+	const { data } = await strapiGet<Collection<GovernanceBody & { localizations: Translation[] }>>(
 		'/person-groups',
-		{ locale: lang, fields: ['name', 'slug', 'description'], filters: { slug: { $eq: slug }, parent: { id: { $null: true } } }, populate: { image: { fields: MEDIA_FIELDS } } },
+		{
+			locale: lang,
+			fields: ['name', 'slug', 'description'],
+			filters: { slug: { $eq: slug }, parent: { id: { $null: true } } },
+			populate: { image: { fields: MEDIA_FIELDS }, localizations: TRANSLATIONS_QUERY },
+		},
 		['person-group'],
 	);
 

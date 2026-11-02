@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY } from '@/lib/data/global';
 import { PROJECT_CARD_QUERY, type ProjectCard } from '@/lib/data/projects';
 import { RESOURCE_CARD_QUERY, type ResourceCard } from '@/lib/data/resources';
 import { STORY_CARD_QUERY, type StoryCard } from '@/lib/data/stories';
@@ -43,7 +44,7 @@ export async function getHomePage(lang: Locale) {
 				library: true,
 				featuredResources: RESOURCE_CARD_QUERY,
 				cta: WITH_IMAGE,
-				seo: true,
+				seo: SEO_QUERY,
 			},
 		},
 		['home-page', 'project', 'story', 'resource'],

@@ -15,11 +15,14 @@ import ProjectTileStandard from '@/components/contents/post-types/tiles/project/
 import ResourceTileStandard from '@/components/contents/post-types/tiles/resource/resource-standard';
 import StoryTileSlide from '@/components/contents/post-types/tiles/story/story-slide';
 import StoryTileStandard from '@/components/contents/post-types/tiles/story/story-standard';
+import StructuredData from '@/components/helpers/structured-data';
 import { hasLocale, localisedPath } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getCountries, getPartners } from '@/lib/data/about';
+import { getGlobal } from '@/lib/data/global';
 import { getHomePage } from '@/lib/data/home';
 import { getLatestNews } from '@/lib/data/news';
+import { organisationData, pageMetadata } from '@/lib/metadata';
 import type { SectionHeader } from '@/lib/strapi/types';
 
 const NEWS_COUNT = 3;
@@ -34,15 +37,22 @@ export async function generateMetadata({ params }: PageProps<'/[lang]'>): Promis
 
 	const page = await getHomePage(lang);
 
-	// The site name is the home page's title (the layout's default), unless the editors set one.
-	return { title: page?.seo?.metaTitle, description: page?.seo?.metaDescription ?? page?.hero?.text ?? undefined };
+	// No title, so the site name (the layout's default) is the home page's title, unless the editors set one.
+	return pageMetadata(lang, { path: '/', seo: page?.seo, description: page?.hero?.text, image: page?.hero?.image });
 }
 
 export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 	const { lang } = await params;
 	if (!hasLocale(lang)) notFound();
 
-	const [page, dictionary, partners, countries, news] = await Promise.all([getHomePage(lang), getDictionary(lang), getPartners(lang), getCountries(lang), getLatestNews(lang, NEWS_COUNT)]);
+	const [page, dictionary, partners, countries, news, site] = await Promise.all([
+		getHomePage(lang),
+		getDictionary(lang),
+		getPartners(lang),
+		getCountries(lang),
+		getLatestNews(lang, NEWS_COUNT),
+		getGlobal(lang),
+	]);
 	if (!page) notFound();
 
 	const { home, carousel } = dictionary;
@@ -143,6 +153,8 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 					<ContentBoxBlockCta lang={lang} cta={cta} />
 				</BaseWrapper>
 			)}
+
+			{site && <StructuredData data={organisationData(lang, site)} />}
 		</>
 	);
 }

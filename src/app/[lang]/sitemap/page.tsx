@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import TemplateSitemapPage from '@/components/views/template-sitemap-page';
 import { hasLocale } from '@/i18n/config';
 import { getSitemapPage } from '@/lib/data/pages';
+import { pageMetadata } from '@/lib/metadata';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/sitemap'>): Promise<Metadata> {
 	const { lang } = await params;
@@ -10,7 +11,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/sitemap'>)
 
 	const page = await getSitemapPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription };
+	return pageMetadata(lang, { path: '/sitemap', seo: page?.seo, title: page?.title });
 }
 
 export default async function SitemapPage({ params }: PageProps<'/[lang]/sitemap'>) {

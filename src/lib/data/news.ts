@@ -1,7 +1,8 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY, TRANSLATIONS_QUERY } from '@/lib/data/global';
 import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
-import type { BodySection, Collection, Media, PageHero, Seo, Single, Taxonomy } from '@/lib/strapi/types';
+import type { BodySection, Collection, Media, PageHero, Seo, Single, Taxonomy, Translation } from '@/lib/strapi/types';
 
 export type NewsCard = {
 	documentId: string;
@@ -19,6 +20,7 @@ export type NewsDetail = NewsCard & {
 	focusAreas: Taxonomy[];
 	body: BodySection[];
 	seo: Seo | null;
+	localizations: Translation[];
 };
 
 export type NewsPage = {
@@ -40,7 +42,7 @@ const CARD_POPULATE = { coverImage: { fields: MEDIA_FIELDS } };
 const SORT = ['publishDate:desc', 'title:asc'];
 
 export async function getNewsPage(lang: Locale) {
-	const { data } = await strapiGet<Single<NewsPage>>('/news-page', { locale: lang, populate: { hero: true, seo: true } }, ['news-page']);
+	const { data } = await strapiGet<Single<NewsPage>>('/news-page', { locale: lang, populate: { hero: true, seo: SEO_QUERY } }, ['news-page']);
 
 	return data;
 }
@@ -123,7 +125,8 @@ export async function getNewsItem(lang: Locale, slug: string) {
 						'shared.highlight': { populate: { quote: { populate: { photo: { fields: MEDIA_FIELDS } } } } },
 					},
 				},
-				seo: true,
+				seo: SEO_QUERY,
+				localizations: TRANSLATIONS_QUERY,
 			},
 			pagination: { page: 1, pageSize: 1 },
 		},

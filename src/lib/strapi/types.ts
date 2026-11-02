@@ -106,7 +106,11 @@ export type BodySection =
 export type Seo = {
 	metaTitle: string;
 	metaDescription: string;
+	shareImage: Media | null;
 };
+
+// The same entry in another language. Slugs are per locale, so a translation may live at a different address.
+export type Translation = { slug: string; locale: string };
 
 export type Single<T> = { data: T | null };
 

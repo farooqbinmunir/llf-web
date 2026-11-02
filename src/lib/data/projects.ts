@@ -1,7 +1,8 @@
 import type { Locale } from '@/i18n/config';
+import { SEO_QUERY, TRANSLATIONS_QUERY } from '@/lib/data/global';
 import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
-import type { BlocksNode, BodySection, CallToAction, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial } from '@/lib/strapi/types';
+import type { BlocksNode, BodySection, CallToAction, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial, Translation } from '@/lib/strapi/types';
 
 export type ProjectCard = {
 	documentId: string;
@@ -32,6 +33,7 @@ export type ProjectDetail = ProjectCard & {
 	financing: FinancingGroup[];
 	testimonials: Testimonial[];
 	seo: Seo | null;
+	localizations: Translation[];
 };
 
 export type ProjectsPage = {
@@ -72,7 +74,7 @@ export async function getProjectsPage(lang: Locale) {
 				hero: { populate: { image: { fields: MEDIA_FIELDS } } },
 				impactStats: true,
 				cta: { populate: { image: { fields: MEDIA_FIELDS } } },
-				seo: true,
+				seo: SEO_QUERY,
 			},
 		},
 		['projects-page'],
@@ -147,7 +149,8 @@ export async function getProject(lang: Locale, slug: string) {
 				progress: true,
 				financing: { populate: { lines: { populate: { partner: { fields: ['name'] } } } } },
 				testimonials: { populate: { photo: { fields: MEDIA_FIELDS } } },
-				seo: true,
+				seo: SEO_QUERY,
+				localizations: TRANSLATIONS_QUERY,
 			},
 			pagination: { page: 1, pageSize: 1 },
 		},

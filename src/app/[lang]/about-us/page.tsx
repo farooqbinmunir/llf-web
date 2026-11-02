@@ -12,6 +12,7 @@ import PersonGroupTileStandard from '@/components/contents/post-types/tiles/pers
 import { hasLocale, resolveHref, type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getAboutPage, getCountries, getFocusAreas, getGovernanceBodies, getPartners } from '@/lib/data/about';
+import { pageMetadata } from '@/lib/metadata';
 import type { CardGroup, SectionHeader } from '@/lib/strapi/types';
 
 // The cards' column: four across from lg up, two from md, one on mobile.
@@ -55,7 +56,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/about-us'>
 
 	const page = await getAboutPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription ?? page?.intro?.text ?? undefined };
+	return pageMetadata(lang, { path: '/about-us', seo: page?.seo, title: page?.title, description: page?.intro?.text, image: page?.intro?.image });
 }
 
 export default async function AboutPage({ params }: PageProps<'/[lang]/about-us'>) {

@@ -10,6 +10,7 @@ import DownloadLink from '@/components/helpers/download-link';
 import { hasLocale, resolveHref } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getContactPage } from '@/lib/data/contact';
+import { pageMetadata } from '@/lib/metadata';
 
 // The cards sit in the middle two-thirds of the page, as in the design; Follow LLF and Stay informed share a row from md up.
 const NARROW_COLUMN = 'col-12 col-lg-8 offset-lg-2';
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/contact'>)
 
 	const page = await getContactPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? page?.title, description: page?.seo?.metaDescription ?? page?.intro ?? undefined };
+	return pageMetadata(lang, { path: '/contact', seo: page?.seo, title: page?.title, description: page?.intro });
 }
 
 export default async function ContactPage({ params }: PageProps<'/[lang]/contact'>) {

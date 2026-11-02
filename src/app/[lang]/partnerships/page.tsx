@@ -4,6 +4,7 @@ import { withoutBreaks } from '@/components/helpers/text-with-breaks';
 import TemplatePartnershipsPage from '@/components/views/template-partnerships-page';
 import { hasLocale } from '@/i18n/config';
 import { getPartnershipsPage } from '@/lib/data/contact';
+import { pageMetadata } from '@/lib/metadata';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/partnerships'>): Promise<Metadata> {
 	const { lang } = await params;
@@ -11,7 +12,7 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/partnershi
 
 	const page = await getPartnershipsPage(lang);
 
-	return { title: page?.seo?.metaTitle ?? (page && withoutBreaks(page.title)), description: page?.seo?.metaDescription ?? page?.lead ?? undefined };
+	return pageMetadata(lang, { path: '/partnerships', seo: page?.seo, title: page && withoutBreaks(page.title), description: page?.lead });
 }
 
 export default async function PartnershipsPage({ params }: PageProps<'/[lang]/partnerships'>) {

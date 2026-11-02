@@ -6,6 +6,7 @@ import { hasLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getProject, getProjectSlugs, getRelatedProjects } from '@/lib/data/projects';
 import { getRelatedStories } from '@/lib/data/stories';
+import { pageMetadata, translatedPaths } from '@/lib/metadata';
 
 const RELATED_LIMIT = 8;
 
@@ -26,7 +27,14 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/our-projec
 	const project = await getProject(lang, slug);
 	if (!project) return {};
 
-	return { title: project.seo?.metaTitle ?? withoutBreaks(project.title), description: project.seo?.metaDescription ?? project.summary ?? undefined };
+	return pageMetadata(lang, {
+		path: `/our-projects/${project.slug}`,
+		paths: translatedPaths(lang, '/our-projects', project),
+		seo: project.seo,
+		title: withoutBreaks(project.title),
+		description: project.summary,
+		image: project.heroImage,
+	});
 }
 
 export default async function ProjectPage({ params }: PageProps<'/[lang]/our-projects/[slug]'>) {
