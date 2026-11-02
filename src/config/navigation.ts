@@ -1,4 +1,5 @@
 import type { Dictionary } from '@/i18n/dictionaries';
+import type { SocialNetwork } from '@/lib/data/global';
 
 type NavKey = keyof Dictionary['nav'];
 type FooterKey = keyof Dictionary['footer'];
@@ -51,11 +52,11 @@ export const legalNavigation: NavItem[] = [
 	{ key: 'sitemap', href: '/sitemap' },
 ];
 
-// TODO - Replace the placeholder URLs with LLF's real accounts, ideally managed from the Strapi `global` single type.
-export const socialLinks = [
-	{ network: 'linkedin', label: 'LinkedIn', href: '#' },
-	{ network: 'facebook', label: 'Facebook', href: '#' },
-	{ network: 'x', label: 'X', href: '#' },
-	{ network: 'instagram', label: 'Instagram', href: '#' },
-	{ network: 'youtube', label: 'YouTube', href: '#' },
-] as const;
+// The accounts themselves are set in Strapi's Global settings; each network's name labels its icon in every language.
+export const socialNetworkNames: Record<SocialNetwork, string> = {
+	linkedin: 'LinkedIn',
+	facebook: 'Facebook',
+	x: 'X',
+	instagram: 'Instagram',
+	youtube: 'YouTube',
+};

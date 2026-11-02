@@ -5,6 +5,7 @@ import FooterUtilityNavigation from '@/components/global/navigation/footer-utili
 import Logo from '@/components/global/svg/logo';
 import { localisedPath, type Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
+import { getGlobal } from '@/lib/data/global';
 
 type PageFooterProps = { lang: Locale; dictionary: Dictionary };
 
@@ -14,6 +15,7 @@ export default async function PageFooter({ lang, dictionary }: PageFooterProps) 
 	cacheLife('days');
 
 	const { a11y, footer, nav } = dictionary;
+	const site = await getGlobal(lang);
 
 	return (
 		<footer className="rsg-page-footer rsg-surface-dark">
@@ -27,7 +29,7 @@ export default async function PageFooter({ lang, dictionary }: PageFooterProps) 
 					</div>
 
 					<div className="col-12 col-lg-8 rsg-col-links">
-						<FooterNavigation lang={lang} label={a11y.footerNavigation} socialLabel={a11y.socialNavigation} footer={footer} nav={nav} />
+						<FooterNavigation lang={lang} label={a11y.footerNavigation} socialLabel={a11y.socialNavigation} socialLinks={site?.socialLinks ?? []} footer={footer} nav={nav} />
 					</div>
 				</div>
 

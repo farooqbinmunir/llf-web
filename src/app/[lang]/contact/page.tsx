@@ -10,6 +10,7 @@ import DownloadLink from '@/components/helpers/download-link';
 import { hasLocale, resolveHref } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getContactPage } from '@/lib/data/contact';
+import { getGlobal } from '@/lib/data/global';
 import { pageMetadata } from '@/lib/metadata';
 
 // The cards sit in the middle two-thirds of the page, as in the design; Follow LLF and Stay informed share a row from md up.
@@ -29,7 +30,7 @@ export default async function ContactPage({ params }: PageProps<'/[lang]/contact
 	const { lang } = await params;
 	if (!hasLocale(lang)) notFound();
 
-	const [page, dictionary] = await Promise.all([getContactPage(lang), getDictionary(lang)]);
+	const [page, dictionary, site] = await Promise.all([getContactPage(lang), getDictionary(lang), getGlobal(lang)]);
 	if (!page) notFound();
 
 	const channels = page.channels.map((channel) => ({
@@ -56,7 +57,7 @@ export default async function ContactPage({ params }: PageProps<'/[lang]/contact
 		colClasses: HALF_COLUMN,
 		content: (
 			<ContentBoxBlockInline title={page.followTitle} icon="share" surface="rsg-surface-light-4" classes="boxed">
-				<SocialNavigation label={dictionary.a11y.socialNavigation} withLabels />
+				<SocialNavigation label={dictionary.a11y.socialNavigation} links={site?.socialLinks ?? []} withLabels />
 			</ContentBoxBlockInline>
 		),
 	};

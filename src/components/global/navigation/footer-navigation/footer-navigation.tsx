@@ -3,12 +3,13 @@ import SocialNavigation from '@/components/global/navigation/social-navigation/s
 import { footerNavigation } from '@/config/navigation';
 import { localisedPath, type Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
+import type { SocialLink } from '@/lib/data/global';
 import FooterColumn from './footer-column';
 
-type FooterNavigationProps = { lang: Locale; label: string; socialLabel: string; footer: Dictionary['footer']; nav: Dictionary['nav'] };
+type FooterNavigationProps = { lang: Locale; label: string; socialLabel: string; socialLinks: SocialLink[]; footer: Dictionary['footer']; nav: Dictionary['nav'] };
 
 // The link columns, then the fixed "Get in touch" column with the contact link and the social icons.
-export default function FooterNavigation({ lang, label, socialLabel, footer, nav }: FooterNavigationProps) {
+export default function FooterNavigation({ lang, label, socialLabel, socialLinks, footer, nav }: FooterNavigationProps) {
 	return (
 		<nav className="rsg-footer-navigation" aria-label={label}>
 			{footerNavigation.map(({ heading, items }) => (
@@ -29,7 +30,7 @@ export default function FooterNavigation({ lang, label, socialLabel, footer, nav
 					{nav.contact}
 				</Link>
 
-				<SocialNavigation label={socialLabel} />
+				<SocialNavigation label={socialLabel} links={socialLinks} />
 			</div>
 		</nav>
 	);
