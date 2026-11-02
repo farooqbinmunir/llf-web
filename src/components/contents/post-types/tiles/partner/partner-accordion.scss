@@ -1,10 +1,18 @@
 @use 'abstracts' as *;
 
-// The text and the logo and website row run the width of the panel, as in the design.
+// The text and the logo and website row take ten of the panel's twelve columns from md up, leaving the design's space at
+// the inline end; on mobile they run the full width.
 .tile.partner.accordion {
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-32);
+
+	.rsg-text,
+	.rsg-footer {
+		@include media-breakpoint-up(md) {
+			@include make-col(10);
+		}
+	}
 
 	.rsg-text {
 		margin: 0;
