@@ -1,9 +1,12 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-// The header's height, from the same tokens as its logo, padding and border, so a full-screen section can leave room for it.
+// The header's height, from the same tokens as its logo, padding and border, so a full-screen section can leave room for it
+// and an anchor link (`/about-us#partners`) scrolls its target clear of the sticky header.
 :root {
 	--page-header-block-size: calc(var(--spacing-48) + 2 * var(--spacing-16) + #{map.get($border-widths, 4)});
+
+	scroll-padding-block-start: calc(var(--page-header-block-size) + var(--spacing-24));
 
 	@include media-breakpoint-up(xl) {
 		--page-header-block-size: calc(var(--spacing-48) + 2 * var(--spacing-24) + #{map.get($border-widths, 4)});
