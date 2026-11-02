@@ -1,0 +1,42 @@
+@use 'abstracts' as *;
+
+// The newsletter sign-up: the email field with Subscribe under it at the end, as a text action in the accent colour.
+.rsg-form-newsletter {
+	form {
+		display: grid;
+		gap: var(--spacing-16);
+	}
+
+	.rsg-form-control {
+		border-radius: var(--border-radius-md);
+	}
+
+	.rsg-form-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: var(--spacing-16);
+	}
+
+	.rsg-subscribe {
+		min-block-size: var(--rsg-control-size);
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		color: var(--rsg-button-text-colour);
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:disabled {
+			cursor: progress;
+		}
+	}
+
+	// The status region is in the page from the start, so screen readers announce the confirmation when it appears.
+	.rsg-form-status:empty {
+		display: none;
+	}
+}

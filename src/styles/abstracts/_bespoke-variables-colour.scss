@@ -29,8 +29,15 @@ $brand-colours: (
 	),
 );
 
+// Form feedback, outside the brand palettes. Each red passes WCAG AA on the surfaces it is used on.
+$feedback-colours: (
+	'error': #b42318,
+	'error-on-dark': #ff9c8f,
+);
+
 :root {
 	@include generate-brand-vars($brand-colours);
+	@include generate-colour-vars($feedback-colours);
 
 	--colour-black: var(--colour-dark-1);
 
@@ -51,6 +58,7 @@ $brand-colours: (
 	--rsg-button-text-colour: var(--rsg-foreground-colour);
 	--rsg-button-background-colour: var(--rsg-brand-colour-4);
 	--rsg-accent-text-colour: var(--colour-black);
+	--rsg-error-colour: var(--colour-error);
 }
 
 @include generate-brand-classes($brand-colours);
@@ -59,6 +67,7 @@ $brand-colours: (
 .rsg-surface-dark {
 	--rsg-label-colour: var(--rsg-brand-colour-2);
 	--rsg-button-text-colour: var(--rsg-brand-colour-2);
+	--rsg-error-colour: var(--colour-error-on-dark);
 }
 
 .rsg-surface-light {

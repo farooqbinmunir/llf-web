@@ -150,6 +150,46 @@
 		"moreNews": "المزيد من الأخبار",
 		"viewAllNews": "عرض جميع الأخبار"
 	},
+	"contact": {
+		"download": "تنزيل {type}",
+		"viewResource": "عرض المورد",
+		"opensInNewTab": "(يفتح في علامة تبويب جديدة)",
+		"backToContact": "العودة إلى صفحة الاتصال"
+	},
+	"forms": {
+		"optional": "(اختياري)",
+		"name": "الاسم الكامل",
+		"email": "البريد الإلكتروني",
+		"organisation": "المؤسسة",
+		"topic": "الموضوع",
+		"message": "الرسالة",
+		"topics": {
+			"general": "استفسار عام",
+			"financing": "تمويل المشاريع",
+			"media": "الإعلام والصحافة",
+			"partnership": "شراكة"
+		},
+		"send": "إرسال الرسالة",
+		"sending": "جارٍ الإرسال…",
+		"newsletterEmail": "البريد الإلكتروني",
+		"newsletterPlaceholder": "بريدك الإلكتروني",
+		"subscribe": "اشترك",
+		"subscribing": "جارٍ الاشتراك…",
+		"honeypot": "اترك هذا الحقل فارغًا",
+		"errorSummary": "هناك مشكلة",
+		"errors": {
+			"required": {
+				"name": "أدخل اسمك الكامل",
+				"email": "أدخل بريدك الإلكتروني",
+				"topic": "اختر موضوعًا",
+				"message": "أدخل رسالتك"
+			},
+			"emailInvalid": "أدخل بريدًا إلكترونيًا بصيغة name@example.com",
+			"tooLong": "{field}: {max} حرف كحد أقصى"
+		},
+		"failed": "عذرًا، تعذّر الإرسال. يُرجى المحاولة لاحقًا.",
+		"subscribeFailed": "عذرًا، تعذّر الاشتراك. يُرجى المحاولة لاحقًا."
+	},
 	"videoPlayer": {
 		"play": "تشغيل",
 		"pause": "إيقاف مؤقت",

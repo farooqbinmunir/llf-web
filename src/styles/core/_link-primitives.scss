@@ -31,3 +31,16 @@
 		color: var(--rsg-accent-text-colour);
 	}
 }
+
+// A button that opens the enquiry form carries an envelope, as the Contact and Partnerships designs show.
+.rsg-button.rsg-fa.message::before {
+	@include icon($fa-var-envelope);
+
+	color: var(--rsg-brand-colour-2);
+
+	transition: color var(--speed-fast) var(--transition-ease);
+}
+
+.rsg-button.rsg-fa.message:hover::before {
+	color: inherit;
+}

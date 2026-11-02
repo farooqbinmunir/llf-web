@@ -150,6 +150,46 @@
 		"moreNews": "More news",
 		"viewAllNews": "View all news"
 	},
+	"contact": {
+		"download": "Download {type}",
+		"viewResource": "View resource",
+		"opensInNewTab": "(opens in a new tab)",
+		"backToContact": "Back to Contact"
+	},
+	"forms": {
+		"optional": "(optional)",
+		"name": "Full name",
+		"email": "Email address",
+		"organisation": "Organisation",
+		"topic": "Topic",
+		"message": "Message",
+		"topics": {
+			"general": "General enquiry",
+			"financing": "Project financing",
+			"media": "Media and press",
+			"partnership": "Partnership"
+		},
+		"send": "Send message",
+		"sending": "Sending…",
+		"newsletterEmail": "Email address",
+		"newsletterPlaceholder": "Your email address",
+		"subscribe": "Subscribe",
+		"subscribing": "Subscribing…",
+		"honeypot": "Leave this field empty",
+		"errorSummary": "There is a problem",
+		"errors": {
+			"required": {
+				"name": "Enter your full name",
+				"email": "Enter your email address",
+				"topic": "Choose a topic",
+				"message": "Enter your message"
+			},
+			"emailInvalid": "Enter an email address like name@example.com",
+			"tooLong": "{field} must be {max} characters or fewer"
+		},
+		"failed": "Sorry, we could not send this. Please try again later.",
+		"subscribeFailed": "Sorry, we could not subscribe you. Please try again later."
+	},
 	"videoPlayer": {
 		"play": "Play",
 		"pause": "Pause",

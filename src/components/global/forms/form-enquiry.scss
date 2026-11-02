@@ -1,0 +1,56 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+// The enquiry form, on a card like the Contact page's: name and email side by side from md up, then organisation and
+// topic, then the message across both.
+.rsg-form-enquiry {
+	display: grid;
+	gap: var(--spacing-32);
+
+	padding: var(--spacing-24);
+
+	border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+	border-radius: var(--border-radius-base);
+
+	@include media-breakpoint-up(md) {
+		padding: var(--spacing-40);
+	}
+
+	.rsg-form-fields {
+		display: grid;
+		gap: var(--spacing-24);
+
+		@include media-breakpoint-up(md) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.rsg-form-field:has(textarea) {
+		grid-column: 1 / -1;
+	}
+
+	.rsg-form-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--spacing-24);
+	}
+
+	.rsg-button:disabled {
+		cursor: progress;
+	}
+
+	// The confirmation that replaces the form. It takes focus, so it needs no outline of its own beyond the card.
+	&.is-sent {
+		justify-items: start;
+		gap: var(--spacing-16);
+
+		.rsg-title {
+			font-size: var(--font-size-lg);
+		}
+
+		.rsg-button {
+			margin-block-start: var(--spacing-16);
+		}
+	}
+}

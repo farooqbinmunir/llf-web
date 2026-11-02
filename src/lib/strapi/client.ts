@@ -36,5 +36,18 @@ export async function strapiGet<T>(path: string, query: { [key: string]: QueryVa
 	return response.json();
 }
 
+// Stores a form submission. The forms token may only create enquiries and newsletter sign-ups, so it never leaves the
+// server. Strapi's answer is returned as it is, for the caller to tell a rejected value from an outage.
+export async function strapiCreate(path: string, data: Record<string, string>) {
+	const token = process.env.STRAPI_FORMS_TOKEN;
+	if (!STRAPI_URL || !token) throw new Error('STRAPI_URL or STRAPI_FORMS_TOKEN is not set. See .env.example.');
+
+	return fetch(`${STRAPI_URL}/api${path}`, {
+		method: 'POST',
+		headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+		body: JSON.stringify({ data }),
+	});
+}
+
 // Strapi returns upload URLs relative to the CMS when files are stored locally.
 export const strapiMediaUrl = (url: string) => (url.startsWith('http') ? url : `${STRAPI_URL}${url}`);

@@ -150,6 +150,46 @@
 		"moreNews": "Autres actualités",
 		"viewAllNews": "Toutes les actualités"
 	},
+	"contact": {
+		"download": "Télécharger le {type}",
+		"viewResource": "Voir la ressource",
+		"opensInNewTab": "(s'ouvre dans un nouvel onglet)",
+		"backToContact": "Retour à la page Contact"
+	},
+	"forms": {
+		"optional": "(facultatif)",
+		"name": "Nom complet",
+		"email": "Adresse e-mail",
+		"organisation": "Organisation",
+		"topic": "Sujet",
+		"message": "Message",
+		"topics": {
+			"general": "Demande générale",
+			"financing": "Financement de projets",
+			"media": "Médias et presse",
+			"partnership": "Partenariat"
+		},
+		"send": "Envoyer le message",
+		"sending": "Envoi…",
+		"newsletterEmail": "Adresse e-mail",
+		"newsletterPlaceholder": "Votre adresse e-mail",
+		"subscribe": "S'abonner",
+		"subscribing": "Abonnement…",
+		"honeypot": "Laissez ce champ vide",
+		"errorSummary": "Un problème est survenu",
+		"errors": {
+			"required": {
+				"name": "Saisissez votre nom complet",
+				"email": "Saisissez votre adresse e-mail",
+				"topic": "Choisissez un sujet",
+				"message": "Saisissez votre message"
+			},
+			"emailInvalid": "Saisissez une adresse e-mail du type nom@exemple.com",
+			"tooLong": "{field} : {max} caractères au maximum"
+		},
+		"failed": "Désolé, l'envoi a échoué. Veuillez réessayer plus tard.",
+		"subscribeFailed": "Désolé, l'abonnement a échoué. Veuillez réessayer plus tard."
+	},
 	"videoPlayer": {
 		"play": "Lecture",
 		"pause": "Pause",
