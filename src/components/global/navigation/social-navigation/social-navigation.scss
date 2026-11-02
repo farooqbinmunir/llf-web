@@ -78,9 +78,9 @@ $social-icons: (
 				transition: background-color var(--speed-fast) var(--transition-ease);
 			}
 
+			// The icon turns orange on hover; the name stays plain.
 			&:hover {
 				background-color: transparent;
-				text-decoration: underline;
 
 				&::before {
 					background-color: var(--rsg-brand-colour-2);
