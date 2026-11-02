@@ -119,6 +119,10 @@
 		"readMore": "En savoir plus",
 		"opensInNewTab": "(s'ouvre dans un nouvel onglet)"
 	},
+	"governance": {
+		"label": "Gouvernance et structure",
+		"explore": "Découvrez notre gouvernance et notre structure"
+	},
 	"announcements": {
 		"title": "Dernières annonces",
 		"viewAllNews": "Toutes les actualités"

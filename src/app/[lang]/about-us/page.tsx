@@ -125,7 +125,7 @@ export default async function AboutPage({ params }: PageProps<'/[lang]/about-us'
 			{governance && (
 				<BaseWrapper wrapperClasses="section-wrapper-small section-rounded-top" brand="dark">
 					<GroupedContentBlockStandard
-						heading={{ ...sectionHeading(governance), id: 'about-governance-title' }}
+						heading={{ ...sectionHeading(governance), id: 'governance' }}
 						classes="center-aligned boxed-items"
 						colClasses={THIRD_COLUMNS}
 						items={governanceBodies.map((group) => ({

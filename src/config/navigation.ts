@@ -23,7 +23,7 @@ export const footerNavigation: { heading: FooterKey; items: NavItem[] }[] = [
 			{ key: 'ourProjects', href: '/our-projects' },
 			{ key: 'fromTheField', href: '/field-updates' },
 			{ key: 'ourPartners', href: '/about-us#partners' },
-			{ key: 'governance', href: '/governance' },
+			{ key: 'governance', href: '/about-us#governance' },
 		],
 	},
 	{

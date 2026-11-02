@@ -43,6 +43,7 @@
 @use '../components/contents/post-types/tiles/news/news-slide' as tile-news-slide;
 @use '../components/contents/post-types/tiles/partner/partner-accordion' as tile-partner-accordion;
 @use '../components/contents/post-types/tiles/person-group/person-group-standard' as tile-person-group-standard;
+@use '../components/contents/post-types/tiles/person/person-standard' as tile-person-standard;
 @use '../components/contents/post-types/tiles/project/project-standard' as tile-project-standard;
 @use '../components/contents/post-types/tiles/resource/resource-standard' as tile-resource-standard;
 @use '../components/contents/post-types/tiles/story/story-standard' as tile-story-standard;

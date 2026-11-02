@@ -1,0 +1,52 @@
+@use 'abstracts' as *;
+
+// Square photo, then the name, job title and organisation close together, and the biography set apart below them.
+.tile.person.standard {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-16);
+
+	block-size: 100%;
+
+	.rsg-media-wrapper {
+		overflow: hidden;
+
+		border-radius: var(--border-radius-md);
+	}
+
+	.rsg-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.rsg-title,
+	.rsg-role,
+	.rsg-organisation,
+	.rsg-text {
+		margin: 0;
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-base);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+	}
+
+	.rsg-role,
+	.rsg-organisation {
+		font-size: var(--font-size-sm);
+		line-height: var(--line-height-base);
+	}
+
+	.rsg-role {
+		color: color-mix(in srgb, var(--rsg-foreground-colour) 70%, transparent);
+	}
+
+	.rsg-text {
+		margin-block-start: var(--spacing-16);
+
+		font-size: var(--font-size-sm);
+		line-height: var(--line-height-base);
+	}
+}

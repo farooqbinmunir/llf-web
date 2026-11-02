@@ -119,6 +119,10 @@
 		"readMore": "Read more",
 		"opensInNewTab": "(opens in a new tab)"
 	},
+	"governance": {
+		"label": "Governance & structure",
+		"explore": "Explore our governance & structure"
+	},
 	"announcements": {
 		"title": "Latest announcements",
 		"viewAllNews": "View all news"

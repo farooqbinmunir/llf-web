@@ -119,6 +119,10 @@
 		"readMore": "اقرأ المزيد",
 		"opensInNewTab": "(يُفتح في علامة تبويب جديدة)"
 	},
+	"governance": {
+		"label": "الحوكمة والهيكل",
+		"explore": "اكتشف حوكمتنا وهيكلنا"
+	},
 	"announcements": {
 		"title": "أحدث الإعلانات",
 		"viewAllNews": "عرض جميع الأخبار"
