@@ -31,7 +31,10 @@
 		object-fit: contain;
 	}
 
+	// The website keeps to the inline end, with or without a logo beside it, as in the design.
 	.rsg-link {
+		margin-inline-start: auto;
+
 		font-size: var(--font-size-sm);
 		text-decoration: none;
 		overflow-wrap: anywhere;
