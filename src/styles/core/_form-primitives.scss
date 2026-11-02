@@ -88,6 +88,16 @@ textarea.rsg-form-control {
 	}
 }
 
+// What the form's details are used for, with the privacy policy link, under the fields.
+.rsg-form-privacy {
+	font-size: var(--font-size-xs);
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+}
+
 .rsg-form-error {
 	display: flex;
 	align-items: baseline;

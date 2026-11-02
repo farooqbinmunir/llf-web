@@ -1,4 +1,6 @@
 import type { ReactNode, Ref } from 'react';
+import Link from 'next/link';
+import { localisedPath, type Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import { FIELD_LIMITS, HONEYPOT_FIELD, type FieldError } from '@/lib/forms';
 
@@ -18,6 +20,21 @@ export function errorMessage(labels: FormLabels, field: string, error: FieldErro
 
 // What ties a control to its error: marked invalid, and described by the message under it.
 export const controlProps = (id: string, error: string | undefined) => ({ id, 'aria-invalid': error ? true : undefined, 'aria-describedby': error ? `${id}-error` : undefined });
+
+type PrivacyNoticeProps = { lang: Locale; text: string; linkLabel: string };
+
+// The line under a form that says what its details are used for, with `{link}` in the text as the privacy policy link.
+export function PrivacyNotice({ lang, text, linkLabel }: PrivacyNoticeProps) {
+	const [before, after] = text.split('{link}');
+
+	return (
+		<p className="rsg-form-privacy">
+			{before}
+			<Link href={localisedPath(lang, '/privacy-policy')}>{linkLabel}</Link>
+			{after}
+		</p>
+	);
+}
 
 type FormFieldProps = { id: string; label: string; hint?: string; error?: string; labelClasses?: string; children: ReactNode };
 

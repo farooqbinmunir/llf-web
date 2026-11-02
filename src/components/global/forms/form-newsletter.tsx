@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState, useEffect, useRef } from 'react';
-import { FormField, Honeypot, controlProps, errorMessage } from '@/components/global/forms/form-parts';
+import { FormField, Honeypot, PrivacyNotice, controlProps, errorMessage } from '@/components/global/forms/form-parts';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import { subscribe } from '@/lib/actions/forms';
@@ -46,6 +46,8 @@ export default function FormNewsletter({ lang, successText, labels }: FormNewsle
 					</FormField>
 
 					<Honeypot id="newsletter-website" label={labels.honeypot} />
+
+					<PrivacyNotice lang={lang} text={labels.privacy.newsletter} linkLabel={labels.privacy.link} />
 
 					<div className="rsg-form-buttons">
 						{state.status === 'failed' && (

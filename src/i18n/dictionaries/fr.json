@@ -188,7 +188,12 @@
 			"tooLong": "{field} : {max} caractères au maximum"
 		},
 		"failed": "Désolé, l'envoi a échoué. Veuillez réessayer plus tard.",
-		"subscribeFailed": "Désolé, l'abonnement a échoué. Veuillez réessayer plus tard."
+		"subscribeFailed": "Désolé, l'abonnement a échoué. Veuillez réessayer plus tard.",
+		"privacy": {
+			"enquiry": "Nous utilisons vos coordonnées uniquement pour répondre à votre demande. Consultez notre {link}.",
+			"newsletter": "Nous utilisons votre adresse e-mail uniquement pour vous envoyer les nouvelles du LLF. Consultez notre {link}.",
+			"link": "politique de confidentialité"
+		}
 	},
 	"videoPlayer": {
 		"play": "Lecture",

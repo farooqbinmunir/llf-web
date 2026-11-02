@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useActionState, useEffect, useRef } from 'react';
-import { ErrorSummary, FormField, Honeypot, controlProps, errorMessage } from '@/components/global/forms/form-parts';
+import { ErrorSummary, FormField, Honeypot, PrivacyNotice, controlProps, errorMessage } from '@/components/global/forms/form-parts';
 import { localisedPath, type Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import { sendEnquiry } from '@/lib/actions/forms';
@@ -129,6 +129,8 @@ export default function FormEnquiry({ lang, topic, success, labels, backLabel }:
 			</div>
 
 			<Honeypot id="enquiry-website" label={labels.honeypot} />
+
+			<PrivacyNotice lang={lang} text={labels.privacy.enquiry} linkLabel={labels.privacy.link} />
 
 			<div className="rsg-form-buttons">
 				{/* Disabled while sending, so a second press cannot send the message twice. Focus then moves to the outcome. */}

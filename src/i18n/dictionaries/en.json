@@ -188,7 +188,12 @@
 			"tooLong": "{field} must be {max} characters or fewer"
 		},
 		"failed": "Sorry, we could not send this. Please try again later.",
-		"subscribeFailed": "Sorry, we could not subscribe you. Please try again later."
+		"subscribeFailed": "Sorry, we could not subscribe you. Please try again later.",
+		"privacy": {
+			"enquiry": "We use your details only to answer your enquiry. Read our {link}.",
+			"newsletter": "We use your email address only to send you LLF updates. Read our {link}.",
+			"link": "privacy policy"
+		}
 	},
 	"videoPlayer": {
 		"play": "Play",
