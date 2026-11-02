@@ -1,0 +1,127 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+$title-icons: (
+	'share': $fa-var-share-nodes,
+	'bell': $fa-var-bell,
+);
+
+.content-box-block.inline {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--spacing-16);
+
+	color: var(--rsg-foreground-colour);
+
+	.rsg-media-wrapper {
+		flex: 0 0 auto;
+
+		inline-size: var(--spacing-40);
+	}
+
+	// min-inline-size lets long words wrap inside the flex item instead of overflowing the box.
+	.rsg-content-wrapper {
+		display: grid;
+		flex: 1 1 0;
+		gap: var(--spacing-12);
+
+		min-inline-size: 0;
+	}
+
+	.rsg-title {
+		font-size: var(--font-size-md);
+		font-weight: var(--font-weight-semibold);
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-lg);
+		}
+
+		&.rsg-fa::before {
+			margin-inline-end: var(--spacing-12);
+
+			color: var(--rsg-brand-colour-2);
+		}
+
+		@each $name, $glyph in $title-icons {
+			&.#{$name}::before {
+				@include icon($glyph);
+			}
+		}
+	}
+
+	.rsg-text {
+		font-size: var(--font-size-sm);
+		line-height: var(--line-height-base);
+	}
+
+	// The links sit in a row from md up. On mobile they stack, with a download above the button, as the design has it.
+	.rsg-link-list {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		gap: var(--spacing-24);
+
+		margin-block-start: var(--spacing-16);
+
+		@include media-breakpoint-up(md) {
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+	}
+
+	// The download names its file type, with the file mark after it. The title, when shown, sits above it on mobile and
+	// before a divider from md up.
+	.rsg-link.download {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-4);
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		text-decoration: none;
+
+		@include media-breakpoint-up(md) {
+			flex-direction: row;
+			align-items: center;
+			gap: var(--spacing-8);
+
+			.rsg-link-title + .rsg-action {
+				padding-inline-start: var(--spacing-8);
+
+				border-inline-start: map.get($border-widths, 1) solid currentColor;
+			}
+		}
+
+		.rsg-action::after {
+			@include icon($fa-var-file-lines);
+
+			margin-inline-start: var(--spacing-8);
+
+			color: var(--rsg-brand-colour-2);
+		}
+
+		&.external .rsg-action::after {
+			@include icon-arrow-diagonal;
+		}
+
+		&:hover .rsg-action {
+			text-decoration: underline;
+		}
+	}
+
+	// A card, as the Contact page's are: the box's own surface, a divider-tone outline and rounded corners.
+	&.boxed {
+		block-size: 100%;
+		padding: var(--spacing-24);
+
+		background-color: var(--rsg-background-colour);
+		border: map.get($border-widths, 1) solid var(--rsg-brand-colour-3);
+		border-radius: var(--border-radius-base);
+
+		@include media-breakpoint-up(md) {
+			padding: var(--spacing-32);
+		}
+	}
+}

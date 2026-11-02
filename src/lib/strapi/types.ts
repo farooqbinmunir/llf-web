@@ -64,6 +64,13 @@ export type CardGroup = SectionHeader & {
 	linkUrl: string | null;
 };
 
+// A link to a Library resource's file (or, for an external resource, its URL), under its own title.
+export type Download = {
+	title: string;
+	text: string | null;
+	resource: { externalUrl: string | null; file: { url: string; ext: string } | null } | null;
+};
+
 export type Testimonial = {
 	quote: string;
 	name: string | null;

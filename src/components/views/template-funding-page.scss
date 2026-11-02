@@ -1,0 +1,26 @@
+@use 'abstracts' as *;
+
+.template-funding-page {
+	.rsg-col-header .rsg-title {
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-3xl);
+		}
+	}
+
+	.rsg-col-content > .row {
+		row-gap: var(--spacing-16);
+	}
+
+	// The guidelines download: a small title, its line and the link, close together beside the mark.
+	.content-box-block.inline {
+		margin-block-start: var(--spacing-40);
+
+		.rsg-content-wrapper {
+			gap: var(--spacing-4);
+		}
+
+		.rsg-title {
+			font-size: var(--font-size-sm);
+		}
+	}
+}

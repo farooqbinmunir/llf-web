@@ -6,6 +6,8 @@
 @use '../components/helpers/video-player';
 
 // Global components
+@use '../components/global/forms/form-enquiry';
+@use '../components/global/forms/form-newsletter';
 @use '../components/global/navigation/footer-navigation/footer-navigation';
 @use '../components/global/navigation/footer-utility-navigation/footer-utility-navigation';
 @use '../components/global/navigation/load-more/load-more';
@@ -21,6 +23,7 @@
 @use '../components/contents/blocks/_blueprints/accordion-item';
 @use '../components/contents/blocks/_blueprints/wrapped-collection';
 @use '../components/contents/blocks/content-box-block/content-box-block-cta';
+@use '../components/contents/blocks/content-box-block/content-box-block-inline';
 @use '../components/contents/blocks/content-box-block/content-box-block-promo';
 @use '../components/contents/blocks/content-box-block/content-box-block-stacked';
 @use '../components/contents/blocks/countries-block/countries-block-standard';
@@ -57,4 +60,6 @@
 // Views
 @use '../components/views/single-article';
 @use '../components/views/single-project';
+@use '../components/views/template-funding-page';
 @use '../components/views/template-listing-page';
+@use '../components/views/template-partnerships-page';

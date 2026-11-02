@@ -1,14 +1,17 @@
 import { socialLinks } from '@/config/navigation';
 
-type SocialNavigationProps = { label: string };
+// `withLabels` names each network beside its icon, in two columns, as the Contact page's Follow LLF card does.
+type SocialNavigationProps = { label: string; withLabels?: boolean };
 
-export default function SocialNavigation({ label }: SocialNavigationProps) {
+export default function SocialNavigation({ label, withLabels }: SocialNavigationProps) {
 	return (
-		<nav className="rsg-social-navigation" aria-label={label}>
+		<nav className={withLabels ? 'rsg-social-navigation with-labels' : 'rsg-social-navigation'} aria-label={label}>
 			<ul role="list">
 				{socialLinks.map(({ network, label: networkLabel, href }) => (
 					<li key={network} className="rsg-nav-item">
-						<a className={`rsg-nav-link rsg-fa ${network}`} href={href} aria-label={networkLabel} />
+						<a className={`rsg-nav-link rsg-fa ${network}`} href={href} aria-label={withLabels ? undefined : networkLabel}>
+							{withLabels && networkLabel}
+						</a>
 					</li>
 				))}
 			</ul>

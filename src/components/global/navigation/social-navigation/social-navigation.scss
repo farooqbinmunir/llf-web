@@ -43,4 +43,49 @@ $social-icons: (
 			}
 		}
 	}
+
+	// Named links: the square moves to the icon, in the foreground colour, and the name follows it.
+	&.with-labels {
+		ul {
+			display: grid;
+			grid-template-columns: repeat(2, max-content);
+			gap: var(--spacing-16) var(--spacing-48);
+		}
+
+		.rsg-nav-link.rsg-fa {
+			display: inline-flex;
+			align-items: center;
+			gap: var(--spacing-12);
+
+			inline-size: auto;
+			block-size: auto;
+
+			font-size: var(--font-size-sm);
+
+			background-color: transparent;
+
+			&::before {
+				display: grid;
+				place-items: center;
+
+				inline-size: var(--spacing-32);
+				block-size: var(--spacing-32);
+
+				color: var(--rsg-background-colour);
+				background-color: var(--rsg-foreground-colour);
+				border-radius: var(--border-radius-sm);
+
+				transition: background-color var(--speed-fast) var(--transition-ease);
+			}
+
+			&:hover {
+				background-color: transparent;
+				text-decoration: underline;
+
+				&::before {
+					background-color: var(--rsg-brand-colour-2);
+				}
+			}
+		}
+	}
 }

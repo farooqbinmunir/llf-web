@@ -1,0 +1,65 @@
+@use 'abstracts' as *;
+
+.template-partnerships-page {
+	> .row {
+		row-gap: var(--spacing-40);
+	}
+
+	.rsg-col-header {
+		margin-block-end: var(--spacing-24);
+
+		.rsg-title {
+			@include media-breakpoint-up(lg) {
+				font-size: var(--font-size-3xl);
+			}
+		}
+
+		// The lead line under the title.
+		.rsg-text {
+			margin-block-start: var(--spacing-16);
+
+			font-size: var(--font-size-md);
+		}
+	}
+
+	.text-box-block .rsg-title {
+		font-size: var(--font-size-lg);
+
+		@include media-breakpoint-up(lg) {
+			font-size: var(--font-size-xl);
+		}
+	}
+
+	// The link sits on the start edge of the upper half-circle. The half-circles run to the foot of the section, which
+	// cuts off the lower one, as in the design.
+	.rsg-cta {
+		position: relative;
+
+		display: grid;
+		align-items: start;
+
+		margin-block: var(--spacing-48) calc(-1 * var(--rsg-section-spacing));
+
+		// Filled with the card tone, so the label reads over the half-circle.
+		.rsg-button {
+			--rsg-button-background-colour: var(--rsg-brand-colour-4);
+
+			position: absolute;
+			inset-block-start: 25%;
+			inset-inline-start: 0;
+			z-index: 1;
+		}
+
+		.rsg-media-wrapper {
+			inline-size: 75%;
+			aspect-ratio: 1 / 0.85;
+			margin-inline-start: auto;
+			overflow: hidden;
+
+			img {
+				inline-size: 100%;
+				block-size: auto;
+			}
+		}
+	}
+}

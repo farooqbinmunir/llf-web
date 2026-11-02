@@ -3,7 +3,8 @@ import WrappedCollection, { type CollectionHeading } from '@/components/contents
 
 type GroupedContentBlockProps = {
 	heading?: CollectionHeading;
-	items: { key: string; content: ReactNode }[];
+	// An item's own `colClasses` replace the block's, as for the Contact page's two half-width cards under full-width ones.
+	items: { key: string; content: ReactNode; colClasses?: string }[];
 	// The column each item takes, such as `col-12 col-md-6`.
 	colClasses: string;
 	// Presentation, as Radstone's item classes: `center-aligned` (centred header), `split-view` (header beside the
@@ -33,7 +34,7 @@ export default function GroupedContentBlockStandard({ heading, items, colClasses
 				body={
 					<div className="row" role="list">
 						{items.map((item) => (
-							<div key={item.key} className={`col ${colClasses}`} role="listitem">
+							<div key={item.key} className={`col ${item.colClasses ?? colClasses}`} role="listitem">
 								{item.content}
 							</div>
 						))}
