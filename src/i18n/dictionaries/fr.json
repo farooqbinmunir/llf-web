@@ -254,5 +254,10 @@
 		"slide": "diapositive",
 		"select": "Choisir une diapositive à afficher",
 		"slideLabel": "%s sur %s"
+	},
+	"preview": {
+		"label": "Aperçu",
+		"message": "Vous prévisualisez des modifications non publiées. Les visiteurs voient toujours la page publiée.",
+		"exit": "Quitter l’aperçu"
 	}
 }

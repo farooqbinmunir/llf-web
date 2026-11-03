@@ -1,4 +1,5 @@
 import { cacheLife, cacheTag } from 'next/cache';
+import { draftMode } from 'next/headers';
 
 const STRAPI_URL = process.env.STRAPI_URL;
 
@@ -17,8 +18,10 @@ function appendQuery(params: URLSearchParams, value: QueryValue, key: string) {
 	}
 }
 
-// Every Strapi read goes through here. The `strapi` tag plus per-type tags let a CMS webhook revalidate content
-// with revalidateTag() once publishing is wired up; until then entries refresh every few minutes.
+// Every Strapi read goes through here. The CMS's revalidation webhook expires the `strapi` tag or a type's own tag when
+// content changes (see app/api/revalidate), and entries also refresh every few minutes in case a webhook is missed.
+// In draft mode (an editor's preview) the cache is skipped and drafts are read with the preview token, as Strapi serves
+// drafts only to API tokens.
 export async function strapiGet<T>(path: string, query: { [key: string]: QueryValue }, tags: string[]): Promise<T> {
 	'use cache';
 	cacheLife('minutes');
@@ -26,10 +29,14 @@ export async function strapiGet<T>(path: string, query: { [key: string]: QueryVa
 
 	if (!STRAPI_URL) throw new Error('STRAPI_URL is not set. Copy .env.example to .env.local.');
 
-	const params = new URLSearchParams();
-	appendQuery(params, query, '');
+	const { isEnabled: preview } = await draftMode();
+	const token = process.env.STRAPI_PREVIEW_TOKEN;
+	if (preview && !token) throw new Error('STRAPI_PREVIEW_TOKEN is not set. Run `npm run token:preview` in llf.');
 
-	const response = await fetch(`${STRAPI_URL}/api${path}?${params}`);
+	const params = new URLSearchParams();
+	appendQuery(params, preview ? { ...query, status: 'draft' } : query, '');
+
+	const response = await fetch(`${STRAPI_URL}/api${path}?${params}`, preview ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
 
 	if (!response.ok) throw new Error(`Strapi request for ${path} failed with ${response.status}: ${await response.text()}`);
 

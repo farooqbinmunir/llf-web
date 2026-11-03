@@ -254,5 +254,10 @@
 		"slide": "slide",
 		"select": "Select a slide to show",
 		"slideLabel": "%s of %s"
+	},
+	"preview": {
+		"label": "Preview",
+		"message": "You are previewing unpublished changes. Visitors still see the published page.",
+		"exit": "Exit preview"
 	}
 }

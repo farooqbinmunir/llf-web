@@ -1,0 +1,21 @@
+@use 'abstracts' as *;
+
+// A slim yellow strip above the header, so the preview state is obvious without covering the page.
+.rsg-preview-banner {
+	padding-block: var(--spacing-12);
+
+	.container-xxl {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-12) var(--spacing-24);
+	}
+
+	p {
+		margin: 0;
+
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+	}
+}

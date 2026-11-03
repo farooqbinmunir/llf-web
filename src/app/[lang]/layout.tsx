@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { Cairo, Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import PageFooter from '@/components/global/page-footer/page-footer';
 import PageHeader from '@/components/global/page-header/page-header';
+import PreviewBanner from '@/components/global/preview-banner/preview-banner';
 import { hasLocale, localeDetails, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { getGlobal } from '@/lib/data/global';
@@ -41,6 +43,11 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
 				<a className="rsg-skip-to-content-link rsg-surface-dark" href="#main">
 					{dictionary.a11y.skipToContent}
 				</a>
+
+				{/* Draft mode is read per request, so the banner streams in without making the rest of the page dynamic. */}
+				<Suspense>
+					<PreviewBanner labels={dictionary.preview} />
+				</Suspense>
 
 				<PageHeader lang={lang} dictionary={dictionary} />
 
