@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import Form from 'next/form';
 import Link from 'next/link';
 import useBreakpointUp from '@/hooks/useBreakpointUp';
@@ -38,11 +38,28 @@ export default function SearchFilters({ id, action, label, fields, hiddenFields 
 	const controlsId = useId();
 	const [isOpen, setIsOpen] = useState(false);
 	const isDesktop = useBreakpointUp('lg');
+	const formRef = useRef<HTMLFormElement>(null);
 	const isPillsOnly = fields.every((field) => field.render === 'radio-lozenge');
+
+	// "All" submits an empty value. Before hydration the empty parameter is sent and ignored; once the script runs it is
+	// left out of the URL, through the event every submission's form data passes through.
+	useEffect(() => {
+		const form = formRef.current;
+		if (!form) return;
+
+		const dropEmptyValues = (event: FormDataEvent) => {
+			for (const [name, value] of [...event.formData]) {
+				if (value === '') event.formData.delete(name);
+			}
+		};
+		form.addEventListener('formdata', dropEmptyValues);
+		return () => form.removeEventListener('formdata', dropEmptyValues);
+	}, []);
+
 	const classes = ['rsg-search-filters', isPillsOnly && 'pills-only', isOpen && 'is-open', className].filter(Boolean).join(' ');
 
 	return (
-		<Form id={id} className={classes} action={action} scroll={false} aria-label={isPillsOnly ? label : undefined}>
+		<Form ref={formRef} id={id} className={classes} action={action} scroll={false} aria-label={isPillsOnly ? label : undefined}>
 			{/* The form is already named by the label, so the shown copy is hidden from screen readers. */}
 			{isPillsOnly && showLabel && (
 				<p className="rsg-filters-toggle rsg-fa" aria-hidden="true">
