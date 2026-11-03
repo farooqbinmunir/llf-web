@@ -44,11 +44,10 @@
 		}
 	}
 
-	// The accent colour on light fails contrast at this size; it follows the design (see the backlog's orange-on-light item).
 	.area > .rsg-title {
 		font-size: var(--font-size-md);
 
-		color: var(--rsg-brand-colour-2);
+		color: var(--rsg-brand-text-colour);
 
 		a {
 			@extend %unstyled-link;

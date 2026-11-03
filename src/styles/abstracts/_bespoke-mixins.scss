@@ -54,6 +54,10 @@
 	@each $name, $tones in $palettes {
 		@each $tone, $config in $tones {
 			--colour-#{$name}-#{$tone}: #{map.get($config, colour)};
+
+			@if map.has-key($config, text) {
+				--colour-#{$name}-#{$tone}-text: #{map.get($config, text)};
+			}
 		}
 
 		--colour-#{$name}: var(--colour-#{$name}-1);
@@ -76,6 +80,7 @@
 	--rsg-button-text-colour: var(--rsg-foreground-colour);
 	--rsg-button-background-colour: transparent;
 	--rsg-accent-text-colour: #{map.get(map.get($tones, 2), foreground)};
+	--rsg-brand-text-colour: #{brand-text-colour($name, $tones, $tone)};
 
 	background-color: var(--rsg-background-colour);
 	color: var(--rsg-foreground-colour);

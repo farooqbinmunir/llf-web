@@ -1,7 +1,58 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
 @use 'sass:string';
 @use '@fortawesome/fontawesome-free/scss/functions' as fa;
 
 // A Font Awesome glyph as `content`. The empty alternative text after the slash marks it as decorative, so screen readers never announce it.
 @function icon-content($glyph) {
 	@return string.unquote('#{fa.fa-content($glyph)} / ""');
+}
+
+// The WCAG contrast ratio of two colours, from their relative luminance, so the colour roles can check the pairs they make.
+@function contrast-ratio($first, $second) {
+	$lighter: math.max(luminance($first), luminance($second));
+	$darker: math.min(luminance($first), luminance($second));
+
+	@return math.div($lighter + 0.05, $darker + 0.05);
+}
+
+@function luminance($colour) {
+	$weights: (
+		'red': 0.2126,
+		'green': 0.7152,
+		'blue': 0.0722,
+	);
+	$sum: 0;
+
+	@each $channel, $weight in $weights {
+		$value: math.div(color.channel($colour, $channel, $space: rgb), 255);
+		$linear: math.pow(math.div($value + 0.055, 1.055), 2.4);
+
+		@if $value <= 0.04045 {
+			$linear: math.div($value, 12.92);
+		}
+
+		$sum: $sum + $weight * $linear;
+	}
+
+	@return $sum;
+}
+
+// The accent as text on a tone: tone 2 itself where it passes WCAG AA for body text, else tone 2's darker `text` shade
+// where that passes, else the tone's own foreground. Brand orange only reads as text on dark, so the light tones take the
+// darker shade, and mid tones such as dark 3 take their foreground.
+@function brand-text-colour($name, $tones, $tone) {
+	$surface: map.get(map.get($tones, $tone), colour);
+	$accent: map.get($tones, 2);
+
+	@if contrast-ratio(map.get($accent, colour), $surface) >= 4.5 {
+		@return var(--colour-#{$name}-2);
+	}
+
+	@if map.has-key($accent, text) and contrast-ratio(map.get($accent, text), $surface) >= 4.5 {
+		@return var(--colour-#{$name}-2-text);
+	}
+
+	@return map.get(map.get($tones, $tone), foreground);
 }

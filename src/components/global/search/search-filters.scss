@@ -10,7 +10,10 @@
 
 	background-color: var(--rsg-brand-colour-4);
 
+	// On dark the bar is tone 3, where the orange button text fails contrast, so Apply takes the bar's foreground.
 	.rsg-surface-dark & {
+		--rsg-button-text-colour: var(--rsg-foreground-colour);
+
 		background-color: var(--rsg-brand-colour-3);
 	}
 	border-radius: var(--border-radius-base);

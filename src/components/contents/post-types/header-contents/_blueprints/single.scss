@@ -88,7 +88,7 @@
 	// A plain band: no photo or shade, the label in the accent as the design shows, and the text centred from lg up.
 	&.layout-colour,
 	&.layout-image-above {
-		--rsg-label-colour: var(--rsg-brand-colour-2);
+		--rsg-label-colour: var(--rsg-brand-text-colour);
 
 		min-block-size: 0;
 		padding-block: var(--spacing-64) var(--spacing-32);

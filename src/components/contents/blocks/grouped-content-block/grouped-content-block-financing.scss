@@ -59,7 +59,7 @@
 		color: color-mix(in oklch, var(--rsg-foreground-colour) 70%, transparent);
 	}
 
-	// The figure follows the design's orange, which is below contrast on light (see the roadmap backlog).
+	// The figure takes the accent as text, which on light is the darker orange that passes contrast.
 	.amount {
 		display: flex;
 		align-items: flex-start;
@@ -67,7 +67,7 @@
 
 		margin: 0;
 
-		color: var(--rsg-brand-colour-2);
+		color: var(--rsg-brand-text-colour);
 
 		white-space: nowrap;
 	}

@@ -2,10 +2,12 @@
 
 // LLF role palettes, from the Brand Guidelines' colour specifications (hex, as the guidelines give it for digital use).
 // Tones are roles: 1 surface · 2 accent · 3 dividers · 4 card · 5 borders · 6 hover. Each tone names the text colour that reads on it.
+// The accent's `text` is a darker orange for type on light tones, where #f49d07 fails WCAG AA (1.96:1 on #f4f3f0); it is an
+// accessibility adjustment to the design, for the designers to confirm. Orange fills, borders and icons keep tone 2.
 $brand-colours: (
 	'dark': (
 		1: (colour: #2b2b2b, foreground: #fff),
-		2: (colour: #f49d07, foreground: #2b2b2b),
+		2: (colour: #f49d07, foreground: #2b2b2b, text: #9e5c00),
 		3: (colour: #545454, foreground: #fff),
 		4: (colour: #f4f3f0, foreground: #2b2b2b),
 		5: (colour: #7e7e7e, foreground: #fff),
@@ -13,7 +15,7 @@ $brand-colours: (
 	),
 	'light': (
 		1: (colour: #f4f3f0, foreground: #2b2b2b),
-		2: (colour: #f49d07, foreground: #2b2b2b),
+		2: (colour: #f49d07, foreground: #2b2b2b, text: #9e5c00),
 		3: (colour: #d1d1d1, foreground: #2b2b2b),
 		4: (colour: #fff, foreground: #2b2b2b),
 		5: (colour: #a7a7a7, foreground: #2b2b2b),
@@ -21,7 +23,7 @@ $brand-colours: (
 	),
 	'yellow': (
 		1: (colour: #fde7c1, foreground: #2b2b2b),
-		2: (colour: #f49d07, foreground: #2b2b2b),
+		2: (colour: #f49d07, foreground: #2b2b2b, text: #9e5c00),
 		3: (colour: #d1d1d1, foreground: #2b2b2b),
 		4: (colour: #f1d495, foreground: #2b2b2b),
 		5: (colour: #a7a7a7, foreground: #2b2b2b),
@@ -58,15 +60,17 @@ $feedback-colours: (
 	--rsg-button-text-colour: var(--rsg-foreground-colour);
 	--rsg-button-background-colour: var(--rsg-brand-colour-4);
 	--rsg-accent-text-colour: var(--colour-black);
+	// The accent as text, which the surface classes work out per tone (brand-text-colour); outside them the page is light 1.
+	--rsg-brand-text-colour: var(--colour-light-2-text);
 	--rsg-error-colour: var(--colour-error);
 }
 
 @include generate-brand-classes($brand-colours);
 
-// The orange accent only passes contrast on dark, so only dark sections use it for labels and button text.
+// Dark sections set their labels and button text in the accent, as the designs do.
 .rsg-surface-dark {
-	--rsg-label-colour: var(--rsg-brand-colour-2);
-	--rsg-button-text-colour: var(--rsg-brand-colour-2);
+	--rsg-label-colour: var(--rsg-brand-text-colour);
+	--rsg-button-text-colour: var(--rsg-brand-text-colour);
 	--rsg-error-colour: var(--colour-error-on-dark);
 }
 

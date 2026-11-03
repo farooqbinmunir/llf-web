@@ -1,6 +1,6 @@
 @use 'abstracts' as *;
 
-// The figure takes the accent. On light surfaces the design's orange is below contrast (see the roadmap backlog, M18).
+// The figure takes the accent as text, which on light is the darker orange that passes contrast.
 .statistic-block.standard {
 	// How long a counted-up figure takes to reach its value (see CountUp).
 	--count-up-duration: var(--speed-slower);
@@ -15,7 +15,7 @@
 
 		margin: 0;
 
-		color: var(--rsg-brand-colour-2);
+		color: var(--rsg-brand-text-colour);
 	}
 
 	.prefix {
