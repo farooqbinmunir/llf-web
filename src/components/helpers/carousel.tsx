@@ -10,8 +10,10 @@ import { toMilliseconds } from '@/lib/css';
 // `gridFrom` lays the slides out as a grid from that breakpoint up, with no carousel (see core/_splide.scss).
 type CarouselProps = { label: string; labels: Dictionary['carousel']; header?: ReactNode; footer?: ReactNode; gridFrom?: BreakpointName; children: ReactNode };
 
-// A Splide carousel of whatever slides it is given, paged by dots. Splide supplies the carousel semantics (region, slide
-// groups, labelled pagination tabs with arrow-key support), in the page's language through `labels`. Slide widths, the gap
+// A Splide carousel of whatever slides it is given, paged by dots. Splide supplies the carousel semantics (slide groups,
+// labelled pagination tabs with arrow-key support), in the page's language through `labels`. The carousel is a group, not
+// Splide's default region: it sits inside a block that is already a region named by the same heading, and two landmarks
+// with one name are noise to screen reader users. Slide widths, the gap
 // and the speed come from CSS (core/_splide.scss), so the stylesheet alone sets how many slides show at each width.
 export default function Carousel({ label, labels, header, footer, gridFrom, children }: CarouselProps) {
 	const root = useRef<HTMLDivElement>(null);
@@ -66,7 +68,7 @@ export default function Carousel({ label, labels, header, footer, gridFrom, chil
 	}, [label, labels, gridFrom]);
 
 	return (
-		<div ref={root} className={gridFrom ? `splide grid-${gridFrom}` : 'splide'} aria-label={label}>
+		<div ref={root} className={gridFrom ? `splide grid-${gridFrom}` : 'splide'} role="group" aria-label={label}>
 			{header}
 
 			<div className="splide__track">

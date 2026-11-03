@@ -57,7 +57,8 @@ export default async function ContactPage({ params }: PageProps<'/[lang]/contact
 		colClasses: HALF_COLUMN,
 		content: (
 			<ContentBoxBlockInline title={page.followTitle} icon="share" surface="rsg-surface-light-4" classes="boxed">
-				<SocialNavigation label={dictionary.a11y.socialNavigation} links={site?.socialLinks ?? []} withLabels />
+				{/* Named by the card's title, so it is told apart from the footer's social links. */}
+				<SocialNavigation label={page.followTitle} links={site?.socialLinks ?? []} withLabels />
 			</ContentBoxBlockInline>
 		),
 	};
