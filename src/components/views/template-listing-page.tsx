@@ -53,7 +53,7 @@ export function TemplateListingResults({ filters, status, noResults, tiles, layo
 			</p>
 
 			{tiles.length > 0 ? (
-				<div className={`row rsg-listing-results ${layout}`} role="list">
+				<div className={`row rsg-listing-results ${layout} rsg-js-load-more-results`} role="list">
 					{tiles.map(({ key, tile }) => (
 						<div key={key} className={`col ${COLUMNS[layout]}`} role="listitem">
 							{tile}

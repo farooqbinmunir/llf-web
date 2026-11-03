@@ -112,7 +112,7 @@ export default function Search({ lang, page, labels, libraryLabels, query, type,
 									{labels.groups[group.key]}
 								</h2>
 
-								<div role="list">
+								<div className={type ? 'rsg-js-load-more-results' : undefined} role="list">
 									{group.kind === 'resources'
 										? group.items.map((resource) => (
 												<div key={resource.documentId} role="listitem">
