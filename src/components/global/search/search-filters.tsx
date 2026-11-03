@@ -56,6 +56,19 @@ export default function SearchFilters({ id, action, label, fields, hiddenFields 
 		return () => form.removeEventListener('formdata', dropEmptyValues);
 	}, []);
 
+	// A row of pills scrolls sideways on small screens, so the chosen pill is centred in it when it is out of view. Only
+	// the row scrolls, never the page, and the delta works in both directions.
+	useEffect(() => {
+		formRef.current?.querySelectorAll('.radio-lozenge').forEach((row) => {
+			const chosen = row.querySelector('input:checked')?.closest('label');
+			if (!chosen) return;
+
+			const rowBox = row.getBoundingClientRect();
+			const box = chosen.getBoundingClientRect();
+			if (box.left >= rowBox.left && box.right <= rowBox.right) return;
+			row.scrollBy({ left: box.left - rowBox.left - (rowBox.width - box.width) / 2 });
+		});
+	}, []);
 	const classes = ['rsg-search-filters', isPillsOnly && 'pills-only', isOpen && 'is-open', className].filter(Boolean).join(' ');
 
 	return (
