@@ -57,7 +57,7 @@ async function StoryResults({ lang, searchParams, labels }: ListingProps) {
 			}
 			status={labels.showing.replace('{shown}', String(stories.length)).replace('{total}', String(total))}
 			noResults={labels.noResults}
-			tiles={stories.map((story) => ({ key: story.documentId, tile: <StoryTileStandard lang={lang} story={story} palette="light" /> }))}
+			tiles={stories.map((story, index) => ({ key: story.documentId, tile: <StoryTileStandard lang={lang} story={story} palette="light" preload={index === 0} /> }))}
 			loadMore={{
 				nextHref: stories.length < total ? withQuery(path, { ...query, page: page + 1 }) : undefined,
 				label: labels.loadMore,

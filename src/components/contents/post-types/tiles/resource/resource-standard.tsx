@@ -6,11 +6,12 @@ import { formatFileSize, formatMonth } from '@/lib/format';
 import { strapiMediaUrl } from '@/lib/strapi/client';
 
 // The tile takes tone 4 (card) of the palette of the section it sits in.
-type ResourceTileProps = { lang: Locale; resource: ResourceCard; palette: 'dark' | 'light'; labels: Dictionary['library'] };
+// The first tile of a listing preloads its photo, because on a phone it is the largest element on load.
+type ResourceTileProps = { lang: Locale; resource: ResourceCard; palette: 'dark' | 'light'; labels: Dictionary['library']; preload?: boolean };
 
 // The photo with the title over its foot, then the date, the file size and the action. The whole tile is the link: to the
 // file itself, so its type and size are part of the link text, or to an external resource, with the corner arrow instead.
-export default function ResourceTileStandard({ lang, resource, palette, labels }: ResourceTileProps) {
+export default function ResourceTileStandard({ lang, resource, palette, labels, preload }: ResourceTileProps) {
 	const { title, publishDate, externalUrl, coverImage, file } = resource;
 	const href = file ? strapiMediaUrl(file.url) : externalUrl;
 	if (!href) return null;
@@ -20,7 +21,7 @@ export default function ResourceTileStandard({ lang, resource, palette, labels }
 	return (
 		<a className={classes} href={href} target="_blank" rel="noopener noreferrer">
 			<div className="rsg-media-wrapper">
-				{coverImage && <MediaBlockStandard image={coverImage} aspectRatio="3x2" sizes="(min-width: 992px) 30vw, (min-width: 768px) 45vw, 90vw" alt="" />}
+				{coverImage && <MediaBlockStandard image={coverImage} aspectRatio="3x2" sizes="(min-width: 992px) 30vw, (min-width: 768px) 45vw, 90vw" alt="" preload={preload} />}
 				<p className="rsg-title">{title}</p>
 			</div>
 

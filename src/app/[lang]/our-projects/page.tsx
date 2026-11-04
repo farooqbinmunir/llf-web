@@ -80,7 +80,7 @@ async function ProjectResults({ lang, searchParams, labels }: ListingProps) {
 			}
 			status={labels.showing.replace('{shown}', String(projects.length)).replace('{total}', String(total))}
 			noResults={labels.noResults}
-			tiles={projects.map((project) => ({ key: project.documentId, tile: <ProjectTileStandard lang={lang} project={project} palette="dark" /> }))}
+			tiles={projects.map((project, index) => ({ key: project.documentId, tile: <ProjectTileStandard lang={lang} project={project} palette="dark" preload={index === 0} /> }))}
 			loadMore={{
 				nextHref: projects.length < total ? withQuery(path, { ...filters, page: page + 1 }) : undefined,
 				label: labels.loadMore,

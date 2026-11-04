@@ -5,10 +5,11 @@ import { localisedPath, type Locale } from '@/i18n/config';
 import type { ProjectCard } from '@/lib/data/projects';
 
 // The tile takes tone 4 (card) of the palette of the section it sits in.
-type ProjectTileProps = { lang: Locale; project: ProjectCard; palette: Palette };
+// The first tile of a listing preloads its photo, because on a phone it is the largest element on load.
+type ProjectTileProps = { lang: Locale; project: ProjectCard; palette: Palette; preload?: boolean };
 
 // Terms and the corner arrow, the title, summary and key facts, then the photo at the foot. The whole tile is the link.
-export default function ProjectTileStandard({ lang, project, palette }: ProjectTileProps) {
+export default function ProjectTileStandard({ lang, project, palette, preload }: ProjectTileProps) {
 	const { title, slug, summary, heroImage, focusArea, country, impact, investment } = project;
 	const facts = [impact, investment].filter((fact) => fact !== null);
 
@@ -44,7 +45,7 @@ export default function ProjectTileStandard({ lang, project, palette }: ProjectT
 
 			{heroImage && (
 				<div className="rsg-media-wrapper">
-					<MediaBlockStandard image={heroImage} aspectRatio="3x2" sizes="(min-width: 992px) 30vw, (min-width: 768px) 45vw, 90vw" alt="" />
+					<MediaBlockStandard image={heroImage} aspectRatio="3x2" sizes="(min-width: 992px) 30vw, (min-width: 768px) 45vw, 90vw" alt="" preload={preload} />
 				</div>
 			)}
 		</Link>

@@ -55,7 +55,7 @@ async function ResourceResults({ lang, searchParams, labels }: ListingProps) {
 			}
 			status={labels.showing.replace('{shown}', String(resources.length)).replace('{total}', String(total))}
 			noResults={labels.noResults}
-			tiles={resources.map((resource) => ({ key: resource.documentId, tile: <ResourceTileStandard lang={lang} resource={resource} palette="light" labels={labels} /> }))}
+			tiles={resources.map((resource, index) => ({ key: resource.documentId, tile: <ResourceTileStandard lang={lang} resource={resource} palette="light" labels={labels} preload={index === 0} /> }))}
 			loadMore={{
 				nextHref: resources.length < total ? withQuery(path, { type, page: page + 1 }) : undefined,
 				label: labels.loadMore,
