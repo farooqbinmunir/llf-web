@@ -30,6 +30,8 @@ export default function ContentBoxBlockPromo({ lang, id, promo }: ContentBoxBloc
 							<div className="rsg-link-list">
 								<Link className="rsg-button" href={resolveHref(lang, linkUrl)}>
 									{linkLabel}
+									{/* A bare "Learn more" does not say where it goes, so screen readers also hear the section's label. */}
+									{label && <span className="rsg-visually-hidden">: {label}</span>}
 								</Link>
 							</div>
 						)}
