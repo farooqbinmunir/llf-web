@@ -4,7 +4,8 @@
 	@extend %no-list;
 
 	display: grid;
-	grid-template-columns: repeat(2, max-content);
+	// Columns may shrink below their content, so longer labels (French) wrap rather than overflow a narrow screen.
+	grid-template-columns: repeat(2, minmax(0, max-content));
 	gap: var(--spacing-12) var(--spacing-32);
 
 	@include media-breakpoint-up(lg) {
