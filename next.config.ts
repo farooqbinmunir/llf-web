@@ -9,6 +9,10 @@ const strapiUrl = new URL(process.env.STRAPI_URL);
 const nextConfig: NextConfig = {
 	cacheComponents: true,
 	partialPrefetching: true,
+	experimental: {
+		// The stylesheet is about 22kB, so it goes into the HTML rather than blocking the first paint with a request.
+		inlineCss: true,
+	},
 	images: {
 		remotePatterns: [new URL('/uploads/**', strapiUrl)],
 		// Next blocks optimising images from private IPs to prevent SSRF. Only a locally running CMS needs the exception.
