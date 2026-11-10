@@ -8,7 +8,7 @@ import type { Dictionary } from '@/i18n/dictionaries';
 type ListingBlockCarouselProps = {
 	// The label, or the title when there is no label, also names the carousel.
 	heading: CollectionHeading & { id: string };
-	viewAll: { label: string; href: string };
+	viewAll?: { label: string; href: string };
 	carouselLabels: Dictionary['carousel'];
 	// Presentation, as Radstone's item classes: `center-aligned` (centred header).
 	classes?: string;
@@ -31,11 +31,13 @@ export default function ListingBlockCarousel({ heading, viewAll, carouselLabels,
 						labels={carouselLabels}
 						gridFrom={gridFrom}
 						footer={
-							<div className="rsg-link-list">
-								<Link className="rsg-button" href={viewAll.href}>
-									{viewAll.label}
-								</Link>
-							</div>
+							viewAll && (
+								<div className="rsg-link-list">
+									<Link className="rsg-button" href={viewAll.href}>
+										{viewAll.label}
+									</Link>
+								</div>
+							)
 						}
 					>
 						{children}

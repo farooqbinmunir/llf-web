@@ -144,6 +144,12 @@
 	position: relative;
 
 	overflow: clip;
+
+	// From lg up the map is placed out of the flow, so the section is at least as tall as it (half the width, at the
+	// artwork's proportions) when the heading and figures are shorter, as they are in Arabic.
+	@include media-breakpoint-up(lg) {
+		min-block-size: calc(50vw * 758 / 1000);
+	}
 }
 
 @keyframes map-pin-drop {

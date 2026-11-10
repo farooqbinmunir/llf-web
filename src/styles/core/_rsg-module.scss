@@ -18,6 +18,14 @@
 		}
 	}
 
+	// A section that follows one on the same surface, without a rounded top, continues it, as About us follows Impact in
+	// action on the home page: the space between them is the first section's bottom padding only.
+	@each $palette in (dark, light, yellow) {
+		&.rsg-surface-#{$palette} + &.rsg-surface-#{$palette}:not(.section-rounded-top) {
+			padding-block-start: 0;
+		}
+	}
+
 	// The section rounds its top corners and slides up by the radius, so the section above shows in the corners, as the page designs stack them.
 	&.section-rounded-top {
 		--rsg-rounded-top-radius: var(--border-radius-xl);

@@ -8,7 +8,7 @@ import type { Dictionary } from '@/i18n/dictionaries';
 type ListingBlockSliderProps = {
 	// The label, or the title when there is no label, also names the carousel.
 	heading: CollectionHeading & { id: string };
-	viewAll: { label: string; href: string };
+	viewAll?: { label: string; href: string };
 	carouselLabels: Dictionary['carousel'];
 	// One full-width tile per slide.
 	children: ReactNode;
@@ -36,11 +36,13 @@ export default function ListingBlockSlider({ heading, viewAll, carouselLabels, c
 					</div>
 				}
 				footer={
-					<div className="rsg-link-list">
-						<Link className="rsg-button" href={viewAll.href}>
-							{viewAll.label}
-						</Link>
-					</div>
+					viewAll && (
+						<div className="rsg-link-list">
+							<Link className="rsg-button" href={viewAll.href}>
+								{viewAll.label}
+							</Link>
+						</div>
+					)
 				}
 			>
 				{children}
