@@ -25,6 +25,7 @@
 // Blocks
 @use '../components/contents/blocks/_blueprints/accordion-item';
 @use '../components/contents/blocks/_blueprints/wrapped-collection';
+@use '../components/contents/blocks/case-study-block/case-study-block-standard';
 @use '../components/contents/blocks/content-box-block/content-box-block-cta';
 @use '../components/contents/blocks/content-box-block/content-box-block-inline';
 @use '../components/contents/blocks/content-box-block/content-box-block-promo';
@@ -33,7 +34,6 @@
 @use '../components/contents/blocks/grouped-content-block/grouped-content-block-financing';
 @use '../components/contents/blocks/grouped-content-block/grouped-content-block-standard';
 @use '../components/contents/blocks/listing-block/listing-block-carousel';
-@use '../components/contents/blocks/listing-block/listing-block-slider';
 @use '../components/contents/blocks/listing-block/listing-block-standard';
 @use '../components/contents/blocks/map-block/map-block-standard';
 @use '../components/contents/blocks/media-block/media-block-standard';

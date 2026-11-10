@@ -1,7 +1,7 @@
 @use 'abstracts' as *;
 
 // One full-width slide at a time. The header and the carousel footer sit over the slides, in the page's container.
-.listing-block.slider {
+.case-study-block.standard {
 	--splide-gap: 0;
 
 	.splide {
@@ -53,6 +53,6 @@
 }
 
 // The section's rounded corners cut the photos.
-.rsg-module:has(> .listing-block.slider) {
+.rsg-module:has(> .case-study-block.standard) {
 	overflow: clip;
 }

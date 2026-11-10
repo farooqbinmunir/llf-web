@@ -1,9 +1,9 @@
 import type { Locale } from '@/i18n/config';
-import { CONTENT_BOX_QUERY } from '@/lib/data/blocks';
+import { sectionsQuery, type Section } from '@/lib/data/blocks';
 import { SEO_QUERY, TRANSLATIONS_QUERY } from '@/lib/data/global';
 import { uniqueBySlug } from '@/lib/data/unique-by-slug';
 import { strapiGet } from '@/lib/strapi/client';
-import type { BlocksNode, BodySection, Collection, ContentBox, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial, Translation } from '@/lib/strapi/types';
+import type { BlocksNode, BodySection, Collection, Media, PageHero, Seo, Single, Stat, Taxonomy, Testimonial, Translation } from '@/lib/strapi/types';
 
 export type ProjectCard = {
 	documentId: string;
@@ -42,10 +42,8 @@ export type ProjectsPage = {
 	hero: PageHero | null;
 	introTitle: string | null;
 	introText: string | null;
-	impactTitle: string | null;
-	impactText: string | null;
-	impactStats: Stat[];
-	cta: ContentBox | null;
+	// The sections below the listing.
+	sections: Section[];
 	seo: Seo | null;
 };
 
@@ -73,8 +71,7 @@ export async function getProjectsPage(lang: Locale) {
 			locale: lang,
 			populate: {
 				hero: { populate: { image: { fields: MEDIA_FIELDS } } },
-				impactStats: true,
-				cta: CONTENT_BOX_QUERY,
+				sections: sectionsQuery(),
 				seo: SEO_QUERY,
 			},
 		},

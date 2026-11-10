@@ -4,6 +4,7 @@ import CountriesBlock from '@/components/contents/blocks/countries-block/countri
 import GroupedContentBlock from '@/components/contents/blocks/grouped-content-block/grouped-content-block';
 import ListingBlock from '@/components/contents/blocks/listing-block/listing-block';
 import MapBlock from '@/components/contents/blocks/map-block/map-block';
+import PartnersBlock from '@/components/contents/blocks/partners-block/partners-block';
 import StatisticBlock from '@/components/contents/blocks/statistic-block/statistic-block';
 import type { Locale } from '@/i18n/config';
 import type { Section } from '@/lib/data/blocks';
@@ -26,6 +27,8 @@ export default function Sections({ lang, sections, opensPage = false }: Sections
 				return <GroupedContentBlock key={key} lang={lang} block={section} id={id} isPageHeading={isPageHeading} />;
 			case 'blocks.countries':
 				return <CountriesBlock key={key} lang={lang} block={section} id={id} isPageHeading={isPageHeading} />;
+			case 'blocks.partners':
+				return <PartnersBlock key={key} lang={lang} block={section} id={id} isPageHeading={isPageHeading} />;
 			case 'blocks.map':
 				return <MapBlock key={key} lang={lang} block={section} id={id} />;
 			case 'blocks.content-box':

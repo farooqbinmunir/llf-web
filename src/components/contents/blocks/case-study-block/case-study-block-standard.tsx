@@ -5,7 +5,7 @@ import Carousel from '@/components/helpers/carousel';
 import TextWithBreaks from '@/components/helpers/text-with-breaks';
 import type { Dictionary } from '@/i18n/dictionaries';
 
-type ListingBlockSliderProps = {
+type CaseStudyBlockStandardProps = {
 	// The label, or the title when there is no label, also names the carousel.
 	heading: CollectionHeading & { id: string };
 	viewAll?: { label: string; href: string };
@@ -17,9 +17,9 @@ type ListingBlockSliderProps = {
 // One full-width slide at a time, with the section's label and title over the top of the slides and the dots and
 // "View all" link over their foot, as Stories of change is designed on desktop. It sits in a full-width wrapper, so it
 // places its own containers.
-export default function ListingBlockSlider({ heading, viewAll, carouselLabels, children }: ListingBlockSliderProps) {
+export default function CaseStudyBlockStandard({ heading, viewAll, carouselLabels, children }: CaseStudyBlockStandardProps) {
 	return (
-		<div className="listing-block slider" role="region" aria-labelledby={heading.id}>
+		<div className="case-study-block standard" role="region" aria-labelledby={heading.id}>
 			<Carousel
 				label={heading.label ?? heading.title ?? ''}
 				labels={carouselLabels}

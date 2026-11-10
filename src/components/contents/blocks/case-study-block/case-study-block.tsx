@@ -1,7 +1,7 @@
 import { collectionHeading, viewAllLink } from '@/components/contents/blocks/_blueprints/block-heading';
 import BaseWrapper from '@/components/contents/blocks/base-wrapper';
+import CaseStudyBlockStandard from '@/components/contents/blocks/case-study-block/case-study-block-standard';
 import ListingBlockCarousel from '@/components/contents/blocks/listing-block/listing-block-carousel';
-import ListingBlockSlider from '@/components/contents/blocks/listing-block/listing-block-slider';
 import StoryTileSlide from '@/components/contents/post-types/tiles/story/story-slide';
 import StoryTileStandard from '@/components/contents/post-types/tiles/story/story-standard';
 import type { Locale } from '@/i18n/config';
@@ -29,11 +29,11 @@ export default async function CaseStudyBlock({ lang, block, id }: CaseStudyBlock
 			</BaseWrapper>
 
 			<BaseWrapper wrapperClasses="section-rounded-top d-none d-lg-block" brand="dark" fullWidth>
-				<ListingBlockSlider heading={{ id: `${id}-slider`, label: block.heading.label, title: block.heading.title }} viewAll={viewAll} carouselLabels={carousel}>
+				<CaseStudyBlockStandard heading={{ id: `${id}-slider`, label: block.heading.label, title: block.heading.title }} viewAll={viewAll} carouselLabels={carousel}>
 					{block.stories.map((story) => (
 						<StoryTileSlide key={story.documentId} lang={lang} story={story} labels={home} />
 					))}
-				</ListingBlockSlider>
+				</CaseStudyBlockStandard>
 			</BaseWrapper>
 		</>
 	);

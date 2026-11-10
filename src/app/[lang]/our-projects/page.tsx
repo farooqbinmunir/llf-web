@@ -1,10 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import BaseWrapper from '@/components/contents/blocks/base-wrapper';
-import ContentBoxBlock from '@/components/contents/blocks/content-box-block/content-box-block';
-import GroupedContentBlockStandard from '@/components/contents/blocks/grouped-content-block/grouped-content-block-standard';
-import StatisticBlockStandard from '@/components/contents/blocks/statistic-block/statistic-block-standard';
+import Sections from '@/components/contents/blocks/sections';
 import TextBoxBlockStandard from '@/components/contents/blocks/text-box-block/text-box-block-standard';
 import HeaderContentsSingle from '@/components/contents/post-types/header-contents/_blueprints/single';
 import ProjectTileStandard from '@/components/contents/post-types/tiles/project/project-standard';
@@ -136,21 +133,7 @@ export default async function OurProjectsPage({ params, searchParams }: PageProp
 				</Suspense>
 			</TemplateListingPage>
 
-			{page.impactStats.length > 0 && (
-				<BaseWrapper wrapperClasses="section-wrapper-small section-rounded-top" brand="light">
-					<GroupedContentBlockStandard
-						classes="center-aligned boxed-items"
-						heading={{ id: 'impact-stats-title', title: page.impactTitle, text: page.impactText }}
-						colClasses="col-6 col-lg-3"
-						items={page.impactStats.map((stat) => ({
-							key: `${stat.value}-${stat.description}`,
-							content: <StatisticBlockStandard prefix={stat.label} statistic={stat.value} footnote={stat.description} />,
-						}))}
-					/>
-				</BaseWrapper>
-			)}
-
-			{page.cta && <ContentBoxBlock lang={lang} block={page.cta} id="projects-cta-title" />}
+			<Sections lang={lang} sections={page.sections} />
 		</>
 	);
 }
