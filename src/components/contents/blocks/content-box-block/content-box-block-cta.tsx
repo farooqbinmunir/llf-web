@@ -1,25 +1,30 @@
 import Link from 'next/link';
+import TextWithBreaks from '@/components/helpers/text-with-breaks';
 import { resolveHref, type Locale } from '@/i18n/config';
-import type { CallToAction } from '@/lib/strapi/types';
+import type { ContentBox } from '@/lib/strapi/types';
 
-type ContentBoxBlockCtaProps = { lang: Locale; cta: CallToAction };
+type ContentBoxBlockCtaProps = { lang: Locale; block: ContentBox; id: string };
 
-// A single band: title and text beside the link from lg up, stacked on smaller screens.
-export default function ContentBoxBlockCta({ lang, cta }: ContentBoxBlockCtaProps) {
-	const { title, text, linkLabel, linkUrl } = cta;
+// A single band: title and text beside the links from lg up, stacked on smaller screens.
+export default function ContentBoxBlockCta({ lang, block, id }: ContentBoxBlockCtaProps) {
+	const { title, text, links } = block.heading;
 
 	return (
-		<div className="content-box-block cta">
+		<div className="content-box-block cta" role="region" aria-labelledby={id}>
 			<div className="rsg-header">
-				<h2 className="rsg-title">{title}</h2>
+				<h2 id={id} className="rsg-title">
+					<TextWithBreaks text={title} />
+				</h2>
 				{text && <p className="rsg-text">{text}</p>}
 			</div>
 
-			{linkLabel && linkUrl && (
+			{links.length > 0 && (
 				<div className="rsg-link-list">
-					<Link className="rsg-button" href={resolveHref(lang, linkUrl)}>
-						{linkLabel}
-					</Link>
+					{links.map((link) => (
+						<Link key={link.id} className="rsg-button" href={resolveHref(lang, link.url)}>
+							{link.label}
+						</Link>
+					))}
 				</div>
 			)}
 		</div>

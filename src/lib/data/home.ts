@@ -1,16 +1,17 @@
 import type { Locale } from '@/i18n/config';
+import { CONTENT_BOX_QUERY } from '@/lib/data/blocks';
 import { SEO_QUERY } from '@/lib/data/global';
 import { PROJECT_CARD_QUERY, type ProjectCard } from '@/lib/data/projects';
 import { RESOURCE_CARD_QUERY, type ResourceCard } from '@/lib/data/resources';
 import { STORY_CARD_QUERY, type StoryCard } from '@/lib/data/stories';
 import { strapiGet } from '@/lib/strapi/client';
-import type { CallToAction, PageHero, Promo, SectionHeader, Seo, Single, Stat } from '@/lib/strapi/types';
+import type { ContentBox, PageHero, SectionHeader, Seo, Single, Stat } from '@/lib/strapi/types';
 
 export type HomePage = {
 	title: string;
 	hero: PageHero | null;
 	impact: (SectionHeader & { stats: Stat[] }) | null;
-	about: Promo | null;
+	about: ContentBox | null;
 	partners: SectionHeader | null;
 	projects: SectionHeader | null;
 	featuredProjects: ProjectCard[];
@@ -19,7 +20,7 @@ export type HomePage = {
 	news: SectionHeader | null;
 	library: SectionHeader | null;
 	featuredResources: ResourceCard[];
-	cta: CallToAction | null;
+	cta: ContentBox | null;
 	seo: Seo | null;
 };
 
@@ -34,7 +35,7 @@ export async function getHomePage(lang: Locale) {
 			populate: {
 				hero: WITH_IMAGE,
 				impact: { populate: { stats: true } },
-				about: WITH_IMAGE,
+				about: CONTENT_BOX_QUERY,
 				partners: true,
 				projects: true,
 				featuredProjects: PROJECT_CARD_QUERY,
@@ -43,7 +44,7 @@ export async function getHomePage(lang: Locale) {
 				news: true,
 				library: true,
 				featuredResources: RESOURCE_CARD_QUERY,
-				cta: WITH_IMAGE,
+				cta: CONTENT_BOX_QUERY,
 				seo: SEO_QUERY,
 			},
 		},

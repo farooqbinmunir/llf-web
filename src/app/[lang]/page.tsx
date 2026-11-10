@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import BaseWrapper from '@/components/contents/blocks/base-wrapper';
-import ContentBoxBlockCta from '@/components/contents/blocks/content-box-block/content-box-block-cta';
-import ContentBoxBlockPromo from '@/components/contents/blocks/content-box-block/content-box-block-promo';
+import ContentBoxBlock from '@/components/contents/blocks/content-box-block/content-box-block';
 import ListingBlockCarousel from '@/components/contents/blocks/listing-block/listing-block-carousel';
 import ListingBlockSlider from '@/components/contents/blocks/listing-block/listing-block-slider';
 import ListingBlockStandard from '@/components/contents/blocks/listing-block/listing-block-standard';
@@ -66,7 +65,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 			{(impact || about) && (
 				<BaseWrapper wrapperClasses={ROUNDED_SECTION} brand="dark">
 					{impact && <MapBlockStandard heading={sectionHeading(impact, 'home-impact-title')} stats={impact.stats} countries={countries} />}
-					{about && <ContentBoxBlockPromo lang={lang} id="home-about-title" promo={about} />}
+					{about && <ContentBoxBlock lang={lang} block={about} id="home-about-title" wrapped={false} />}
 				</BaseWrapper>
 			)}
 
@@ -148,11 +147,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 				</BaseWrapper>
 			)}
 
-			{cta && (
-				<BaseWrapper wrapperClasses={ROUNDED_SECTION} brand="dark" backgroundImage={cta.image}>
-					<ContentBoxBlockCta lang={lang} cta={cta} />
-				</BaseWrapper>
-			)}
+			{cta && <ContentBoxBlock lang={lang} block={cta} id="home-cta-title" />}
 
 			{site && <StructuredData data={organisationData(lang, site)} />}
 		</>

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import BaseWrapper from '@/components/contents/blocks/base-wrapper';
-import ContentBoxBlockCta from '@/components/contents/blocks/content-box-block/content-box-block-cta';
+import ContentBoxBlock from '@/components/contents/blocks/content-box-block/content-box-block';
 import GroupedContentBlockStandard from '@/components/contents/blocks/grouped-content-block/grouped-content-block-standard';
 import StatisticBlockStandard from '@/components/contents/blocks/statistic-block/statistic-block-standard';
 import TextBoxBlockStandard from '@/components/contents/blocks/text-box-block/text-box-block-standard';
@@ -150,11 +150,7 @@ export default async function OurProjectsPage({ params, searchParams }: PageProp
 				</BaseWrapper>
 			)}
 
-			{page.cta && (
-				<BaseWrapper brand="dark" backgroundImage={page.cta.image}>
-					<ContentBoxBlockCta lang={lang} cta={page.cta} />
-				</BaseWrapper>
-			)}
+			{page.cta && <ContentBoxBlock lang={lang} block={page.cta} id="projects-cta-title" />}
 		</>
 	);
 }

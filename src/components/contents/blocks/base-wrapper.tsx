@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import ResponsiveImage from '@/components/helpers/image';
-import type { Media } from '@/lib/strapi/types';
+import type { BlockSettings, Media } from '@/lib/strapi/types';
 
 export type Palette = 'dark' | 'light' | 'yellow';
 
@@ -14,15 +14,17 @@ type BaseWrapperProps = {
 	fullWidth?: boolean;
 	// A photo behind the section, as texture under its content.
 	backgroundImage?: Media | null;
+	// The section's id, so a link can jump to it (/about-us#partners).
+	anchor?: string | null;
 	children: ReactNode;
 };
 
 // The section every block sits in: `rsg-module` > container > row > column, as in Radstone's base wrapper.
-export default function BaseWrapper({ wrapperClasses = 'section-wrapper-small', brand, colClasses = 'col-12', fullWidth, backgroundImage, children }: BaseWrapperProps) {
+export default function BaseWrapper({ wrapperClasses = 'section-wrapper-small', brand, colClasses = 'col-12', fullWidth, backgroundImage, anchor, children }: BaseWrapperProps) {
 	const classes = ['rsg-module', wrapperClasses, brand && `rsg-surface-${brand}`, backgroundImage && 'has-background-media'].filter(Boolean).join(' ');
 
 	return (
-		<div className={classes}>
+		<div id={anchor || undefined} className={classes}>
 			{backgroundImage && (
 				<div className="rsg-background-media" aria-hidden="true">
 					<ResponsiveImage image={backgroundImage} aspectRatio="orig" sizes="100vw" alt="" />
@@ -41,3 +43,11 @@ export default function BaseWrapper({ wrapperClasses = 'section-wrapper-small', 
 		</div>
 	);
 }
+
+// The wrapper props a block's settings give: its palette, a rounded top, a photo behind it and its anchor.
+export const settingsWrapperProps = (settings: BlockSettings | null) => ({
+	brand: settings?.brand,
+	wrapperClasses: ['section-wrapper-small', settings?.roundedTop && 'section-rounded-top'].filter(Boolean).join(' '),
+	backgroundImage: settings?.backgroundImage,
+	anchor: settings?.anchor,
+});

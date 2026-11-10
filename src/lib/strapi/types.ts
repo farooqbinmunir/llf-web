@@ -26,14 +26,6 @@ export type PageHero = {
 	image: Media | null;
 };
 
-export type CallToAction = {
-	title: string;
-	text: string | null;
-	linkLabel: string | null;
-	linkUrl: string | null;
-	image: Media | null;
-};
-
 // The label, heading and intro above a section whose items come from their own collection.
 export type SectionHeader = {
 	label: string | null;
@@ -41,12 +33,31 @@ export type SectionHeader = {
 	text: string | null;
 };
 
-// A section that points to another page: header, lead line, text and one link, beside a photo.
-export type Promo = SectionHeader & {
-	lead: string | null;
-	linkLabel: string | null;
-	linkUrl: string | null;
-	image: Media | null;
+export type Link = { id: number; label: string; url: string };
+
+// What every block starts with, as the rebuild's block heading: label, heading, intro line, buttons and a photo.
+export type BlockHeading = {
+	label: string | null;
+	title: string;
+	text: string | null;
+	links: Link[];
+	media: Media | null;
+};
+
+// How a block's section looks, as the rebuild's container settings: its palette, a rounded top, a photo behind it, an anchor.
+export type BlockSettings = {
+	brand: 'light' | 'dark' | 'yellow';
+	roundedTop: boolean | null;
+	backgroundImage: Media | null;
+	anchor: string | null;
+};
+
+// A section of copy that points somewhere; its layout picks the variant.
+export type ContentBox = {
+	layout: 'promo' | 'cta';
+	heading: BlockHeading;
+	body: string | null;
+	settings: BlockSettings | null;
 };
 
 export type IconCard = {
