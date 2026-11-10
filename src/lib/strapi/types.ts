@@ -26,13 +26,6 @@ export type PageHero = {
 	image: Media | null;
 };
 
-// The label, heading and intro above a section whose items come from their own collection.
-export type SectionHeader = {
-	label: string | null;
-	title: string;
-	text: string | null;
-};
-
 export type Link = { id: number; label: string; url: string };
 
 // What every block starts with, as the rebuild's block heading: label, heading, intro line, buttons and a photo.
@@ -65,14 +58,6 @@ export type IconCard = {
 	icon: Media | null;
 	title: string;
 	text: string | null;
-};
-
-// Icon cards under a header, over an optional background photo, with an optional link below.
-export type CardGroup = SectionHeader & {
-	image: Media | null;
-	cards: IconCard[];
-	linkLabel: string | null;
-	linkUrl: string | null;
 };
 
 // A link to a Library resource's file (or, for an external resource, its URL), under its own title.
